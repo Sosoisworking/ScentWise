@@ -6,7 +6,7 @@ export function filterBrands(
   brands: Brand[],
   query: string,
   category: CategoryFilter,
-  activeLetter: string | null
+  activeLetter: string | null,
 ): Brand[] {
   const q = query.trim().toLowerCase();
   return brands.filter((brand) => {

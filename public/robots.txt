@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://scentwisefragrances.lovable.app/sitemap.xml

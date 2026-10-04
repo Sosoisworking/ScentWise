@@ -1,10 +1,21 @@
 import { Link } from "@tanstack/react-router";
 import { formatDate, readingTime, type Article } from "../../data/articles";
 
-export function ArticleCard({ article, priority = false }: { article: Article; priority?: boolean }) {
+export function ArticleCard({
+  article,
+  priority = false,
+}: {
+  article: Article;
+  priority?: boolean;
+}) {
   return (
     <article className="flex flex-col overflow-hidden rounded-3xl border border-border bg-card shadow-scent transition hover:-translate-y-0.5 hover:shadow-scent-hover">
-      <Link to="/learn/$slug" params={{ slug: article.slug }} className="block" aria-label={article.title}>
+      <Link
+        to="/learn/$slug"
+        params={{ slug: article.slug }}
+        className="block"
+        aria-label={article.title}
+      >
         <img
           src={article.image}
           alt={article.imageAlt}
@@ -16,7 +27,9 @@ export function ArticleCard({ article, priority = false }: { article: Article; p
         />
       </Link>
       <div className="flex flex-1 flex-col p-5 sm:p-6">
-        <p className="text-[11px] font-bold uppercase tracking-wide text-primary">{article.category}</p>
+        <p className="text-[11px] font-bold uppercase tracking-wide text-primary">
+          {article.category}
+        </p>
         <h3 className="mt-2 font-serif text-xl font-bold leading-snug text-foreground">
           <Link to="/learn/$slug" params={{ slug: article.slug }} className="hover:text-primary">
             {article.title}

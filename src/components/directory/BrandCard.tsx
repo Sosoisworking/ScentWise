@@ -24,13 +24,17 @@ export function BrandCard({ brand, accent = false }: { brand: Brand; accent?: bo
         <h3 className="font-serif text-lg font-bold leading-tight text-foreground">{brand.name}</h3>
       </div>
       <div className="mt-2 flex flex-wrap items-center gap-2">
-        <span className={`rounded-full px-2 py-0.5 text-[11px] font-semibold ${cat.cls}`}>{cat.label}</span>
+        <span className={`rounded-full px-2 py-0.5 text-[11px] font-semibold ${cat.cls}`}>
+          {cat.label}
+        </span>
         <span className="text-xs text-muted-foreground">
           {flagFor(brand.country)} {brand.country}
         </span>
         <span className="text-xs text-muted-foreground">· est. {brand.founded}</span>
       </div>
-      <p className="mt-3 line-clamp-2 text-[13px] leading-relaxed text-muted-foreground">{brand.tagline}</p>
+      <p className="mt-3 line-clamp-2 text-[13px] leading-relaxed text-muted-foreground">
+        {brand.tagline}
+      </p>
       <a
         href={brand.officialUrl}
         target="_blank"

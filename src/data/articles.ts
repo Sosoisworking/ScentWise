@@ -4,11 +4,7 @@ import summerImg from "../assets/learn-summer.jpg";
 import winterImg from "../assets/learn-winter.jpg";
 
 export type ArticleCategory =
-  | "Fragrance Basics"
-  | "Buying Guides"
-  | "Fragrance Education"
-  | "Comparisons"
-  | "Seasonal Guides";
+  "Fragrance Basics" | "Buying Guides" | "Fragrance Education" | "Comparisons" | "Seasonal Guides";
 
 export type Article = {
   slug: string;
@@ -726,7 +722,11 @@ export const ARTICLES: Article[] = [
     image: buyingImg,
     imageAlt: "Hands holding a small fragrance sample vial and a scent card at a shop counter",
     body: choose,
-    related: ["fragrance-concentrations", "designer-vs-niche-fragrance", "how-to-buy-fragrance-online"],
+    related: [
+      "fragrance-concentrations",
+      "designer-vs-niche-fragrance",
+      "how-to-buy-fragrance-online",
+    ],
   },
   {
     slug: "best-summer-fragrances-under-150",
@@ -742,7 +742,11 @@ export const ARTICLES: Article[] = [
     image: summerImg,
     imageAlt: "Citrus slices, mint leaves and a clear glass fragrance bottle on sunlit stone",
     body: summer,
-    related: ["best-winter-fragrances-under-150", "fragrance-concentrations", "how-to-choose-a-fragrance"],
+    related: [
+      "best-winter-fragrances-under-150",
+      "fragrance-concentrations",
+      "how-to-choose-a-fragrance",
+    ],
   },
   {
     slug: "best-winter-fragrances-under-150",
@@ -758,7 +762,11 @@ export const ARTICLES: Article[] = [
     image: winterImg,
     imageAlt: "Dark amber fragrance bottle beside cinnamon sticks and a wool knit in moody light",
     body: winter,
-    related: ["best-summer-fragrances-under-150", "fragrance-longevity", "how-to-choose-a-fragrance"],
+    related: [
+      "best-summer-fragrances-under-150",
+      "fragrance-longevity",
+      "how-to-choose-a-fragrance",
+    ],
   },
   {
     slug: "designer-vs-niche-fragrance",
@@ -790,7 +798,11 @@ export const ARTICLES: Article[] = [
     image: basicsImg,
     imageAlt: "Amber glass fragrance bottle resting on soft off-white linen in warm light",
     body: longevity,
-    related: ["fragrance-concentrations", "best-winter-fragrances-under-150", "how-to-choose-a-fragrance"],
+    related: [
+      "fragrance-concentrations",
+      "best-winter-fragrances-under-150",
+      "how-to-choose-a-fragrance",
+    ],
   },
   {
     slug: "dupes-vs-originals",
@@ -806,7 +818,11 @@ export const ARTICLES: Article[] = [
     image: buyingImg,
     imageAlt: "Hands holding a small fragrance sample vial and a scent card at a shop counter",
     body: dupes,
-    related: ["how-to-buy-fragrance-online", "designer-vs-niche-fragrance", "fragrance-concentrations"],
+    related: [
+      "how-to-buy-fragrance-online",
+      "designer-vs-niche-fragrance",
+      "fragrance-concentrations",
+    ],
   },
   {
     slug: "how-to-buy-fragrance-online",

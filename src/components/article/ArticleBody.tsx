@@ -103,7 +103,10 @@ export function ArticleBody({ body }: { body: string }) {
           return (
             <ul key={key} className="space-y-2 pl-1">
               {block.items.map((item, itemIndex) => (
-                <li key={itemIndex} className="flex gap-3 text-[15px] leading-relaxed text-muted-foreground">
+                <li
+                  key={itemIndex}
+                  className="flex gap-3 text-[15px] leading-relaxed text-muted-foreground"
+                >
                   <span aria-hidden className="mt-[2px] shrink-0 text-primary">
                     ✦
                   </span>
@@ -114,7 +117,10 @@ export function ArticleBody({ body }: { body: string }) {
           );
         }
         return (
-          <p key={key} className="text-[15px] leading-relaxed text-muted-foreground sm:text-base sm:leading-[1.75]">
+          <p
+            key={key}
+            className="text-[15px] leading-relaxed text-muted-foreground sm:text-base sm:leading-[1.75]"
+          >
             {inline(block.text, key)}
           </p>
         );

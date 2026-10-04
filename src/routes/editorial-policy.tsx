@@ -3,6 +3,7 @@ import { ScrollToTopButton } from "../components/ScrollToTopButton";
 import { SiteHeader } from "../components/SiteHeader";
 import { SiteFooter } from "../components/SiteFooter";
 import { AUTHOR } from "../data/articles";
+import { SITE_URL } from "../lib/site";
 
 export const Route = createFileRoute("/editorial-policy")({
   head: () => ({
@@ -16,12 +17,13 @@ export const Route = createFileRoute("/editorial-policy")({
       { property: "og:title", content: "Scentwise Editorial Policy" },
       {
         property: "og:description",
-        content: "Our research process, review process, corrections policy and disclosure about AI-assisted drafting.",
+        content:
+          "Our research process, review process, corrections policy and disclosure about AI-assisted drafting.",
       },
       { property: "og:type", content: "article" },
-      { property: "og:url", content: "https://scentwisefragrances.lovable.app/editorial-policy" },
+      { property: "og:url", content: `${SITE_URL}/editorial-policy` },
     ],
-    links: [{ rel: "canonical", href: "https://scentwisefragrances.lovable.app/editorial-policy" }],
+    links: [{ rel: "canonical", href: `${SITE_URL}/editorial-policy` }],
   }),
   component: EditorialPolicyPage,
 });
@@ -68,12 +70,19 @@ const SECTIONS = [
 function EditorialPolicyPage() {
   return (
     <main className="min-h-screen bg-background text-foreground">
-      <SiteHeader current="learn" tagline="Editorial standards" breadcrumb="Home › Learn › Editorial Policy" />
+      <SiteHeader
+        current="learn"
+        tagline="Editorial standards"
+        breadcrumb="Home › Learn › Editorial Policy"
+      />
       <div className="mx-auto max-w-[760px] px-5 pb-20 pt-4">
-        <h1 className="font-serif text-3xl font-bold leading-tight sm:text-5xl">Editorial policy</h1>
+        <h1 className="font-serif text-3xl font-bold leading-tight sm:text-5xl">
+          Editorial policy
+        </h1>
         <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-          Scentwise publishes editorial articles about choosing, wearing and buying fragrance. This page explains how
-          that content is made, reviewed and corrected, so you can judge how much weight to give it.
+          Scentwise publishes editorial articles about choosing, wearing and buying fragrance. This
+          page explains how that content is made, reviewed and corrected, so you can judge how much
+          weight to give it.
         </p>
 
         <div className="mt-10 space-y-9">
@@ -81,7 +90,10 @@ function EditorialPolicyPage() {
             <section key={section.title}>
               <h2 className="font-serif text-2xl font-bold text-foreground">{section.title}</h2>
               {section.body.map((paragraph) => (
-                <p key={paragraph} className="mt-3 text-[15px] leading-relaxed text-muted-foreground">
+                <p
+                  key={paragraph}
+                  className="mt-3 text-[15px] leading-relaxed text-muted-foreground"
+                >
                   {paragraph}
                 </p>
               ))}
@@ -92,7 +104,8 @@ function EditorialPolicyPage() {
         <section className="mt-12 rounded-3xl border border-border bg-card p-6">
           <h2 className="font-serif text-xl font-bold">Who writes here</h2>
           <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-            Articles are credited to the <strong className="text-foreground">{AUTHOR.name}</strong>. {AUTHOR.bio}
+            Articles are credited to the <strong className="text-foreground">{AUTHOR.name}</strong>.{" "}
+            {AUTHOR.bio}
           </p>
           <div className="mt-5 flex flex-wrap gap-3">
             <Link

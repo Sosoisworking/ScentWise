@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ScrollToTopButton } from "../components/ScrollToTopButton";
 import { SiteHeader } from "../components/SiteHeader";
 import { SiteFooter } from "../components/SiteFooter";
+import { SITE_URL } from "../lib/site";
 
 export const Route = createFileRoute("/retailers")({
   head: () => ({
@@ -15,11 +16,12 @@ export const Route = createFileRoute("/retailers")({
       { property: "og:title", content: "Top Places to Buy Fragrances" },
       {
         property: "og:description",
-        content: "Verified online fragrance retailers compared — price, authenticity and shipping at a glance.",
+        content:
+          "Verified online fragrance retailers compared — price, authenticity and shipping at a glance.",
       },
-      { property: "og:url", content: "https://scentwisefragrances.lovable.app/retailers" },
+      { property: "og:url", content: `${SITE_URL}/retailers` },
     ],
-    links: [{ rel: "canonical", href: "https://scentwisefragrances.lovable.app/retailers" }],
+    links: [{ rel: "canonical", href: `${SITE_URL}/retailers` }],
     scripts: [
       {
         type: "application/ld+json",
@@ -27,7 +29,7 @@ export const Route = createFileRoute("/retailers")({
           "@context": "https://schema.org",
           "@type": "CollectionPage",
           name: "Top Places to Buy Fragrances",
-          url: "https://scentwisefragrances.lovable.app/retailers",
+          url: `${SITE_URL}/retailers`,
           description:
             "Neutral comparison of trusted online fragrance retailers covering pricing, authenticity and shipping.",
         }),
@@ -53,7 +55,11 @@ const RETAILERS: Retailer[] = [
     domain: "fragrancenet.com",
     description:
       "US-based retailer with one of the largest online inventories, offering 40–70% off retail on authentic fragrances. Shipping can occasionally run slow, but selection is hard to beat.",
-    pills: { price: "40–70% off retail", authenticity: "Verify sourcing", shipping: "Occasional delays" },
+    pills: {
+      price: "40–70% off retail",
+      authenticity: "Verify sourcing",
+      shipping: "Occasional delays",
+    },
     bestFor: "Budget buyers & variety seekers",
   },
   {
@@ -71,7 +77,11 @@ const RETAILERS: Retailer[] = [
     domain: "fragrancex.com",
     description:
       "Global discounter with consistent pricing and reliable fulfilment across a broad inventory. A safe default for repeat purchases of staples.",
-    pills: { price: "Consistent discounts", authenticity: "Verify sourcing", shipping: "Reliable global" },
+    pills: {
+      price: "Consistent discounts",
+      authenticity: "Verify sourcing",
+      shipping: "Reliable global",
+    },
     bestFor: "Dependable everyday buys",
   },
   {
@@ -89,7 +99,11 @@ const RETAILERS: Retailer[] = [
     domain: "maxaroma.com",
     description:
       "Grey-market retailer sourcing designer fragrances from global distributors and excess inventory. Sister site to PerfumeSpot with overlapping catalogue and pricing.",
-    pills: { price: "Discounted designer", authenticity: "Verify sourcing", shipping: "Standard US" },
+    pills: {
+      price: "Discounted designer",
+      authenticity: "Verify sourcing",
+      shipping: "Standard US",
+    },
     bestFor: "Designer staples at a discount",
   },
   {
@@ -98,7 +112,11 @@ const RETAILERS: Retailer[] = [
     domain: "perfumespot.com",
     description:
       "Sister retailer to MaxAroma offering the same grey-market sourcing model with designer-focused inventory. Useful as a price comparison against MaxAroma on the same SKU.",
-    pills: { price: "Discounted designer", authenticity: "Verify sourcing", shipping: "Standard US" },
+    pills: {
+      price: "Discounted designer",
+      authenticity: "Verify sourcing",
+      shipping: "Standard US",
+    },
     bestFor: "Cross-checking designer prices",
   },
 ];
@@ -136,7 +154,8 @@ function RetailersPage() {
             Top places to buy fragrances
           </h1>
           <p className="mx-auto mt-5 max-w-xl text-base text-muted-foreground">
-            A short, neutral guide to the online retailers we trust — what each is good at, and what to watch for.
+            A short, neutral guide to the online retailers we trust — what each is good at, and what
+            to watch for.
           </p>
         </section>
 
@@ -151,7 +170,9 @@ function RetailersPage() {
                 <h2 className="font-serif text-xl font-bold text-foreground">{r.name}</h2>
                 <span className="text-xs text-muted-foreground">{r.domain}</span>
               </div>
-              <p className="mt-3 text-[14px] leading-relaxed text-muted-foreground">{r.description}</p>
+              <p className="mt-3 text-[14px] leading-relaxed text-muted-foreground">
+                {r.description}
+              </p>
               <div className="mt-4 flex flex-wrap gap-2">
                 <Pill>💸 {r.pills.price}</Pill>
                 <Pill>✓ {r.pills.authenticity}</Pill>
@@ -159,7 +180,9 @@ function RetailersPage() {
               </div>
               <div className="mt-5 flex items-center justify-between gap-3 border-t border-border pt-4">
                 <div>
-                  <p className="text-[10px] font-bold uppercase tracking-wide text-muted-foreground">Best for</p>
+                  <p className="text-[10px] font-bold uppercase tracking-wide text-muted-foreground">
+                    Best for
+                  </p>
                   <p className="text-sm font-semibold text-foreground">{r.bestFor}</p>
                 </div>
                 <a
@@ -177,12 +200,15 @@ function RetailersPage() {
 
         {/* Independence disclaimer */}
         <section className="mt-12 rounded-2xl border border-primary/40 bg-accent p-6">
-          <h2 className="font-serif text-xl font-bold text-foreground">Independent retailer information</h2>
+          <h2 className="font-serif text-xl font-bold text-foreground">
+            Independent retailer information
+          </h2>
           <p className="mt-3 text-sm leading-relaxed text-foreground/80">
-            This directory is provided for informational purposes only. Inclusion does not constitute an endorsement,
-            authorization, partnership, or guarantee of authenticity. Consumers should independently evaluate retailers,
-            product sourcing, return policies, and authenticity before purchasing. None of the retailers listed here is
-            described as an authorized retailer unless that authorization can be verified.
+            This directory is provided for informational purposes only. Inclusion does not
+            constitute an endorsement, authorization, partnership, or guarantee of authenticity.
+            Consumers should independently evaluate retailers, product sourcing, return policies,
+            and authenticity before purchasing. None of the retailers listed here is described as an
+            authorized retailer unless that authorization can be verified.
           </p>
           <Link
             to="/learn/$slug"
@@ -195,14 +221,19 @@ function RetailersPage() {
 
         {/* Disclaimer */}
         <section className="mt-6 rounded-2xl border border-border bg-secondary/40 p-6">
-          <h2 className="font-serif text-xl font-bold text-foreground">A note on grey-market retailers</h2>
+          <h2 className="font-serif text-xl font-bold text-foreground">
+            A note on grey-market retailers
+          </h2>
           <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-            Most discount fragrance sites — including the ones above — operate in the <strong className="text-foreground">grey market</strong>.
-            That means they sell <strong className="text-foreground">authentic</strong> products sourced outside the brand's official regional
-            distribution channels (excess inventory, parallel imports, international distributors). Grey-market goods are
-            <strong className="text-foreground"> not counterfeit</strong>, and reselling them is legal in most countries. It's how prices stay
-            well below department-store retail. The trade-off: no manufacturer warranty, occasional packaging variations, and
-            return policies that differ from official boutiques.
+            Most discount fragrance sites — including the ones above — operate in the{" "}
+            <strong className="text-foreground">grey market</strong>. That means they sell{" "}
+            <strong className="text-foreground">authentic</strong> products sourced outside the
+            brand's official regional distribution channels (excess inventory, parallel imports,
+            international distributors). Grey-market goods are
+            <strong className="text-foreground"> not counterfeit</strong>, and reselling them is
+            legal in most countries. It's how prices stay well below department-store retail. The
+            trade-off: no manufacturer warranty, occasional packaging variations, and return
+            policies that differ from official boutiques.
           </p>
         </section>
 
@@ -225,7 +256,10 @@ function RetailersPage() {
         </section>
 
         <footer className="mt-16 border-t border-border pt-8 text-center text-xs text-muted-foreground">
-          <p>Scentwise is independent. We don't take affiliate commissions from the retailers listed above.</p>
+          <p>
+            Scentwise is independent. We don't take affiliate commissions from the retailers listed
+            above.
+          </p>
           <Link to="/" className="mt-4 inline-block font-bold text-primary hover:underline">
             Take the quiz →
           </Link>

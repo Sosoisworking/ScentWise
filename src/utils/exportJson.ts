@@ -1,7 +1,8 @@
-import * as XLSX from "xlsx";
 import { BRANDS } from "../data/brands";
 
-export function downloadBrandsJson() {
+// xlsx is ~300 kB, so it's only fetched when someone actually clicks export.
+export async function downloadBrandsJson() {
+  const XLSX = await import("xlsx");
   const ws = XLSX.utils.json_to_sheet(BRANDS);
   const wb = XLSX.utils.book_new();
   XLSX.utils.book_append_sheet(wb, ws, "Brands");

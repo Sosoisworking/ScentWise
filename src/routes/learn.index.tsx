@@ -5,8 +5,9 @@ import { SiteHeader } from "../components/SiteHeader";
 import { SiteFooter } from "../components/SiteFooter";
 import { ArticleCard } from "../components/article/ArticleCard";
 import { ARTICLES, AUTHOR, CATEGORIES, type ArticleCategory } from "../data/articles";
+import { SITE_URL } from "../lib/site";
 
-const SITE = "https://scentwisefragrances.lovable.app";
+const SITE = SITE_URL;
 
 export const Route = createFileRoute("/learn/")({
   head: () => ({
@@ -205,17 +206,27 @@ function LearnPage() {
       <SiteHeader current="learn" tagline="Fragrance Learn Hub" breadcrumb="Home › Learn" />
 
       <div className="mx-auto w-full max-w-[1100px] px-5 pb-4 pt-4">
-        <h1 className="mt-2 font-serif text-4xl font-bold leading-tight sm:text-6xl">Fragrance Learn Hub</h1>
+        <h1 className="mt-2 font-serif text-4xl font-bold leading-tight sm:text-6xl">
+          Fragrance Learn Hub
+        </h1>
         <p className="mt-4 max-w-[660px] text-base leading-relaxed text-muted-foreground">
-          In-depth, human-reviewed guides to choosing, wearing and buying fragrance — plus plain-English answers to the
-          questions people actually search for. No sponsored placements, no invented reviews.{" "}
-          <Link to="/editorial-policy" className="font-semibold text-primary underline underline-offset-2">
+          In-depth, human-reviewed guides to choosing, wearing and buying fragrance — plus
+          plain-English answers to the questions people actually search for. No sponsored
+          placements, no invented reviews.{" "}
+          <Link
+            to="/editorial-policy"
+            className="font-semibold text-primary underline underline-offset-2"
+          >
             How we work
           </Link>
           .
         </p>
 
-        <div className="mt-7 flex flex-wrap gap-2" role="group" aria-label="Filter articles by category">
+        <div
+          className="mt-7 flex flex-wrap gap-2"
+          role="group"
+          aria-label="Filter articles by category"
+        >
           {filters.map((item) => {
             const active = category === item;
             return (
@@ -250,8 +261,9 @@ function LearnPage() {
         <div className="rounded-3xl border border-primary/30 bg-accent p-6 sm:p-8">
           <h2 className="font-serif text-2xl font-bold sm:text-3xl">Ready to find your match?</h2>
           <p className="mt-3 max-w-[560px] text-sm leading-relaxed text-foreground/80">
-            The guided quiz turns everything in these guides into a shortlist: pick your season, longevity, occasion and
-            notes, and see fragrances ranked by fit with CAD price ranges and where to buy.
+            The guided quiz turns everything in these guides into a shortlist: pick your season,
+            longevity, occasion and notes, and see fragrances ranked by fit with CAD price ranges
+            and where to buy.
           </p>
           <div className="mt-5 flex flex-wrap gap-3">
             <Link
@@ -280,14 +292,21 @@ function LearnPage() {
         <div>
           <h2 className="font-serif text-3xl font-bold">Quick answers</h2>
           <p className="mt-3 max-w-[640px] text-sm leading-relaxed text-muted-foreground">
-            Short answers to the questions we get asked most. For the long versions, read the guides above.
+            Short answers to the questions we get asked most. For the long versions, read the guides
+            above.
           </p>
         </div>
 
         {TOPICS.map((topic) => (
-          <section key={topic.id} id={topic.id} className="scroll-mt-24 rounded-3xl border bg-card p-6 shadow-scent sm:p-8">
+          <section
+            key={topic.id}
+            id={topic.id}
+            className="scroll-mt-24 rounded-3xl border bg-card p-6 shadow-scent sm:p-8"
+          >
             <h3 className="font-serif text-2xl font-bold">{topic.title}</h3>
-            <p className="mt-3 max-w-[680px] text-sm leading-relaxed text-muted-foreground">{topic.intro}</p>
+            <p className="mt-3 max-w-[680px] text-sm leading-relaxed text-muted-foreground">
+              {topic.intro}
+            </p>
 
             <div className="mt-6 grid gap-6 lg:grid-cols-[1.4fr_1fr]">
               <dl className="space-y-5">
@@ -299,7 +318,9 @@ function LearnPage() {
                 ))}
               </dl>
               <aside className="rounded-2xl border bg-background p-5">
-                <h4 className="text-xs font-bold uppercase tracking-wide text-muted-foreground">Practical tips</h4>
+                <h4 className="text-xs font-bold uppercase tracking-wide text-muted-foreground">
+                  Practical tips
+                </h4>
                 <ul className="mt-3 space-y-2 text-sm text-foreground">
                   {topic.tips.map((tip) => (
                     <li key={tip} className="flex gap-2">
@@ -318,12 +339,16 @@ function LearnPage() {
         <section className="rounded-3xl border border-border bg-card p-6 sm:p-8">
           <h2 className="font-serif text-2xl font-bold">Who writes these guides</h2>
           <p className="mt-3 max-w-[680px] text-sm leading-relaxed text-muted-foreground">
-            {AUTHOR.name} — {AUTHOR.bio} Every article is reviewed by a person before publication. Our{" "}
-            <Link to="/editorial-policy" className="font-semibold text-primary underline underline-offset-2">
+            {AUTHOR.name} — {AUTHOR.bio} Every article is reviewed by a person before publication.
+            Our{" "}
+            <Link
+              to="/editorial-policy"
+              className="font-semibold text-primary underline underline-offset-2"
+            >
               editorial policy
             </Link>{" "}
-            explains our research, review and corrections process, including where AI tools assist with research and
-            drafting.
+            explains our research, review and corrections process, including where AI tools assist
+            with research and drafting.
           </p>
         </section>
       </div>

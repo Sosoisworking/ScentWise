@@ -77,8 +77,12 @@ export function EmailResults(props: Props) {
       {!open ? (
         <div className="flex flex-col items-center gap-3 text-center sm:flex-row sm:justify-between sm:text-left">
           <div>
-            <h2 className="font-serif text-xl font-bold text-foreground">Email these results to yourself</h2>
-            <p className="text-sm text-muted-foreground">Save your matches for later — opens your email app.</p>
+            <h2 className="font-serif text-xl font-bold text-foreground">
+              Email these results to yourself
+            </h2>
+            <p className="text-sm text-muted-foreground">
+              Save your matches for later — opens your email app.
+            </p>
           </div>
           <button
             type="button"
@@ -93,7 +97,9 @@ export function EmailResults(props: Props) {
           <div className="flex items-start justify-between gap-3">
             <div>
               <h2 className="font-serif text-xl font-bold text-foreground">Email My Results</h2>
-              <p className="text-sm text-muted-foreground">Enter your email, then we'll open your mail app with everything pre-filled.</p>
+              <p className="text-sm text-muted-foreground">
+                Enter your email, then we'll open your mail app with everything pre-filled.
+              </p>
             </div>
             <button
               type="button"
@@ -106,7 +112,9 @@ export function EmailResults(props: Props) {
           </div>
 
           <label className="block">
-            <span className="text-xs font-bold uppercase tracking-[0.16em] text-muted-foreground">Your email</span>
+            <span className="text-xs font-bold uppercase tracking-[0.16em] text-muted-foreground">
+              Your email
+            </span>
             <input
               type="email"
               autoComplete="email"
@@ -151,7 +159,8 @@ export function EmailResults(props: Props) {
           </div>
 
           <p className="text-xs text-muted-foreground">
-            Tip: clicking <strong>Open in Mail App</strong> launches your default email client (Apple Mail, Outlook, Gmail desktop) with the message ready — just press send.
+            Tip: clicking <strong>Open in Mail App</strong> launches your default email client
+            (Apple Mail, Outlook, Gmail desktop) with the message ready — just press send.
           </p>
         </div>
       )}

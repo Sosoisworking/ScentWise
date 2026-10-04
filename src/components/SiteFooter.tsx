@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import { openConsentSettings } from "./ConsentBanner";
 
 const LINKS = [
   { to: "/", label: "Fragrance Quiz" },
@@ -29,9 +30,9 @@ export function SiteFooter() {
           <div className="max-w-sm">
             <p className="font-serif text-xl font-bold text-foreground">Scentwise</p>
             <p className="mt-2 text-sm text-muted-foreground">
-              An independent fragrance discovery guide: a guided scent quiz, a verified brand directory, retailer
-              comparisons and plain-English fragrance education. We are not owned by, or affiliated with, any perfume
-              house or retailer.
+              An independent fragrance discovery guide: a guided scent quiz, a verified brand
+              directory, retailer comparisons and plain-English fragrance education. We are not
+              owned by, or affiliated with, any perfume house or retailer.
             </p>
           </div>
           <div className="flex flex-wrap gap-x-10 gap-y-8">
@@ -45,9 +46,18 @@ export function SiteFooter() {
                   {item.label}
                 </Link>
               ))}
+              <button
+                type="button"
+                onClick={openConsentSettings}
+                className="text-left text-sm text-muted-foreground transition hover:text-foreground"
+              >
+                Cookie Settings
+              </button>
             </nav>
             <nav className="grid gap-y-2" aria-label="Popular guides">
-              <p className="text-[11px] font-bold uppercase tracking-wide text-foreground">Popular guides</p>
+              <p className="text-[11px] font-bold uppercase tracking-wide text-foreground">
+                Popular guides
+              </p>
               {ARTICLE_LINKS.map((item) => (
                 <Link
                   key={item.slug}
@@ -62,8 +72,9 @@ export function SiteFooter() {
           </div>
         </div>
         <p className="mt-8 text-xs text-muted-foreground">
-          © {new Date().getFullYear()} So Hib Corp — Scentwise, Toronto, Ontario, Canada. Prices and availability shown on this site are estimates in Canadian
-          dollars and change frequently — always confirm on the retailer's own page before buying.
+          © {new Date().getFullYear()} So Hib Corp — Scentwise, Toronto, Ontario, Canada. Prices and
+          availability shown on this site are estimates in Canadian dollars and change frequently —
+          always confirm on the retailer's own page before buying.
         </p>
       </div>
     </footer>

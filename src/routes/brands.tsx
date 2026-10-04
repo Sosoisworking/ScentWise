@@ -8,6 +8,7 @@ import { AlphabetNav } from "../components/directory/AlphabetNav";
 import { ScrollToTopButton } from "../components/ScrollToTopButton";
 import { SiteHeader } from "../components/SiteHeader";
 import { SiteFooter } from "../components/SiteFooter";
+import { SITE_URL } from "../lib/site";
 
 export const Route = createFileRoute("/brands")({
   head: () => ({
@@ -23,9 +24,9 @@ export const Route = createFileRoute("/brands")({
         property: "og:description",
         content: "Every fragrance house. One place. 80+ verified official brand websites.",
       },
-      { property: "og:url", content: "https://scentwisefragrances.lovable.app/brands" },
+      { property: "og:url", content: `${SITE_URL}/brands` },
     ],
-    links: [{ rel: "canonical", href: "https://scentwisefragrances.lovable.app/brands" }],
+    links: [{ rel: "canonical", href: `${SITE_URL}/brands` }],
     scripts: [
       {
         type: "application/ld+json",
@@ -33,7 +34,7 @@ export const Route = createFileRoute("/brands")({
           "@context": "https://schema.org",
           "@type": "CollectionPage",
           name: "Official Fragrance Brand Directory",
-          url: "https://scentwisefragrances.lovable.app/brands",
+          url: `${SITE_URL}/brands`,
           description:
             "Directory of verified official fragrance brand websites across designer, niche and luxury categories.",
         }),
@@ -61,7 +62,7 @@ function BrandDirectory() {
       niche: BRANDS.filter((b) => b.category === "niche").length,
       luxury: BRANDS.filter((b) => b.category === "luxury").length,
     }),
-    []
+    [],
   );
 
   const filtered = useMemo(() => filterBrands(BRANDS, query, category, null), [query, category]);
@@ -103,12 +104,11 @@ function BrandDirectory() {
             Direct links to the source.
           </p>
           <div className="mt-6 flex flex-wrap justify-center gap-2">
-            {[
-              `${BRANDS.length}+ Brands`,
-              "3 Categories",
-              "All Verified",
-            ].map((s) => (
-              <span key={s} className="rounded-full bg-card px-4 py-2 text-xs font-bold shadow-scent">
+            {[`${BRANDS.length}+ Brands`, "3 Categories", "All Verified"].map((s) => (
+              <span
+                key={s}
+                className="rounded-full bg-card px-4 py-2 text-xs font-bold shadow-scent"
+              >
                 {s}
               </span>
             ))}
@@ -131,7 +131,9 @@ function BrandDirectory() {
                 }`}
               >
                 {c.label}
-                <span className={`ml-2 text-[11px] ${active ? "opacity-80" : "text-muted-foreground"}`}>
+                <span
+                  className={`ml-2 text-[11px] ${active ? "opacity-80" : "text-muted-foreground"}`}
+                >
                   {counts[c.key]}
                 </span>
               </button>
@@ -157,7 +159,14 @@ function BrandDirectory() {
                 aria-label="Clear search"
                 className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full bg-muted p-1.5 text-muted-foreground transition hover:bg-foreground hover:text-background"
               >
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                >
                   <path d="M18 6L6 18M6 6l12 12" />
                 </svg>
               </button>
@@ -214,7 +223,9 @@ function BrandDirectory() {
             letters.map((letter) => (
               <div key={letter} id={`letter-${letter}`} className="mb-12 scroll-mt-20">
                 <div className="mb-5 flex items-baseline gap-4">
-                  <span className="font-serif text-5xl font-bold text-primary opacity-40">{letter}</span>
+                  <span className="font-serif text-5xl font-bold text-primary opacity-40">
+                    {letter}
+                  </span>
                   <span className="h-px flex-1 bg-border" />
                   <span className="text-xs text-muted-foreground">
                     {grouped[letter].length} {grouped[letter].length === 1 ? "brand" : "brands"}
@@ -233,7 +244,9 @@ function BrandDirectory() {
         {/* Footer */}
         <footer className="mt-20 border-t border-border pt-8 text-center text-xs text-muted-foreground">
           <p>Data sourced from Fragrantica, Niche Gallery, and ScentAdvice directories.</p>
-          <p className="mt-1">All links verified as official brand websites — not resellers or marketplaces.</p>
+          <p className="mt-1">
+            All links verified as official brand websites — not resellers or marketplaces.
+          </p>
           <p className="mt-1">Last updated: {lastUpdated}</p>
           <Link to="/" className="mt-4 inline-block font-bold text-primary hover:underline">
             Discover your signature scent →

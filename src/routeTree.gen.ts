@@ -18,6 +18,7 @@ import { Route as EditorialPolicyRouteImport } from './routes/editorial-policy'
 import { Route as LearnRouteImport } from './routes/learn'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as RetailersRouteImport } from './routes/retailers'
+import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as LearnIndexRouteImport } from './routes/learn.index'
@@ -68,6 +69,11 @@ const RetailersRoute = RetailersRouteImport.update({
   path: '/retailers',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RobotsDottxtRoute = RobotsDottxtRouteImport.update({
+  id: '/robots.txt',
+  path: '/robots.txt',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
@@ -99,6 +105,7 @@ export interface FileRoutesByFullPath {
   '/learn': typeof LearnRouteWithChildren
   '/privacy': typeof PrivacyRoute
   '/retailers': typeof RetailersRoute
+  '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/learn/$slug': typeof LearnSlugRoute
@@ -113,6 +120,7 @@ export interface FileRoutesByTo {
   '/editorial-policy': typeof EditorialPolicyRoute
   '/privacy': typeof PrivacyRoute
   '/retailers': typeof RetailersRoute
+  '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/learn/$slug': typeof LearnSlugRoute
@@ -129,6 +137,7 @@ export interface FileRoutesById {
   '/learn': typeof LearnRouteWithChildren
   '/privacy': typeof PrivacyRoute
   '/retailers': typeof RetailersRoute
+  '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/learn/$slug': typeof LearnSlugRoute
@@ -146,6 +155,7 @@ export interface FileRouteTypes {
     | '/learn'
     | '/privacy'
     | '/retailers'
+    | '/robots.txt'
     | '/sitemap.xml'
     | '/terms'
     | '/learn/$slug'
@@ -160,6 +170,7 @@ export interface FileRouteTypes {
     | '/editorial-policy'
     | '/privacy'
     | '/retailers'
+    | '/robots.txt'
     | '/sitemap.xml'
     | '/terms'
     | '/learn/$slug'
@@ -175,6 +186,7 @@ export interface FileRouteTypes {
     | '/learn'
     | '/privacy'
     | '/retailers'
+    | '/robots.txt'
     | '/sitemap.xml'
     | '/terms'
     | '/learn/$slug'
@@ -191,6 +203,7 @@ export interface RootRouteChildren {
   LearnRoute: typeof LearnRouteWithChildren
   PrivacyRoute: typeof PrivacyRoute
   RetailersRoute: typeof RetailersRoute
+  RobotsDottxtRoute: typeof RobotsDottxtRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsRoute: typeof TermsRoute
 }
@@ -260,6 +273,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RetailersRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/robots.txt': {
+      id: '/robots.txt'
+      path: '/robots.txt'
+      fullPath: '/robots.txt'
+      preLoaderRoute: typeof RobotsDottxtRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sitemap.xml': {
       id: '/sitemap.xml'
       path: '/sitemap.xml'
@@ -313,6 +333,7 @@ const rootRouteChildren: RootRouteChildren = {
   LearnRoute: LearnRouteWithChildren,
   PrivacyRoute: PrivacyRoute,
   RetailersRoute: RetailersRoute,
+  RobotsDottxtRoute: RobotsDottxtRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsRoute: TermsRoute,
 }

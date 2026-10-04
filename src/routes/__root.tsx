@@ -1,7 +1,9 @@
 import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
+import { ConsentBanner } from "../components/ConsentBanner";
 import { FragranceConsultant } from "../components/FragranceConsultant";
+import { CHAT_ENABLED, SITE_URL } from "../lib/site";
 
 function NotFoundComponent() {
   return (
@@ -25,8 +27,6 @@ function NotFoundComponent() {
   );
 }
 
-const SITE_URL = "https://scentwisefragrances.lovable.app";
-
 export const Route = createRootRoute({
   head: () => ({
     meta: [
@@ -46,9 +46,19 @@ export const Route = createRootRoute({
           "A guided fragrance quiz, verified brand directory and honest retailer guide to help you find your signature scent.",
       },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
+      { property: "og:image", content: `${SITE_URL}/og-image.png` },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { property: "og:image:alt", content: "Scentwise — AI Fragrance Discovery" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: `${SITE_URL}/og-image.png` },
+      { name: "theme-color", content: "#B08A57" },
     ],
     links: [
+      { rel: "icon", href: "/favicon.ico", sizes: "32x32" },
+      { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
+      { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
+      { rel: "manifest", href: "/site.webmanifest" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
@@ -90,7 +100,7 @@ export const Route = createRootRoute({
 
 function RootShell({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <HeadContent />
         <script
@@ -111,7 +121,8 @@ function RootComponent() {
   return (
     <>
       <Outlet />
-      <FragranceConsultant />
+      {CHAT_ENABLED && <FragranceConsultant />}
+      <ConsentBanner />
     </>
   );
 }

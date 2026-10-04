@@ -1,5 +1,5 @@
 {
-  "name": "tanstack_start_ts",
+  "name": "scentwise",
   "private": true,
   "sideEffects": false,
   "type": "module",
@@ -12,7 +12,6 @@
     "format": "prettier --write ."
   },
   "dependencies": {
-    "@cloudflare/vite-plugin": "^1.47.0",
     "@hookform/resolvers": "^5.2.2",
     "@radix-ui/react-accordion": "^1.2.12",
     "@radix-ui/react-alert-dialog": "^1.1.15",
@@ -90,5 +89,6 @@
   "overrides": {
     "picomatch": "^4.0.5",
     "js-yaml": "^4.3.0"
-  }
+  },
+  "version": "1.0.0"
 }

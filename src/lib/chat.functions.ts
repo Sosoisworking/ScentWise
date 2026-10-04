@@ -33,7 +33,7 @@ TONE: Knowledgeable but warm — like a brilliant friend who runs a perfume shop
 type ChatMessage = { role: "user" | "assistant"; content: string };
 
 export const sendChatMessage = createServerFn({ method: "POST" })
-  .inputValidator((data: unknown) => {
+  .validator((data: unknown) => {
     const d = data as { messages?: unknown };
     if (!d || !Array.isArray(d.messages)) throw new Error("messages required");
     if (d.messages.length > 50) throw new Error("too many messages");
@@ -48,29 +48,40 @@ export const sendChatMessage = createServerFn({ method: "POST" })
     return { messages: validated.slice(-20) };
   })
   .handler(async ({ data }) => {
-    const apiKey = process.env.LOVABLE_API_KEY;
-    if (!apiKey) {
+    // Any OpenAI-compatible chat completions endpoint (Vercel AI Gateway, OpenRouter, OpenAI…).
+    const apiKey = process.env.AI_API_KEY;
+    const model = process.env.AI_MODEL;
+    const baseUrl = (process.env.AI_BASE_URL || "https://ai-gateway.vercel.sh/v1").replace(
+      /\/+$/,
+      "",
+    );
+    if (!apiKey || !model) {
       return { ok: false as const, error: "AI is not configured." };
     }
 
-    const res = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
+    const res = await fetch(`${baseUrl}/chat/completions`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${apiKey}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: "google/gemini-3-flash-preview",
+        model,
         messages: [{ role: "system", content: SYSTEM_PROMPT }, ...data.messages],
       }),
     });
 
-    if (res.status === 429) return { ok: false as const, error: "Rate limit reached. Please try again in a moment." };
-    if (res.status === 402) return { ok: false as const, error: "AI credits exhausted. Add funds in Settings → Workspace → Usage." };
+    if (res.status === 429)
+      return { ok: false as const, error: "Rate limit reached. Please try again in a moment." };
+    if (res.status === 402)
+      return {
+        ok: false as const,
+        error: "The consultant is temporarily unavailable. Please try again later.",
+      };
     if (!res.ok) {
       const text = await res.text();
-      console.error("AI gateway error:", res.status, text);
-      return { ok: false as const, error: "AI gateway error. Please try again." };
+      console.error("AI provider error:", res.status, text);
+      return { ok: false as const, error: "AI provider error. Please try again." };
     }
 
     const json = (await res.json()) as { choices?: Array<{ message?: { content?: string } }> };
