@@ -5,6 +5,3 @@ export const SITE_URL: string = (import.meta.env.VITE_SITE_URL || "http://localh
   /\/+$/,
   "",
 );
-
-// Off until a provider key is wired up on the host; see src/lib/chat.functions.ts.
-export const CHAT_ENABLED = import.meta.env.VITE_ENABLE_CHAT === "true";

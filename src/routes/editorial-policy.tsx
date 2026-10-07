@@ -47,7 +47,7 @@ const SECTIONS = [
   {
     title: "How AI tools may be used",
     body: [
-      "We use AI tools in the same way we use search engines and reference books: to gather background, summarise source material, suggest structure and check grammar. Our on-site fragrance consultant is an AI tool and is labelled as one wherever it appears.",
+      "We use AI tools in the same way we use search engines and reference books: to gather background, summarise source material, suggest structure and check grammar.",
       "AI output is never published as-is. Editorial articles on this site are human-reviewed before publication, and a human is responsible for every factual claim that remains in the final text.",
     ],
   },

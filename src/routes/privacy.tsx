@@ -5,7 +5,7 @@ import { SiteFooter } from "../components/SiteFooter";
 import { SITE_URL } from "../lib/site";
 
 const EMAIL = "sohibcorp0706@gmail.com";
-const UPDATED = "August 4, 2026";
+const UPDATED = "October 6, 2026";
 
 export const Route = createFileRoute("/privacy")({
   head: () => ({
@@ -14,13 +14,12 @@ export const Route = createFileRoute("/privacy")({
       {
         name: "description",
         content:
-          "How Scentwise handles data: cookies, Google AdSense and third-party ad vendors, AI consultant chat data, analytics, your choices and how to contact us.",
+          "How Scentwise handles data: cookies, Google AdSense and third-party ad vendors, analytics, your choices and how to contact us.",
       },
       { property: "og:title", content: "Scentwise Privacy Policy" },
       {
         property: "og:description",
-        content:
-          "Cookies, third-party advertising data, AI chat handling and your privacy choices on Scentwise.",
+        content: "Cookies, third-party advertising data and your privacy choices on Scentwise.",
       },
       { property: "og:url", content: `${SITE_URL}/privacy` },
     ],
@@ -64,13 +63,6 @@ function PrivacyPage() {
             occasion, presentation and note selections you make are held in your browser for the
             length of your session so the tool can score matches. They are not tied to an account,
             because there are no accounts on this site.
-          </p>
-          <p>
-            <strong className="text-foreground">AI consultant messages.</strong> When you use the
-            chat consultant, the messages you type are sent to our server and forwarded to our AI
-            model provider to generate a reply. We do not store transcripts for marketing, and we do
-            not attach your name or email to them. Please do not type sensitive personal information
-            into the chat.
           </p>
           <p>
             <strong className="text-foreground">Email you send us.</strong> If you email us —

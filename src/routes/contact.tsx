@@ -39,7 +39,7 @@ const REASONS = [
   },
   {
     title: "Fragrance questions",
-    body: "Stuck between two bottles, or trying to replace something that was discontinued? Tell us what you have worn and liked, the climate you are in and your rough budget in CAD. Our AI consultant answers instantly in the corner of every page, but we are happy to reply personally to harder cases.",
+    body: "Stuck between two bottles, or trying to replace something that was discontinued? Tell us what you have worn and liked, the climate you are in and your rough budget in CAD. We are happy to reply personally.",
   },
   {
     title: "Advertising and press",

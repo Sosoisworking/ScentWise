@@ -2,8 +2,7 @@ import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/r
 
 import appCss from "../styles.css?url";
 import { ConsentBanner } from "../components/ConsentBanner";
-import { FragranceConsultant } from "../components/FragranceConsultant";
-import { CHAT_ENABLED, SITE_URL } from "../lib/site";
+import { SITE_URL } from "../lib/site";
 
 function NotFoundComponent() {
   return (
@@ -121,7 +120,6 @@ function RootComponent() {
   return (
     <>
       <Outlet />
-      {CHAT_ENABLED && <FragranceConsultant />}
       <ConsentBanner />
     </>
   );

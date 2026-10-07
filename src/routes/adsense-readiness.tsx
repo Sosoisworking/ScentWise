@@ -83,7 +83,7 @@ const GROUPS: { title: string; blurb: string; items: Item[] }[] = [
       {
         id: "policy-terms",
         label: "Terms of Service published",
-        detail: "/terms covers acceptable use, data accuracy, AI limits and liability.",
+        detail: "/terms covers acceptable use, data accuracy and liability.",
         status: "done",
       },
       {
