@@ -3,57 +3,9 @@ import { FRAGRANCES, type Fragrance } from "../data/fragrances";
 export type GenderPreference = "male" | "female" | "unisex" | "";
 export type LongevityPreference = "short" | "medium" | "long" | "";
 
-const femaleFragranceIds = new Set([
-  "b4",
-  "b8",
-  "b9",
-  "b10",
-  "m1",
-  "m2",
-  "m3",
-  "m5",
-  "m6",
-  "m8",
-  "m10",
-  "m11",
-  "m12",
-  "m15",
-  "m16",
-  "m17",
-  "m18",
-  "m19",
-  "m20",
-  "p3",
-  "p4",
-  "p5",
-  "p7",
-  "p11",
-  "p12",
-  "p16",
-]);
-const maleFragranceIds = new Set([
-  "b3",
-  "b5",
-  "b7",
-  "b12",
-  "m7",
-  "m13",
-  "m14",
-  "m22",
-  "p6",
-  "p8",
-  "p15",
-]);
-
-function getMarketedFor(fragrance: Fragrance): "male" | "female" | "unisex" {
-  if (femaleFragranceIds.has(fragrance.id)) return "female";
-  if (maleFragranceIds.has(fragrance.id)) return "male";
-  return "unisex";
-}
-
 function getGenderAffinity(fragrance: Fragrance, gender: GenderPreference): number {
   if (!gender) return 0;
-  const marketedFor = getMarketedFor(fragrance);
+  const { marketedFor } = fragrance;
   if (gender === "unisex") return marketedFor === "unisex" ? 1 : 0.45;
   if (marketedFor === gender) return 1;
   if (marketedFor === "unisex") return 0.75;
