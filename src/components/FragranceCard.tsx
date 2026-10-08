@@ -2,6 +2,7 @@ import type { Fragrance } from "../data/fragrances";
 import { scoreFragrance, type GenderPreference, type LongevityPreference } from "../utils/scoring";
 import { LongevityBadge, LongevityBar } from "./LongevityBar";
 import { NotePills } from "./NotePills";
+import { explainMatch } from "../utils/noteMatching";
 
 type FragranceCardProps = {
   fragrance: Fragrance;
@@ -60,7 +61,8 @@ export function FragranceCard({
   longevity,
 }: FragranceCardProps) {
   const matchScore = scoreFragrance(fragrance, season, occasion, selectedNotes, gender, longevity);
-  const matchedNotes = mode === "result" ? selectedNotes : [];
+  const match =
+    mode === "result" && selectedNotes.length > 0 ? explainMatch(fragrance, selectedNotes) : null;
   const buttonGridClass =
     mode === "initial" || !fragrance.sephoraLink ? "grid-cols-1" : "sm:grid-cols-2";
 
@@ -102,13 +104,27 @@ export function FragranceCard({
       {mode === "result" && (
         <p className="mt-3 text-sm font-semibold text-primary">{fragrance.family.join(" · ")}</p>
       )}
+      {match && (
+        <p className="mt-2 text-sm text-card-foreground">
+          {match.matched.length > 0 ? (
+            <>
+              Matches <span className="font-bold">{match.matched.length}</span> of {match.total} of
+              your notes: {match.matched.join(", ")}
+            </>
+          ) : (
+            <span className="text-muted-foreground">
+              None of your notes; picked for your season and occasion
+            </span>
+          )}
+        </p>
+      )}
       <p className="mt-4 flex-1 text-sm leading-6 text-muted-foreground">{fragrance.description}</p>
       <div className="mt-5">
         <NotePills
           top={fragrance.topNotes}
           heart={fragrance.heartNotes}
           base={fragrance.baseNotes}
-          matchedNotes={matchedNotes}
+          highlight={match?.highlight ?? []}
         />
       </div>
       <div className="mt-5">

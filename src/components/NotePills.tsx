@@ -2,17 +2,18 @@ type NotePillsProps = {
   top: string[];
   heart: string[];
   base: string[];
-  matchedNotes?: string[];
+  /** Exact note strings to highlight (already matched by the caller). */
+  highlight?: string[];
 };
 
 function Row({
   label,
   notes,
-  matchedNotes = [],
+  highlight = [],
 }: {
   label: string;
   notes: string[];
-  matchedNotes?: string[];
+  highlight?: string[];
 }) {
   return (
     <div className="grid gap-2 sm:grid-cols-[3.5rem_1fr]">
@@ -21,7 +22,7 @@ function Row({
       </span>
       <div className="flex flex-wrap gap-1.5">
         {notes.map((note) => {
-          const matched = matchedNotes.some((m) => note.toLowerCase().includes(m.toLowerCase()));
+          const matched = highlight.includes(note);
           return (
             <span
               key={`${label}-${note}`}
@@ -36,12 +37,12 @@ function Row({
   );
 }
 
-export function NotePills({ top, heart, base, matchedNotes }: NotePillsProps) {
+export function NotePills({ top, heart, base, highlight }: NotePillsProps) {
   return (
     <div className="space-y-3">
-      <Row label="Top" notes={top} matchedNotes={matchedNotes} />
-      <Row label="Heart" notes={heart} matchedNotes={matchedNotes} />
-      <Row label="Base" notes={base} matchedNotes={matchedNotes} />
+      <Row label="Top" notes={top} highlight={highlight} />
+      <Row label="Heart" notes={heart} highlight={highlight} />
+      <Row label="Base" notes={base} highlight={highlight} />
     </div>
   );
 }

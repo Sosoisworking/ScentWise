@@ -33,7 +33,8 @@ Environment variables (see `.env.example`):
 
 - `src/App.tsx`: quiz flow; scoring lives in `src/utils/scoring.ts`
 - `src/routes/`: file-based routes, including `sitemap.xml` and `robots.txt`
-- `src/data/`: fragrances (`fragrances.json`), brands, notes and articles
+- `src/data/`: fragrances (`fragrances.json`), the note list the quiz matches on (`note-taxonomy.json`), brands and articles
+- `src/utils/noteMatching.ts`: note matching (canonical notes, families, pyramid weighting)
 - `scripts/validate-fragrances.mjs`: checks the catalogue; runs before every build
 
 ## Fragrance catalogue

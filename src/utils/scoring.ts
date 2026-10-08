@@ -1,4 +1,5 @@
 import { FRAGRANCES, type Fragrance } from "../data/fragrances";
+import { containsAnyNote, matchNote } from "./noteMatching";
 
 export type GenderPreference = "male" | "female" | "unisex" | "";
 export type LongevityPreference = "short" | "medium" | "long" | "";
@@ -21,30 +22,33 @@ function getLongevityAffinity(fragrance: Fragrance, longevity: LongevityPreferen
   return diff === 1 ? 0.4 : 0;
 }
 
+// Occasions and seasons are listed most-fitting first, so an exact primary match scores a
+// little higher than a secondary one (1, 0.9, 0.8 … floored at 0.7).
+function getListAffinity(list: string[], value: string): number {
+  const index = list.indexOf(value);
+  return index < 0 ? 0 : Math.max(0.7, 1 - index * 0.1);
+}
+
 export function scoreFragrance(
   fragrance: Fragrance,
   season: string,
   occasion: string,
-  selectedNotes: string[],
+  lovedNotes: string[],
   gender: GenderPreference = "",
   longevity: LongevityPreference = "",
 ): number {
   let score = 0;
-  const allFragranceNotes = [
-    ...fragrance.topNotes,
-    ...fragrance.heartNotes,
-    ...fragrance.baseNotes,
-  ].map((n) => n.toLowerCase());
-  const matchedNotes = selectedNotes.filter((note) =>
-    allFragranceNotes.some((fn) => fn.includes(note.toLowerCase())),
-  );
-  const noteScore = selectedNotes.length > 0 ? matchedNotes.length / selectedNotes.length : 0.5;
+  const noteScore =
+    lovedNotes.length > 0
+      ? lovedNotes.reduce((sum, note) => sum + matchNote(fragrance, note).weight, 0) /
+        lovedNotes.length
+      : 0.5;
   const noteWeight = longevity && gender ? 30 : gender ? 40 : longevity ? 40 : 50;
   const occasionWeight = longevity && gender ? 20 : 25;
-  const seasonWeight = longevity && gender ? 15 : 15;
+  const seasonWeight = 15;
   score += noteScore * noteWeight;
-  score += fragrance.occasions.includes(occasion) ? occasionWeight : 0;
-  score += fragrance.seasons.includes(season) ? seasonWeight : 0;
+  score += getListAffinity(fragrance.occasions, occasion) * occasionWeight;
+  score += getListAffinity(fragrance.seasons, season) * seasonWeight;
   score += gender ? getGenderAffinity(fragrance, gender) * 20 : 0;
   score += longevity ? getLongevityAffinity(fragrance, longevity) * 15 : 0;
   return Math.round(score);
@@ -70,30 +74,25 @@ export function getInitialRecommendations(
 export function getRefinedResults(
   season: string,
   occasion: string,
-  selectedNotes: string[],
+  lovedNotes: string[],
   gender: GenderPreference = "",
   longevity: LongevityPreference = "",
+  avoidedNotes: string[] = [],
 ): Fragrance[] {
   const longevityRank = { long: 3, medium: 2, short: 1 } as const;
-  return FRAGRANCES.map((f) => ({
-    fragrance: f,
-    score: scoreFragrance(f, season, occasion, selectedNotes, gender, longevity),
-  }))
+  return FRAGRANCES.filter((f) => !containsAnyNote(f, avoidedNotes))
+    .map((f) => ({
+      fragrance: f,
+      score: scoreFragrance(f, season, occasion, lovedNotes, gender, longevity),
+    }))
     .filter((x) => x.score > 20)
     .sort((a, b) => {
       if (b.score !== a.score) return b.score - a.score;
       const longevityDiff =
         longevityRank[b.fragrance.longevity] - longevityRank[a.fragrance.longevity];
-      if (longevity === "short") return -longevityDiff;
-      return longevityDiff;
+      if (longevityDiff !== 0) return longevity === "short" ? -longevityDiff : longevityDiff;
+      return a.fragrance.name.localeCompare(b.fragrance.name);
     })
     .slice(0, 8)
     .map((x) => x.fragrance);
-}
-
-export function getMatchedNotes(fragrance: Fragrance, selectedNotes: string[]): string[] {
-  const allNotes = [...fragrance.topNotes, ...fragrance.heartNotes, ...fragrance.baseNotes];
-  return allNotes.filter((fragranceNote) =>
-    selectedNotes.some((selected) => fragranceNote.toLowerCase().includes(selected.toLowerCase())),
-  );
 }

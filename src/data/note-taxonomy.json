@@ -1,0 +1,1014 @@
+{
+  "note": "Canonical fragrance notes. Every note in fragrances.json must equal a name or alias here (case-insensitive). Wildcard notes match every note in their family.",
+  "families": [
+    {
+      "id": "citrus",
+      "label": "Citrus",
+      "fragranceFamilies": ["Citrus"]
+    },
+    {
+      "id": "fruity",
+      "label": "Fruity",
+      "fragranceFamilies": ["Fruity"]
+    },
+    {
+      "id": "floral",
+      "label": "Floral",
+      "fragranceFamilies": ["Floral"]
+    },
+    {
+      "id": "green",
+      "label": "Green & Herbal",
+      "fragranceFamilies": []
+    },
+    {
+      "id": "aquatic",
+      "label": "Aquatic & Mineral",
+      "fragranceFamilies": []
+    },
+    {
+      "id": "spicy",
+      "label": "Spicy",
+      "fragranceFamilies": ["Spicy"]
+    },
+    {
+      "id": "gourmand",
+      "label": "Sweet & Gourmand",
+      "fragranceFamilies": []
+    },
+    {
+      "id": "woody",
+      "label": "Woody",
+      "fragranceFamilies": ["Woody"]
+    },
+    {
+      "id": "amber",
+      "label": "Amber & Resins",
+      "fragranceFamilies": []
+    },
+    {
+      "id": "leather",
+      "label": "Leather & Smoky",
+      "fragranceFamilies": []
+    },
+    {
+      "id": "musky",
+      "label": "Musky & Clean",
+      "fragranceFamilies": []
+    }
+  ],
+  "notes": [
+    {
+      "name": "Any citrus",
+      "family": "citrus",
+      "description": "Every citrus note at once: lemon, bergamot, orange, grapefruit and more.",
+      "aliases": ["Citrus"],
+      "wildcard": true
+    },
+    {
+      "name": "Bergamot",
+      "family": "citrus",
+      "description": "Tea-like citrus with a refined, slightly bitter sparkle."
+    },
+    {
+      "name": "Lemon",
+      "family": "citrus",
+      "description": "Sharp, clean, uplifting citrus brightness.",
+      "aliases": ["Sicilian Lemon"]
+    },
+    {
+      "name": "Lime",
+      "family": "citrus",
+      "description": "Zesty, tart, tropical-green citrus zing."
+    },
+    {
+      "name": "Mandarin",
+      "family": "citrus",
+      "description": "Sweet, juicy orange-citrus with soft warmth.",
+      "aliases": ["Tangerine", "Green Mandarin", "Blood Mandarin", "Mandarin Blossom"]
+    },
+    {
+      "name": "Orange",
+      "family": "citrus",
+      "description": "Sunny, sweet, full-bodied citrus cheer.",
+      "aliases": ["Blood Orange", "Orange Zest"]
+    },
+    {
+      "name": "Grapefruit",
+      "family": "citrus",
+      "description": "Bitter-fresh citrus with energetic bite."
+    },
+    {
+      "name": "Neroli",
+      "family": "citrus",
+      "description": "Fresh orange blossom with a clean, airy floral edge."
+    },
+    {
+      "name": "Petitgrain",
+      "family": "citrus",
+      "description": "Green, woody citrus from the leaves and twigs of the orange tree."
+    },
+    {
+      "name": "Yuzu",
+      "family": "citrus",
+      "description": "Tart Japanese citrus, somewhere between grapefruit and mandarin."
+    },
+    {
+      "name": "Citron",
+      "family": "citrus",
+      "description": "Thick-skinned ancient citrus with a dry, sparkling zest."
+    },
+    {
+      "name": "Any fruit",
+      "family": "fruity",
+      "description": "Every fruity note: apple, pear, berries, peach, tropical fruit and more.",
+      "aliases": [
+        "Tropical Fruits",
+        "Mediterranean Fruits",
+        "Candied Fruits",
+        "Maninka Fruit",
+        "Papaya",
+        "Kiwi",
+        "Persimmon",
+        "Jamaican Nesberry"
+      ],
+      "wildcard": true
+    },
+    {
+      "name": "Apple",
+      "family": "fruity",
+      "description": "Crisp, juicy, shampoo-clean fruitiness.",
+      "aliases": ["Green Apple", "Red Apple"]
+    },
+    {
+      "name": "Pear",
+      "family": "fruity",
+      "description": "Watery, sweet, elegant orchard fruit.",
+      "aliases": ["Pear Blossom"]
+    },
+    {
+      "name": "Pineapple",
+      "family": "fruity",
+      "description": "Tropical, tangy, confident golden fruit."
+    },
+    {
+      "name": "Peach",
+      "family": "fruity",
+      "description": "Velvety, soft, nectar-like fruit sweetness.",
+      "aliases": ["Peach Blossom"]
+    },
+    {
+      "name": "Apricot",
+      "family": "fruity",
+      "description": "Soft, velvety stone fruit with a jammy, golden sweetness."
+    },
+    {
+      "name": "Plum",
+      "family": "fruity",
+      "description": "Dark, juicy stone fruit with a winey, jammy depth.",
+      "aliases": ["Mirabelle Plum"]
+    },
+    {
+      "name": "Cherry",
+      "family": "fruity",
+      "description": "Sweet-sour dark cherry with an almond-like, almost boozy edge.",
+      "aliases": ["Black Cherry", "Cherry Liqueur"]
+    },
+    {
+      "name": "Raspberry",
+      "family": "fruity",
+      "description": "Tart, jammy red-berry sparkle.",
+      "aliases": ["Wild Raspberry", "Raspberry Blossom"]
+    },
+    {
+      "name": "Strawberry",
+      "family": "fruity",
+      "description": "Sweet, candied red-fruit brightness."
+    },
+    {
+      "name": "Blackcurrant",
+      "family": "fruity",
+      "description": "Dark, tart berry with green, luxurious depth."
+    },
+    {
+      "name": "Berries",
+      "family": "fruity",
+      "description": "Mixed red and dark berries: juicy, tart and playful.",
+      "aliases": ["Red Berries", "Wild Berries", "Blackberry", "Blueberry"]
+    },
+    {
+      "name": "Lychee",
+      "family": "fruity",
+      "description": "Rosy, juicy tropical fruit with a fresh, floral sweetness."
+    },
+    {
+      "name": "Melon",
+      "family": "fruity",
+      "description": "Cool, watery, sweet fruit that adds airy freshness."
+    },
+    {
+      "name": "Mango",
+      "family": "fruity",
+      "description": "Lush tropical fruit, from green and tangy to ripe and creamy.",
+      "aliases": ["Green Mango"]
+    },
+    {
+      "name": "Passion Fruit",
+      "family": "fruity",
+      "description": "Tangy, exotic tropical fruit with a sweet-sour kick."
+    },
+    {
+      "name": "Pomegranate",
+      "family": "fruity",
+      "description": "Tart, jewel-like red fruit with a crisp, slightly bitter edge."
+    },
+    {
+      "name": "Quince",
+      "family": "fruity",
+      "description": "Fragrant golden fruit between apple and pear, honeyed and floral."
+    },
+    {
+      "name": "Fig",
+      "family": "fruity",
+      "description": "Milky, green, fruity-woody Mediterranean lushness.",
+      "aliases": ["Fig Leaf", "Fig Tree"]
+    },
+    {
+      "name": "Rhubarb",
+      "family": "fruity",
+      "description": "Sharp, green-pink tartness with mouthwatering freshness."
+    },
+    {
+      "name": "Dates",
+      "family": "fruity",
+      "description": "Dark, sticky dried fruit with a caramel-like sweetness."
+    },
+    {
+      "name": "Dried Fruits",
+      "family": "fruity",
+      "description": "Rich, concentrated fruit with raisin and prune-like warmth."
+    },
+    {
+      "name": "Any floral",
+      "family": "floral",
+      "description": "Every floral note: rose, jasmine, white flowers and more.",
+      "aliases": ["Floral Notes", "Sugared Petals"],
+      "wildcard": true
+    },
+    {
+      "name": "Rose",
+      "family": "floral",
+      "description": "Romantic, plush floral from dewy petals to velvet richness.",
+      "aliases": ["Turkish Rose", "Bulgarian Rose", "Damask Rose", "White Rose"]
+    },
+    {
+      "name": "Pomarose",
+      "family": "floral",
+      "description": "A modern rose molecule: rosy, fruity and apple-crisp."
+    },
+    {
+      "name": "Jasmine",
+      "family": "floral",
+      "description": "Creamy white floral with luminous sensuality.",
+      "aliases": ["Jasmine Sambac"]
+    },
+    {
+      "name": "Tuberose",
+      "family": "floral",
+      "description": "Bold, creamy, narcotic white floral drama."
+    },
+    {
+      "name": "Orange Blossom",
+      "family": "floral",
+      "description": "Honeyed, sunny white floral with citrus glow."
+    },
+    {
+      "name": "White Flowers",
+      "family": "floral",
+      "description": "A soft bouquet of creamy white blossoms.",
+      "aliases": ["Mock Orange"]
+    },
+    {
+      "name": "Ylang-Ylang",
+      "family": "floral",
+      "description": "Solar yellow floral, creamy and exotic."
+    },
+    {
+      "name": "Iris",
+      "family": "floral",
+      "description": "Powdery, elegant, suede-like floral refinement.",
+      "aliases": ["Orris", "Orris Root", "Iris Root"]
+    },
+    {
+      "name": "Violet",
+      "family": "floral",
+      "description": "Powdery, delicate floral with a soft cosmetic feel.",
+      "aliases": ["Black Violet", "Violet Wood"]
+    },
+    {
+      "name": "Peony",
+      "family": "floral",
+      "description": "Fresh, airy pink floral with a light, rosy sweetness."
+    },
+    {
+      "name": "Magnolia",
+      "family": "floral",
+      "description": "Airy white floral with lemony softness."
+    },
+    {
+      "name": "Lily",
+      "family": "floral",
+      "description": "Clean, watery floral with graceful freshness."
+    },
+    {
+      "name": "Lily of the Valley",
+      "family": "floral",
+      "description": "Dewy, green, bell-like spring floral, clean and bright."
+    },
+    {
+      "name": "Lotus",
+      "family": "floral",
+      "description": "Watery, serene aquatic flower with a soft, clean sweetness.",
+      "aliases": ["Blue Lotus", "Water Lily"]
+    },
+    {
+      "name": "Freesia",
+      "family": "floral",
+      "description": "Peppery, fresh and fruity spring floral."
+    },
+    {
+      "name": "Gardenia",
+      "family": "floral",
+      "description": "Rich, creamy white floral with a buttery, green edge."
+    },
+    {
+      "name": "Heliotrope",
+      "family": "floral",
+      "description": "Powdery almond-and-cherry floral with soft, vanilla-like warmth."
+    },
+    {
+      "name": "Orchid",
+      "family": "floral",
+      "description": "Exotic, creamy floral, often dark and sensual in perfume.",
+      "aliases": ["Black Orchid"]
+    },
+    {
+      "name": "Osmanthus",
+      "family": "floral",
+      "description": "Apricot-scented blossom with a soft, leathery tea facet."
+    },
+    {
+      "name": "Cyclamen",
+      "family": "floral",
+      "description": "Light, watery pink floral with a fresh, airy feel."
+    },
+    {
+      "name": "Geranium",
+      "family": "floral",
+      "description": "Green, rosy, herbal floral crispness."
+    },
+    {
+      "name": "Mimosa",
+      "family": "floral",
+      "description": "Powdery, honeyed yellow blossom with a soft green touch."
+    },
+    {
+      "name": "Hyacinth",
+      "family": "floral",
+      "description": "Green, dewy spring floral with a slightly earthy depth."
+    },
+    {
+      "name": "Honeysuckle",
+      "family": "floral",
+      "description": "Sweet, nectar-like summer floral with a honeyed glow."
+    },
+    {
+      "name": "Carnation",
+      "family": "floral",
+      "description": "Spicy, clove-like floral with old-fashioned charm.",
+      "aliases": ["Gillyflower"]
+    },
+    {
+      "name": "Lilac",
+      "family": "floral",
+      "description": "Fresh, powdery spring floral with a soft, almondy sweetness."
+    },
+    {
+      "name": "Narcissus",
+      "family": "floral",
+      "description": "Heady, green floral with a hay-like depth."
+    },
+    {
+      "name": "Champaca",
+      "family": "floral",
+      "description": "Rich, apricot-tinged Indian magnolia, lush and exotic."
+    },
+    {
+      "name": "Frangipani",
+      "family": "floral",
+      "description": "Creamy, tropical white floral with a peachy sweetness."
+    },
+    {
+      "name": "Hibiscus",
+      "family": "floral",
+      "description": "Bright, tart tropical floral with a juicy feel."
+    },
+    {
+      "name": "Sweet Pea",
+      "family": "floral",
+      "description": "Light, airy floral with a soft, fruity-green sweetness."
+    },
+    {
+      "name": "Datura",
+      "family": "floral",
+      "description": "Creamy, intoxicating night-blooming floral."
+    },
+    {
+      "name": "Boysenberry Flower",
+      "family": "floral",
+      "description": "Fresh, fruity blossom with a light berry sweetness."
+    },
+    {
+      "name": "Rangoon Creeper",
+      "family": "floral",
+      "description": "Powdery, softly sweet tropical vine flower."
+    },
+    {
+      "name": "Forget-Me-Not",
+      "family": "floral",
+      "description": "Delicate, fresh blue floral with a soft green touch."
+    },
+    {
+      "name": "Almond Blossom",
+      "family": "floral",
+      "description": "Soft, powdery spring blossom with a gentle almond nuance."
+    },
+    {
+      "name": "Olive Blossom",
+      "family": "floral",
+      "description": "Creamy, slightly green Mediterranean flower."
+    },
+    {
+      "name": "Hawthorn",
+      "family": "floral",
+      "description": "Almond-tinged white blossom with a soft, powdery spring feel."
+    },
+    {
+      "name": "Marigold",
+      "family": "floral",
+      "description": "Green, fruity-herbal floral with a slightly bitter bite.",
+      "aliases": ["African Marigold"]
+    },
+    {
+      "name": "Lavender",
+      "family": "green",
+      "description": "Clean aromatic floral with calming herbal facets."
+    },
+    {
+      "name": "Mint",
+      "family": "green",
+      "description": "Cool, green, breath-of-fresh-air herbal lift.",
+      "aliases": ["Peppermint"]
+    },
+    {
+      "name": "Basil",
+      "family": "green",
+      "description": "Aromatic green herb with peppery brightness."
+    },
+    {
+      "name": "Sage",
+      "family": "green",
+      "description": "Aromatic, herbal and slightly musky, clean and grounding.",
+      "aliases": ["Clary Sage"]
+    },
+    {
+      "name": "Rosemary",
+      "family": "green",
+      "description": "Fresh, piney Mediterranean herb with an invigorating lift."
+    },
+    {
+      "name": "Thyme",
+      "family": "green",
+      "description": "Warm, dry Mediterranean herb with a gently spicy edge."
+    },
+    {
+      "name": "Tea",
+      "family": "green",
+      "description": "Aromatic, dry, contemplative leafy lift.",
+      "aliases": ["Green Tea", "Black Tea", "Jasmine Tea"]
+    },
+    {
+      "name": "Violet Leaf",
+      "family": "green",
+      "description": "Sharp, green, cucumber-like freshness, very different from violet flowers."
+    },
+    {
+      "name": "Green Notes",
+      "family": "green",
+      "description": "Crisp, leafy freshness like crushed stems and cut grass.",
+      "aliases": ["Green Leaves", "Tomato", "Carrot", "Bamboo", "Clover", "Bulrush"]
+    },
+    {
+      "name": "Verbena",
+      "family": "green",
+      "description": "Lemony green herb with a bright, sherbet-like freshness.",
+      "aliases": ["Lemon Verbena"]
+    },
+    {
+      "name": "Artemisia",
+      "family": "green",
+      "description": "Bitter, green aromatic herb related to wormwood."
+    },
+    {
+      "name": "Juniper",
+      "family": "green",
+      "description": "Crisp, resinous berry with the gin-like freshness of a forest."
+    },
+    {
+      "name": "Cucumber",
+      "family": "green",
+      "description": "Cool, watery, green freshness."
+    },
+    {
+      "name": "Bay Leaf",
+      "family": "green",
+      "description": "Aromatic, spicy-green leaf with a gentle warmth."
+    },
+    {
+      "name": "Eucalyptus",
+      "family": "green",
+      "description": "Cooling, camphor-like green freshness."
+    },
+    {
+      "name": "Oregano",
+      "family": "green",
+      "description": "Warm, dry, savoury herb with a spicy bite."
+    },
+    {
+      "name": "Mate",
+      "family": "green",
+      "description": "Green, hay-like South American tea leaf."
+    },
+    {
+      "name": "Myrtle",
+      "family": "green",
+      "description": "Fresh, camphorous Mediterranean shrub with a citrus edge."
+    },
+    {
+      "name": "Angelica",
+      "family": "green",
+      "description": "Musky, earthy-green root with a peppery lift."
+    },
+    {
+      "name": "Hay",
+      "family": "green",
+      "description": "Sweet, sun-dried grass with a warm, tobacco-like softness."
+    },
+    {
+      "name": "Buchu",
+      "family": "green",
+      "description": "Blackcurrant-like South African herb, green and fruity."
+    },
+    {
+      "name": "Fennel",
+      "family": "green",
+      "description": "Sweet, anise-like green herb."
+    },
+    {
+      "name": "Sea Notes",
+      "family": "aquatic",
+      "description": "Salty sea air and water: breezy, clean and open.",
+      "aliases": ["Sea Salt", "Water Notes", "Mineral Salt"]
+    },
+    {
+      "name": "Mineral Notes",
+      "family": "aquatic",
+      "description": "Cool stone and metal: dry, crisp and modern.",
+      "aliases": ["Flint", "Metallic Notes"]
+    },
+    {
+      "name": "Ice Accord",
+      "family": "aquatic",
+      "description": "An icy, frosted freshness."
+    },
+    {
+      "name": "Warm Sand",
+      "family": "aquatic",
+      "description": "Sun-warmed, mineral-musky beach accord."
+    },
+    {
+      "name": "Any spice",
+      "family": "spicy",
+      "description": "Every spicy note: pepper, cinnamon, cardamom, saffron and more.",
+      "aliases": ["Spices"],
+      "wildcard": true
+    },
+    {
+      "name": "Pink Pepper",
+      "family": "spicy",
+      "description": "Rosy, fizzy spice that adds lift and sparkle."
+    },
+    {
+      "name": "Black Pepper",
+      "family": "spicy",
+      "description": "Dry, biting, aromatic spice kick.",
+      "aliases": ["Pepper", "White Pepper"]
+    },
+    {
+      "name": "Sichuan Pepper",
+      "family": "spicy",
+      "description": "Zesty, tingling pepper with a citrusy, almost electric edge.",
+      "aliases": ["Chinese Pepper"]
+    },
+    {
+      "name": "Cinnamon",
+      "family": "spicy",
+      "description": "Warm, sweet spice with cosy heat."
+    },
+    {
+      "name": "Cardamom",
+      "family": "spicy",
+      "description": "Cool, aromatic spice with elegant warmth.",
+      "aliases": ["Black Cardamom"]
+    },
+    {
+      "name": "Clove",
+      "family": "spicy",
+      "description": "Dark, spicy, slightly medicinal warmth."
+    },
+    {
+      "name": "Nutmeg",
+      "family": "spicy",
+      "description": "Warm, woody-sweet pantry spice.",
+      "aliases": ["Nutmeg Flower"]
+    },
+    {
+      "name": "Saffron",
+      "family": "spicy",
+      "description": "Rich, leathery, golden spice with luxe warmth."
+    },
+    {
+      "name": "Ginger",
+      "family": "spicy",
+      "description": "Zingy, warm-fresh spice with a lemony bite."
+    },
+    {
+      "name": "Cumin",
+      "family": "spicy",
+      "description": "Warm, earthy, slightly animalic spice."
+    },
+    {
+      "name": "Coriander",
+      "family": "spicy",
+      "description": "Spicy-fresh seed with a citrusy, slightly woody warmth."
+    },
+    {
+      "name": "Star Anise",
+      "family": "spicy",
+      "description": "Sweet, licorice-like spice with a warm glow.",
+      "aliases": ["Anise"]
+    },
+    {
+      "name": "Caraway",
+      "family": "spicy",
+      "description": "Warm, rye-bread spice with an anise-like edge."
+    },
+    {
+      "name": "Licorice",
+      "family": "spicy",
+      "description": "Sweet, dark and slightly salty black-candy note."
+    },
+    {
+      "name": "Pimento",
+      "family": "spicy",
+      "description": "Warm, clove-and-pepper-like spice berry.",
+      "aliases": ["Allspice"]
+    },
+    {
+      "name": "Vanilla",
+      "family": "gourmand",
+      "description": "Creamy sweetness, soft warmth and lasting comfort.",
+      "aliases": ["Bourbon Vanilla", "Vanilla Bean", "Vanilla Orchid"]
+    },
+    {
+      "name": "Tonka Bean",
+      "family": "gourmand",
+      "description": "Almond-vanilla warmth with tobacco-like sweetness."
+    },
+    {
+      "name": "Caramel",
+      "family": "gourmand",
+      "description": "Sticky golden sweetness with dessert-like comfort.",
+      "aliases": ["Salted Caramel", "Toffee", "Caramelized Sugar"]
+    },
+    {
+      "name": "Praline",
+      "family": "gourmand",
+      "description": "Roasted nut-sugar gourmand indulgence."
+    },
+    {
+      "name": "Honey",
+      "family": "gourmand",
+      "description": "Golden, sticky-sweet animalic richness.",
+      "aliases": ["Beeswax"]
+    },
+    {
+      "name": "Coffee",
+      "family": "gourmand",
+      "description": "Roasted, bittersweet, addictive dark warmth.",
+      "aliases": ["Black Coffee"]
+    },
+    {
+      "name": "Cocoa",
+      "family": "gourmand",
+      "description": "Chocolate warmth, from dry cocoa to creamy white chocolate.",
+      "aliases": ["Cocoa Shell", "Chocolate", "Dark Chocolate", "White Chocolate"]
+    },
+    {
+      "name": "Almond",
+      "family": "gourmand",
+      "description": "Nutty, marzipan-like sweetness with a soft bitterness.",
+      "aliases": ["Bitter Almond", "Candied Almond"]
+    },
+    {
+      "name": "Coconut",
+      "family": "gourmand",
+      "description": "Tropical, creamy, suntan-lotion warmth.",
+      "aliases": ["Coconut Milk", "Coconut Wood"]
+    },
+    {
+      "name": "Sugar",
+      "family": "gourmand",
+      "description": "Sugary warmth, from brown sugar to candy floss.",
+      "aliases": ["Brown Sugar", "Sugar Cane", "Cotton Candy"]
+    },
+    {
+      "name": "Milk",
+      "family": "gourmand",
+      "description": "Soft, creamy, milky comfort.",
+      "aliases": ["Cream Accord", "Kulfi Accord"]
+    },
+    {
+      "name": "Pastry",
+      "family": "gourmand",
+      "description": "Bakery sweetness: cake, biscuit and confectionery.",
+      "aliases": ["Macaron", "Cupcake Accord", "Gourmand Accord"]
+    },
+    {
+      "name": "Pistachio",
+      "family": "gourmand",
+      "description": "Creamy, nutty and slightly salty-sweet."
+    },
+    {
+      "name": "Chestnut",
+      "family": "gourmand",
+      "description": "Roasted, nutty and sweet, like marrons glacés.",
+      "aliases": ["Candied Chestnut"]
+    },
+    {
+      "name": "Marshmallow",
+      "family": "gourmand",
+      "description": "Fluffy, powdery-sweet confection."
+    },
+    {
+      "name": "Rice",
+      "family": "gourmand",
+      "description": "Soft, creamy, slightly powdery grain note."
+    },
+    {
+      "name": "Rum",
+      "family": "gourmand",
+      "description": "Boozy, molasses-sweet warmth.",
+      "aliases": ["White Rum"]
+    },
+    {
+      "name": "Liquor",
+      "family": "gourmand",
+      "description": "Boozy accords: cognac, gin, champagne and other spirits.",
+      "aliases": ["Cognac", "Bourbon", "Vodka", "Gin", "Champagne"]
+    },
+    {
+      "name": "Davana",
+      "family": "gourmand",
+      "description": "Fruity, boozy herb with a rum-and-apricot facet."
+    },
+    {
+      "name": "Any woods",
+      "family": "woody",
+      "description": "Every woody note: cedar, sandalwood, vetiver, oud and more.",
+      "aliases": [
+        "Woody Notes",
+        "Dry Woods",
+        "White Woods",
+        "Blonde Woods",
+        "Tropical Woods",
+        "Queenwood",
+        "Driftwood",
+        "Sycamore",
+        "Oak"
+      ],
+      "wildcard": true
+    },
+    {
+      "name": "Sandalwood",
+      "family": "woody",
+      "description": "Creamy, smooth wood with meditative softness."
+    },
+    {
+      "name": "Cedarwood",
+      "family": "woody",
+      "description": "Dry pencil-shaving wood, clean and structured."
+    },
+    {
+      "name": "Vetiver",
+      "family": "woody",
+      "description": "Dry grassy wood with smoky sophistication."
+    },
+    {
+      "name": "Patchouli",
+      "family": "woody",
+      "description": "Earthy, dark, chocolate-tinged depth."
+    },
+    {
+      "name": "Oud",
+      "family": "woody",
+      "description": "Rich, smoky, animalic wood from the Middle East.",
+      "aliases": ["Agarwood"]
+    },
+    {
+      "name": "Guaiac Wood",
+      "family": "woody",
+      "description": "Smoky, tarry wood with a soft rosy sweetness."
+    },
+    {
+      "name": "Cashmeran",
+      "family": "woody",
+      "description": "Soft, musky 'cashmere wood' with a velvety warmth."
+    },
+    {
+      "name": "Akigalawood",
+      "family": "woody",
+      "description": "Spicy, peppery patchouli-derived wood with a soft oud-like facet."
+    },
+    {
+      "name": "Cypress",
+      "family": "woody",
+      "description": "Crisp, resinous evergreen wood."
+    },
+    {
+      "name": "Rosewood",
+      "family": "woody",
+      "description": "Smooth, rosy-spicy wood."
+    },
+    {
+      "name": "Pine",
+      "family": "woody",
+      "description": "Fresh, resinous forest air: fir needles and pine.",
+      "aliases": ["Fir", "Fir Resin", "Pine Needle"]
+    },
+    {
+      "name": "Papyrus",
+      "family": "woody",
+      "description": "Dry, smoky, reed-like woody note."
+    },
+    {
+      "name": "Mahogany",
+      "family": "woody",
+      "description": "Dark, polished wood with a warm, rich depth."
+    },
+    {
+      "name": "Iso E Super",
+      "family": "woody",
+      "description": "Velvety, cedar-like aroma molecule that seems to come and go."
+    },
+    {
+      "name": "Oakmoss",
+      "family": "woody",
+      "description": "Mossy forest-floor depth, classic and chypre-like.",
+      "aliases": ["Moss", "White Moss"]
+    },
+    {
+      "name": "Amber",
+      "family": "amber",
+      "description": "Golden resin warmth, sweet and sensual.",
+      "aliases": ["White Amber", "Crisp Amber"]
+    },
+    {
+      "name": "Amberwood",
+      "family": "amber",
+      "description": "Dry, radiant ambery woods, modern and diffusive."
+    },
+    {
+      "name": "Ambergris",
+      "family": "amber",
+      "description": "Salty, warm, skin-like marine ambery note."
+    },
+    {
+      "name": "Ambroxan",
+      "family": "amber",
+      "description": "Clean, mineral-ambery molecule with a skin-like glow.",
+      "aliases": ["Ambrox", "Cetalox", "Ambrofix"]
+    },
+    {
+      "name": "Benzoin",
+      "family": "amber",
+      "description": "Soft, balsamic resin with vanilla-amber comfort."
+    },
+    {
+      "name": "Labdanum",
+      "family": "amber",
+      "description": "Dark, leathery, ambery resin with rich depth.",
+      "aliases": ["Cistus", "Cistus Labdanum"]
+    },
+    {
+      "name": "Incense",
+      "family": "amber",
+      "description": "Smoky, sacred, meditative resinous mystique.",
+      "aliases": ["Frankincense", "Olibanum", "Kyara Incense"]
+    },
+    {
+      "name": "Myrrh",
+      "family": "amber",
+      "description": "Bittersweet resinous balsam with a warm, slightly medicinal glow."
+    },
+    {
+      "name": "Opoponax",
+      "family": "amber",
+      "description": "Sweet, balsamic resin, also called sweet myrrh."
+    },
+    {
+      "name": "Peru Balsam",
+      "family": "amber",
+      "description": "Warm, vanilla-cinnamon balsam."
+    },
+    {
+      "name": "Styrax",
+      "family": "amber",
+      "description": "Smoky, leathery balsamic resin."
+    },
+    {
+      "name": "Elemi",
+      "family": "amber",
+      "description": "Lemony, peppery fresh resin."
+    },
+    {
+      "name": "Immortelle",
+      "family": "amber",
+      "description": "Honeyed, curry-like dried-flower warmth."
+    },
+    {
+      "name": "Leather",
+      "family": "leather",
+      "description": "Smooth, smoky hide with luxe edge."
+    },
+    {
+      "name": "Suede",
+      "family": "leather",
+      "description": "Soft, refined leather with powdery elegance."
+    },
+    {
+      "name": "Tobacco",
+      "family": "leather",
+      "description": "Dried-leaf warmth, sweet, smoky and refined.",
+      "aliases": ["Tobacco Leaf", "Tobacco Blossom"]
+    },
+    {
+      "name": "Birch",
+      "family": "leather",
+      "description": "Smoky tar-like wood with leathery edge."
+    },
+    {
+      "name": "Smoke",
+      "family": "leather",
+      "description": "Smoky, tarry campfire notes.",
+      "aliases": ["Cade", "Tar"]
+    },
+    {
+      "name": "Black Truffle",
+      "family": "leather",
+      "description": "Earthy, dark, savoury depth."
+    },
+    {
+      "name": "Musk",
+      "family": "musky",
+      "description": "Clean skin warmth that makes scent feel intimate.",
+      "aliases": ["White Musk", "Skin Musk", "Chantilly Musk"]
+    },
+    {
+      "name": "Aldehydes",
+      "family": "musky",
+      "description": "Sparkling, soapy, champagne-like vintage shimmer."
+    },
+    {
+      "name": "Ambrette",
+      "family": "musky",
+      "description": "Musky, pear-like seed with a soft, skin-like warmth.",
+      "aliases": ["Ambrette Seed"]
+    },
+    {
+      "name": "Hedione",
+      "family": "musky",
+      "description": "Airy, transparent jasmine-like freshness."
+    }
+  ]
+}

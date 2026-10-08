@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export function ScrollToTopButton() {
+export function ScrollToTopButton({ hidden = false }: { hidden?: boolean }) {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -10,7 +10,7 @@ export function ScrollToTopButton() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  if (!visible) return null;
+  if (!visible || hidden) return null;
 
   return (
     <button

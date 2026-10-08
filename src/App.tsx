@@ -22,6 +22,7 @@ type QuizState = {
   occasion: string;
   gender: GenderPreference;
   selectedNotes: string[];
+  avoidedNotes: string[];
 };
 
 const initialState: QuizState = {
@@ -31,6 +32,7 @@ const initialState: QuizState = {
   occasion: "",
   gender: "",
   selectedNotes: [],
+  avoidedNotes: [],
 };
 const tierLabels = ["Budget Gem", "Best Value", "Premium Pick"];
 
@@ -59,14 +61,30 @@ export default function App() {
     setQuiz((current) => ({ ...current, step: Math.max(1, current.step - 1) }));
   };
 
-  const toggleNote = (note: string) => {
-    setQuiz((current) => ({
-      ...current,
-      selectedNotes: current.selectedNotes.includes(note)
-        ? current.selectedNotes.filter((item) => item !== note)
-        : [...current.selectedNotes, note],
-    }));
+  // Tap cycle on a note: not selected → loved → avoided → not selected.
+  const cycleNote = (note: string) => {
+    setQuiz((current) => {
+      const without = (list: string[]) => list.filter((item) => item !== note);
+      if (current.selectedNotes.includes(note)) {
+        return {
+          ...current,
+          selectedNotes: without(current.selectedNotes),
+          avoidedNotes: [...current.avoidedNotes, note],
+        };
+      }
+      if (current.avoidedNotes.includes(note)) {
+        return { ...current, avoidedNotes: without(current.avoidedNotes) };
+      }
+      return { ...current, selectedNotes: [...current.selectedNotes, note] };
+    });
   };
+
+  const clearNotes = () =>
+    setQuiz((current) => ({ ...current, selectedNotes: [], avoidedNotes: [] }));
+
+  // The note step has its own action bar with Back and Restart, so the floating buttons
+  // would only cover note chips.
+  const hideOnNoteStep = quiz.step === 5 ? "hidden" : "";
 
   const setLongevity = (longevity: LongevityPreference) => {
     setQuiz((current) => ({ ...current, longevity }));
@@ -120,11 +138,15 @@ export default function App() {
         )}
         {quiz.step === 5 && (
           <NoteSelector
-            selectedNotes={quiz.selectedNotes}
-            onToggle={toggleNote}
+            lovedNotes={quiz.selectedNotes}
+            avoidedNotes={quiz.avoidedNotes}
+            onCycle={cycleNote}
+            onClear={clearNotes}
             longevity={quiz.longevity}
             onLongevityChange={setLongevity}
             onSubmit={() => advance({ step: 6 })}
+            onBack={goBack}
+            onRestart={reset}
           />
         )}
         {quiz.step === 6 && (
@@ -134,6 +156,7 @@ export default function App() {
             gender={quiz.gender}
             longevity={quiz.longevity}
             selectedNotes={quiz.selectedNotes}
+            avoidedNotes={quiz.avoidedNotes}
             onRestart={reset}
           />
         )}
@@ -144,17 +167,17 @@ export default function App() {
       <button
         type="button"
         onClick={reset}
-        className="fixed bottom-5 right-5 z-40 rounded-full bg-foreground px-5 py-3 text-sm font-bold text-background shadow-scent transition hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        className={`fixed bottom-5 right-5 z-40 rounded-full ${hideOnNoteStep} bg-foreground px-5 py-3 text-sm font-bold text-background shadow-scent transition hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring`}
         aria-label="Restart Scentwise quiz"
       >
         Restart
       </button>
-      <ScrollToTopButton />
+      <ScrollToTopButton hidden={quiz.step === 5} />
       {quiz.step > 1 && (
         <button
           type="button"
           onClick={goBack}
-          className="fixed bottom-24 left-5 z-40 rounded-full border bg-card px-5 py-3 text-sm font-bold text-card-foreground shadow-scent transition hover:scale-105 hover:border-primary hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className={`fixed bottom-24 left-5 z-40 rounded-full border bg-card px-5 py-3 text-sm font-bold text-card-foreground shadow-scent transition hover:scale-105 hover:border-primary hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${hideOnNoteStep}`}
           aria-label="Go back to previous Scentwise quiz step"
         >
           ← Back
