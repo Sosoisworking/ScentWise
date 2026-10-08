@@ -13,6 +13,7 @@ type ResultsGridProps = {
   gender: GenderPreference;
   longevity: LongevityPreference;
   selectedNotes: string[];
+  avoidedNotes: string[];
   onRestart: () => void;
 };
 
@@ -22,9 +23,17 @@ export function ResultsGrid({
   gender,
   longevity,
   selectedNotes,
+  avoidedNotes,
   onRestart,
 }: ResultsGridProps) {
-  const results = getRefinedResults(season, occasion, selectedNotes, gender, longevity);
+  const results = getRefinedResults(
+    season,
+    occasion,
+    selectedNotes,
+    gender,
+    longevity,
+    avoidedNotes,
+  );
   const summary = results
     .slice(0, 3)
     .map(
@@ -65,7 +74,7 @@ export function ResultsGrid({
       {results.length === 0 ? (
         <div className="mt-10 rounded-2xl border bg-card p-10 text-center shadow-scent">
           <p className="font-serif text-3xl text-foreground">
-            No perfect matches — try selecting fewer notes
+            No matches. Try avoiding fewer notes or loving a few more.
           </p>
         </div>
       ) : (
@@ -91,6 +100,7 @@ export function ResultsGrid({
             gender={gender}
             longevity={longevity}
             selectedNotes={selectedNotes}
+            avoidedNotes={avoidedNotes}
           />
         </>
       )}

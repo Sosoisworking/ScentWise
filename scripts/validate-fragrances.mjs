@@ -7,6 +7,7 @@ const root = new URL("../", import.meta.url);
 const read = (p) => readFileSync(new URL(p, root), "utf8");
 const fragrances = JSON.parse(read("src/data/fragrances.json"));
 const sephora = JSON.parse(read("src/data/sephora-ca.json"));
+const taxonomy = JSON.parse(read("src/data/note-taxonomy.json"));
 
 const SEASONS = ["spring", "summer", "fall", "winter"];
 // Must match the keys in src/components/OccasionStep.tsx (checked below).
@@ -61,6 +62,21 @@ const TIER_BY_PRICE = (low) => (low < 100 ? "budget" : low < 200 ? "mid" : "prem
 
 const errors = [];
 const err = (id, msg) => errors.push(`${id}: ${msg}`);
+
+// Note taxonomy: every name/alias unique, every note in a known family.
+const familyIds = new Set(taxonomy.families.map((f) => f.id));
+const noteLookup = new Map();
+for (const note of taxonomy.notes) {
+  if (!familyIds.has(note.family)) errors.push(`note-taxonomy: "${note.name}" has unknown family`);
+  if (typeof note.description !== "string" || note.description.length < 10) {
+    errors.push(`note-taxonomy: "${note.name}" needs a description`);
+  }
+  for (const key of [note.name, ...(note.aliases ?? [])]) {
+    const k = key.toLowerCase();
+    if (noteLookup.has(k)) errors.push(`note-taxonomy: "${key}" is listed twice`);
+    noteLookup.set(k, note.name);
+  }
+}
 
 export function slugify(s) {
   return s
@@ -129,7 +145,17 @@ if (!Array.isArray(fragrances)) {
     }
     for (const k of ["topNotes", "heartNotes", "baseNotes"]) {
       if (!isStrArray(f[k], 1, 8)) err(id, `${k}: 1–8 trimmed note names`);
-      else if (new Set(f[k]).size !== f[k].length) err(id, `${k}: duplicate note`);
+      else {
+        if (new Set(f[k]).size !== f[k].length) err(id, `${k}: duplicate note`);
+        for (const note of f[k]) {
+          if (!noteLookup.has(note.toLowerCase())) {
+            err(
+              id,
+              `note "${note}" is not in note-taxonomy.json (use an existing name, or add it as a note or alias)`,
+            );
+          }
+        }
+      }
     }
     if (!isStrArray(f.seasons, 1, 4) || !f.seasons.every((s) => SEASONS.includes(s))) {
       err(id, `seasons: 1–4 of ${SEASONS.join(", ")}`);

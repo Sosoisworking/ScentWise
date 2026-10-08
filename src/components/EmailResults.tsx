@@ -9,10 +9,11 @@ type Props = {
   gender: GenderPreference;
   longevity: LongevityPreference;
   selectedNotes: string[];
+  avoidedNotes?: string[];
 };
 
 function buildPlainText(args: Props): string {
-  const { results, season, occasion, gender, longevity, selectedNotes } = args;
+  const { results, season, occasion, gender, longevity, selectedNotes, avoidedNotes = [] } = args;
   const lines: string[] = [];
   lines.push("Your Scentwise Matches");
   lines.push("=======================");
@@ -22,7 +23,8 @@ function buildPlainText(args: Props): string {
   if (season) prefs.push(`Season: ${season}`);
   if (occasion) prefs.push(`Occasion: ${occasion}`);
   if (longevity) prefs.push(`Longevity: ${longevity}`);
-  if (selectedNotes.length) prefs.push(`Notes: ${selectedNotes.join(", ")}`);
+  if (selectedNotes.length) prefs.push(`Notes you love: ${selectedNotes.join(", ")}`);
+  if (avoidedNotes.length) prefs.push(`Notes you avoid: ${avoidedNotes.join(", ")}`);
   if (prefs.length) {
     lines.push("Your preferences:");
     prefs.forEach((p) => lines.push(`  • ${p}`));
