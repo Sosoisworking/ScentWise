@@ -33,5 +33,11 @@ Environment variables (see `.env.example`):
 
 - `src/App.tsx`: quiz flow; scoring lives in `src/utils/scoring.ts`
 - `src/routes/`: file-based routes, including `sitemap.xml` and `robots.txt`
-- `src/data/`: fragrances, brands, notes and articles
+- `src/data/`: fragrances (`fragrances.json`), brands, notes and articles
+- `scripts/validate-fragrances.mjs`: checks the catalogue; runs before every build
+
+## Fragrance catalogue
+
+A scheduled Claude Code routine adds about 10 fragrances every two weeks and opens a pull request for review. The procedure and field rules are in [`docs/updating-fragrances.md`](docs/updating-fragrances.md). Check data with `npm run validate:data`.
+
 - `src/lib/site.ts`: site URL and feature flags
