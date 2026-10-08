@@ -13,7 +13,8 @@ export interface Fragrance {
   occasions: string[];
   description: string;
   buyLink: string;
-  sephoraLink: string;
+  /** null when Sephora Canada doesn't carry the brand. */
+  sephoraLink: string | null;
   fragrancebuyLink: string;
   concentration: string;
 }
@@ -38,7 +39,29 @@ const shop = (sephoraPath: string, fragrancebuyQuery: string) => ({
   fragrancebuyLink: `https://fragrancebuy.ca/search?q=${encodeURIComponent(fragrancebuyQuery)}`,
 });
 
-export const FRAGRANCES: Fragrance[] = [
+// Brands with no Sephora Canada brand page (checked against sephora.com/ca/en/brands-list, Oct 2026).
+// Their cards show only the Fragrancebuy button.
+const NOT_AT_SEPHORA_CA = new Set([
+  "Afnan",
+  "Armaf",
+  "Calvin Klein",
+  "Chanel",
+  "Creed",
+  "Davidoff",
+  "Elizabeth Arden",
+  "Frederic Malle",
+  "Initio",
+  "Issey Miyake",
+  "Lattafa",
+  "Le Labo",
+  "Louis Vuitton",
+  "Maison Francis Kurkdjian",
+  "Nautica",
+  "Parfums de Marly",
+  "Rasasi",
+]);
+
+const ALL_FRAGRANCES: Fragrance[] = [
   {
     id: "b1",
     name: "Light Blue",
@@ -1274,3 +1297,7 @@ export const FRAGRANCES: Fragrance[] = [
     concentration: "EDP",
   },
 ];
+
+export const FRAGRANCES: Fragrance[] = ALL_FRAGRANCES.map((f) =>
+  NOT_AT_SEPHORA_CA.has(f.brand) ? { ...f, sephoraLink: null } : f,
+);

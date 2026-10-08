@@ -61,7 +61,8 @@ export function FragranceCard({
 }: FragranceCardProps) {
   const matchScore = scoreFragrance(fragrance, season, occasion, selectedNotes, gender, longevity);
   const matchedNotes = mode === "result" ? selectedNotes : [];
-  const buttonGridClass = mode === "initial" ? "grid-cols-1" : "sm:grid-cols-2";
+  const buttonGridClass =
+    mode === "initial" || !fragrance.sephoraLink ? "grid-cols-1" : "sm:grid-cols-2";
 
   return (
     <article className="flex h-full flex-col rounded-2xl border bg-card p-[1.3125rem] shadow-scent transition duration-300 hover:-translate-y-1 hover:shadow-scent-hover">
@@ -123,15 +124,17 @@ export function FragranceCard({
         >
           Fragrancebuy →
         </a>
-        <a
-          href={fragrance.sephoraLink}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-full border bg-card px-4 py-3 text-sm font-bold text-card-foreground transition hover:border-primary hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-          aria-label={`View ${fragrance.brand} ${fragrance.name} at Sephora Canada`}
-        >
-          Sephora →
-        </a>
+        {fragrance.sephoraLink && (
+          <a
+            href={fragrance.sephoraLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-full border bg-card px-4 py-3 text-sm font-bold text-card-foreground transition hover:border-primary hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            aria-label={`View ${fragrance.brand} ${fragrance.name} at Sephora Canada`}
+          >
+            Sephora →
+          </a>
+        )}
       </div>
     </article>
   );
