@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   getRefinedResults,
   scoreFragrance,
@@ -17,6 +18,25 @@ type ResultsGridProps = {
   onRestart: () => void;
 };
 
+// Fallback for browsers or embedded views that block the async clipboard API.
+function legacyCopy(value: string): boolean {
+  const area = document.createElement("textarea");
+  area.value = value;
+  area.setAttribute("readonly", "");
+  area.style.position = "fixed";
+  area.style.opacity = "0";
+  document.body.appendChild(area);
+  area.select();
+  let ok = false;
+  try {
+    ok = document.execCommand("copy");
+  } catch {
+    ok = false;
+  }
+  area.remove();
+  return ok;
+}
+
 export function ResultsGrid({
   season,
   occasion,
@@ -26,14 +46,19 @@ export function ResultsGrid({
   avoidedNotes,
   onRestart,
 }: ResultsGridProps) {
-  const results = getRefinedResults(
+  const PAGE = 8;
+  const [visibleCount, setVisibleCount] = useState(PAGE);
+  const [shareStatus, setShareStatus] = useState("");
+  const allResults = getRefinedResults(
     season,
     occasion,
     selectedNotes,
     gender,
     longevity,
     avoidedNotes,
+    24,
   );
+  const results = allResults.slice(0, visibleCount);
   const summary = results
     .slice(0, 3)
     .map(
@@ -42,10 +67,26 @@ export function ResultsGrid({
     )
     .join("; ");
 
+  // The page URL already carries the quiz answers, so the link reopens these results.
   const share = async () => {
-    await navigator.clipboard.writeText(
-      `My Scentwise matches: ${summary || "I am still exploring my perfect scent."}`,
-    );
+    const url = window.location.href;
+    const text = `My Scentwise matches: ${summary || "I am still exploring my perfect scent."}`;
+    try {
+      if (navigator.share) {
+        await navigator.share({ title: "My Scentwise matches", text, url });
+        return;
+      }
+      await navigator.clipboard.writeText(`${text}\n${url}`);
+      setShareStatus("Link copied");
+    } catch (e) {
+      if ((e as Error)?.name === "AbortError") return;
+      setShareStatus(
+        legacyCopy(`${text}\n${url}`)
+          ? "Link copied"
+          : "Couldn't copy. Copy the address bar instead.",
+      );
+    }
+    window.setTimeout(() => setShareStatus(""), 2500);
   };
 
   return (
@@ -70,6 +111,9 @@ export function ResultsGrid({
             Start Over
           </button>
         </div>
+        <p aria-live="polite" className="mt-2 h-5 text-sm text-muted-foreground">
+          {shareStatus}
+        </p>
       </div>
       {results.length === 0 ? (
         <div className="mt-10 rounded-2xl border bg-card p-10 text-center shadow-scent">
@@ -93,6 +137,17 @@ export function ResultsGrid({
               />
             ))}
           </div>
+          {allResults.length > visibleCount && (
+            <div className="mt-8 flex justify-center">
+              <button
+                type="button"
+                onClick={() => setVisibleCount((n) => n + PAGE)}
+                className="rounded-full border bg-card px-6 py-3 text-sm font-bold text-card-foreground transition hover:border-primary hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              >
+                Show more matches
+              </button>
+            </div>
+          )}
           <EmailResults
             results={results}
             season={season}

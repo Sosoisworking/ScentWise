@@ -1,9 +1,4 @@
-const seasons = [
-  { key: "spring", emoji: "🌸", label: "Spring", text: "Fresh blooms & new beginnings" },
-  { key: "summer", emoji: "☀️", label: "Summer", text: "Light, airy & sun-drenched" },
-  { key: "fall", emoji: "🍂", label: "Fall", text: "Warm, spiced & golden" },
-  { key: "winter", emoji: "❄️", label: "Winter", text: "Rich, deep & cosy" },
-];
+import { SEASON_OPTIONS as seasons } from "../data/quizOptions";
 
 export function SeasonStep({ onSelect }: { onSelect: (season: string) => void }) {
   return (
