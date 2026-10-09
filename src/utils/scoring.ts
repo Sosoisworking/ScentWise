@@ -78,6 +78,7 @@ export function getRefinedResults(
   gender: GenderPreference = "",
   longevity: LongevityPreference = "",
   avoidedNotes: string[] = [],
+  limit = 8,
 ): Fragrance[] {
   const longevityRank = { long: 3, medium: 2, short: 1 } as const;
   return FRAGRANCES.filter((f) => !containsAnyNote(f, avoidedNotes))
@@ -93,6 +94,6 @@ export function getRefinedResults(
       if (longevityDiff !== 0) return longevity === "short" ? -longevityDiff : longevityDiff;
       return a.fragrance.name.localeCompare(b.fragrance.name);
     })
-    .slice(0, 8)
+    .slice(0, limit)
     .map((x) => x.fragrance);
 }
