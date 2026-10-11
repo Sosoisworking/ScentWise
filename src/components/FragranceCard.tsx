@@ -133,20 +133,26 @@ export function FragranceCard({
           href={fragrance.fragrancebuyLink}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-full border bg-card px-4 py-3 text-sm font-bold text-card-foreground transition hover:border-primary hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-          aria-label={`Buy ${fragrance.brand} ${fragrance.name} at Fragrancebuy`}
+          className="flex min-h-11 flex-col items-center justify-center rounded-3xl border bg-card px-4 py-2 text-sm font-bold leading-tight text-card-foreground transition hover:border-primary hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          aria-label={`Buy ${fragrance.brand} ${fragrance.name} at FragranceBuy, a Canadian discounter`}
         >
-          Fragrancebuy →
+          FragranceBuy →
+          <span className="mt-0.5 text-xs font-normal text-muted-foreground">
+            Canadian discounter
+          </span>
         </a>
         {fragrance.sephoraLink && (
           <a
             href={fragrance.sephoraLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-full border bg-card px-4 py-3 text-sm font-bold text-card-foreground transition hover:border-primary hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-            aria-label={`View ${fragrance.brand} ${fragrance.name} at Sephora Canada`}
+            className="flex min-h-11 flex-col items-center justify-center rounded-3xl border bg-card px-4 py-2 text-sm font-bold leading-tight text-card-foreground transition hover:border-primary hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            aria-label={`View ${fragrance.brand} ${fragrance.name} at Sephora Canada, an authorized store`}
           >
-            Sephora →
+            Sephora Canada →
+            <span className="mt-0.5 text-xs font-normal text-muted-foreground">
+              Authorized store
+            </span>
           </a>
         )}
       </div>

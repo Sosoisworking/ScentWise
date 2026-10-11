@@ -1,9 +1,10 @@
 import { NOTE_BY_NAME } from "../data/notes";
 import { GENDER_KEYS, LONGEVITY_KEYS, OCCASION_OPTIONS, SEASON_OPTIONS } from "../data/quizOptions";
 import type { GenderPreference, LongevityPreference } from "./scoring";
+import { PRICE_BANDS, type PriceBandId } from "./price";
 
 // Quiz answers in the homepage URL, so a results link can be shared and reopened:
-// /?season=fall&longevity=long&occasion=date&gender=female&love=Vanilla,Rose&avoid=Oud
+// /?season=fall&longevity=long&occasion=date&gender=female&love=Vanilla,Rose&avoid=Oud&budget=100-200
 // Steps 2–5 carry only ?step=N, so the browser's Back button moves between steps.
 
 export interface QuizSearch {
@@ -13,10 +14,11 @@ export interface QuizSearch {
   gender?: string;
   love?: string;
   avoid?: string;
+  budget?: string;
   step?: number;
 }
 
-const KEYS = ["season", "longevity", "occasion", "gender", "love", "avoid"] as const;
+const KEYS = ["season", "longevity", "occasion", "gender", "love", "avoid", "budget"] as const;
 
 /** TanStack Router `validateSearch`: keep only known params of the right type. */
 export function validateQuizSearch(search: Record<string, unknown>): QuizSearch {
@@ -38,6 +40,8 @@ export interface SharedQuiz {
   longevity: LongevityPreference;
   loved: string[];
   avoided: string[];
+  /** Price band to show; empty for any price. */
+  budget: PriceBandId | "";
 }
 
 const notesFrom = (value: string | undefined) =>
@@ -62,6 +66,7 @@ export function parseSharedQuiz(search: QuizSearch): SharedQuiz | null {
       : "",
     loved,
     avoided: notesFrom(search.avoid).filter((n) => !loved.includes(n)),
+    budget: PRICE_BANDS.find((b) => b.id === search.budget)?.id ?? "",
   };
 }
 
@@ -74,6 +79,7 @@ export function toQuizSearch(quiz: SharedQuiz): QuizSearch {
   if (quiz.longevity) search.longevity = quiz.longevity;
   if (quiz.loved.length) search.love = quiz.loved.join(",");
   if (quiz.avoided.length) search.avoid = quiz.avoided.join(",");
+  if (quiz.budget) search.budget = quiz.budget;
   return search;
 }
 

@@ -1,6 +1,6 @@
 import { FRAGRANCES, type Fragrance } from "../data/fragrances";
 import { containsAnyNote, matchNote } from "./noteMatching";
-import { PRICE_BANDS, priceBand } from "./price";
+import { PRICE_BANDS, priceBand, type PriceBandId } from "./price";
 
 export type GenderPreference = "male" | "female" | "unisex" | "";
 export type LongevityPreference = "short" | "medium" | "long" | "";
@@ -80,9 +80,12 @@ export function getRefinedResults(
   longevity: LongevityPreference = "",
   avoidedNotes: string[] = [],
   limit = 8,
+  budget: PriceBandId | "" = "",
 ): Fragrance[] {
   const longevityRank = { long: 3, medium: 2, short: 1 } as const;
-  return FRAGRANCES.filter((f) => !containsAnyNote(f, avoidedNotes))
+  return FRAGRANCES.filter(
+    (f) => !containsAnyNote(f, avoidedNotes) && (!budget || priceBand(f).id === budget),
+  )
     .map((f) => ({
       fragrance: f,
       score: scoreFragrance(f, season, occasion, lovedNotes, gender, longevity),
