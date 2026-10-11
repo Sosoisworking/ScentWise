@@ -6,7 +6,10 @@ const OPEN_EVENT = "scentwise:open-consent";
 
 export type ConsentChoice = "accepted" | "declined";
 
-/** Gate any advertising/analytics script on this returning "accepted". */
+/**
+ * Gate any advertising script, or anything that sets cookies, on this returning "accepted".
+ * Vercel Web Analytics is cookieless and aggregate, so it runs regardless.
+ */
 export function getStoredConsent(): ConsentChoice | null {
   try {
     const v = window.localStorage.getItem(STORAGE_KEY);

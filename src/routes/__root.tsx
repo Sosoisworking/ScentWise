@@ -1,4 +1,12 @@
-import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
+import {
+  Outlet,
+  Link,
+  createRootRoute,
+  HeadContent,
+  Scripts,
+  useLocation,
+} from "@tanstack/react-router";
+import { Analytics } from "@vercel/analytics/react";
 
 import appCss from "../styles.css?url";
 import { ConsentBanner } from "../components/ConsentBanner";
@@ -117,10 +125,14 @@ function RootShell({ children }: { children: React.ReactNode }) {
 }
 
 function RootComponent() {
+  // Count a page view per path. The quiz rewrites the query string as you answer, and
+  // those changes shouldn't register as extra views.
+  const pathname = useLocation({ select: (l) => l.pathname });
   return (
     <>
       <Outlet />
       <ConsentBanner />
+      <Analytics route={pathname} path={pathname} />
     </>
   );
 }

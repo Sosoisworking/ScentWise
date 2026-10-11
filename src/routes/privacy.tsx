@@ -5,7 +5,7 @@ import { SiteFooter } from "../components/SiteFooter";
 import { SITE_URL } from "../lib/site";
 
 const EMAIL = "sohibcorp0706@gmail.com";
-const UPDATED = "October 6, 2026";
+const UPDATED = "October 11, 2026";
 
 export const Route = createFileRoute("/privacy")({
   head: () => ({
@@ -170,9 +170,11 @@ function PrivacyPage() {
         <S title="Analytics and hosting">
           <p>
             Our hosting and delivery infrastructure processes standard server logs (IP address, user
-            agent, requested URL, timestamp) to serve pages, block abuse and diagnose errors.
-            Aggregate traffic analytics tell us which pages are read and where visitors arrive from;
-            we use this to decide what to write next, not to profile individuals.
+            agent, requested URL, timestamp) to serve pages, block abuse and diagnose errors. We use
+            Vercel Web Analytics to count page views and see where visitors arrive from. It sets no
+            cookies and stores nothing on your device; visits are grouped using a hash that resets
+            daily, so we only ever see totals, never individual visitors. We use this to decide what
+            to write next, not to profile anyone.
           </p>
         </S>
 
