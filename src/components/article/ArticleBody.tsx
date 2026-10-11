@@ -78,7 +78,7 @@ function parse(body: string): Block[] {
 export function ArticleBody({ body }: { body: string }) {
   const blocks = parse(body);
   return (
-    <div className="mt-8 space-y-5">
+    <div className="mt-8 max-w-[34rem] space-y-5">
       {blocks.map((block, index) => {
         const key = `b${index}`;
         if (block.kind === "h2") {
@@ -105,7 +105,7 @@ export function ArticleBody({ body }: { body: string }) {
               {block.items.map((item, itemIndex) => (
                 <li
                   key={itemIndex}
-                  className="flex gap-3 text-[15px] leading-relaxed text-muted-foreground"
+                  className="flex gap-3 text-base leading-[1.7] text-muted-foreground"
                 >
                   <span aria-hidden className="mt-[2px] shrink-0 text-primary">
                     ✦
@@ -117,10 +117,7 @@ export function ArticleBody({ body }: { body: string }) {
           );
         }
         return (
-          <p
-            key={key}
-            className="text-[15px] leading-relaxed text-muted-foreground sm:text-base sm:leading-[1.75]"
-          >
+          <p key={key} className="text-base leading-[1.7] text-muted-foreground">
             {inline(block.text, key)}
           </p>
         );

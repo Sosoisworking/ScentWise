@@ -131,9 +131,7 @@ function BrandDirectory() {
                 }`}
               >
                 {c.label}
-                <span
-                  className={`ml-2 text-[11px] ${active ? "opacity-80" : "text-muted-foreground"}`}
-                >
+                <span className={`ml-2 text-xs ${active ? "opacity-80" : "text-muted-foreground"}`}>
                   {counts[c.key]}
                 </span>
               </button>

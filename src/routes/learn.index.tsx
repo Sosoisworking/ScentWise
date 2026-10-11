@@ -209,7 +209,7 @@ function LearnPage() {
         <h1 className="mt-2 font-serif text-4xl font-bold leading-tight sm:text-6xl">
           Fragrance Learn Hub
         </h1>
-        <p className="mt-4 max-w-[660px] text-base leading-relaxed text-muted-foreground">
+        <p className="mt-4 max-w-[34rem] text-base leading-relaxed text-muted-foreground">
           In-depth, human-reviewed guides to choosing, wearing and buying fragrance — plus
           plain-English answers to the questions people actually search for. No sponsored
           placements, no invented reviews.{" "}
@@ -291,7 +291,7 @@ function LearnPage() {
       <div className="mx-auto w-full max-w-[1100px] space-y-8 px-5 pb-24">
         <div>
           <h2 className="font-serif text-3xl font-bold">Quick answers</h2>
-          <p className="mt-3 max-w-[640px] text-sm leading-relaxed text-muted-foreground">
+          <p className="mt-3 max-w-[30rem] text-sm leading-relaxed text-muted-foreground">
             Short answers to the questions we get asked most. For the long versions, read the guides
             above.
           </p>
@@ -304,7 +304,7 @@ function LearnPage() {
             className="scroll-mt-24 rounded-3xl border bg-card p-6 shadow-scent sm:p-8"
           >
             <h3 className="font-serif text-2xl font-bold">{topic.title}</h3>
-            <p className="mt-3 max-w-[680px] text-sm leading-relaxed text-muted-foreground">
+            <p className="mt-3 max-w-[30rem] text-sm leading-relaxed text-muted-foreground">
               {topic.intro}
             </p>
 
@@ -338,7 +338,7 @@ function LearnPage() {
 
         <section className="rounded-3xl border border-border bg-card p-6 sm:p-8">
           <h2 className="font-serif text-2xl font-bold">Who writes these guides</h2>
-          <p className="mt-3 max-w-[680px] text-sm leading-relaxed text-muted-foreground">
+          <p className="mt-3 max-w-[30rem] text-sm leading-relaxed text-muted-foreground">
             {AUTHOR.name} — {AUTHOR.bio} Every article is reviewed by a person before publication.
             Our{" "}
             <Link

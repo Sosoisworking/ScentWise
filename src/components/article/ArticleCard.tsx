@@ -27,9 +27,7 @@ export function ArticleCard({
         />
       </Link>
       <div className="flex flex-1 flex-col p-5 sm:p-6">
-        <p className="text-[11px] font-bold uppercase tracking-wide text-primary">
-          {article.category}
-        </p>
+        <p className="text-xs font-bold uppercase tracking-wide text-primary">{article.category}</p>
         <h3 className="mt-2 font-serif text-xl font-bold leading-snug text-foreground">
           <Link to="/learn/$slug" params={{ slug: article.slug }} className="hover:text-primary">
             {article.title}

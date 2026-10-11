@@ -16,7 +16,7 @@ export function BrandCard({ brand, accent = false }: { brand: Brand; accent?: bo
       }`}
     >
       {brand.featured && (
-        <span className="absolute right-3 top-3 rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-primary">
+        <span className="absolute right-3 top-3 rounded-full bg-primary/10 px-2 py-0.5 text-xs font-bold uppercase tracking-wide text-primary">
           ★ Featured
         </span>
       )}
@@ -24,7 +24,7 @@ export function BrandCard({ brand, accent = false }: { brand: Brand; accent?: bo
         <h3 className="font-serif text-lg font-bold leading-tight text-foreground">{brand.name}</h3>
       </div>
       <div className="mt-2 flex flex-wrap items-center gap-2">
-        <span className={`rounded-full px-2 py-0.5 text-[11px] font-semibold ${cat.cls}`}>
+        <span className={`rounded-full px-2 py-0.5 text-xs font-semibold ${cat.cls}`}>
           {cat.label}
         </span>
         <span className="text-xs text-muted-foreground">
@@ -32,7 +32,7 @@ export function BrandCard({ brand, accent = false }: { brand: Brand; accent?: bo
         </span>
         <span className="text-xs text-muted-foreground">· est. {brand.founded}</span>
       </div>
-      <p className="mt-3 line-clamp-2 text-[13px] leading-relaxed text-muted-foreground">
+      <p className="mt-3 line-clamp-2 text-sm leading-relaxed text-muted-foreground">
         {brand.tagline}
       </p>
       <a

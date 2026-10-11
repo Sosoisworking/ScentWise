@@ -166,13 +166,15 @@ function ArticlePage() {
           </ol>
         </nav>
 
-        <p className="mt-6 text-[11px] font-bold uppercase tracking-wide text-primary">
+        <p className="mt-6 text-xs font-bold uppercase tracking-wide text-primary">
           {article.category}
         </p>
         <h1 className="mt-2 font-serif text-3xl font-bold leading-tight sm:text-5xl">
           {article.title}
         </h1>
-        <p className="mt-4 text-base leading-relaxed text-muted-foreground">{article.excerpt}</p>
+        <p className="mt-4 max-w-[34rem] text-lg leading-relaxed text-muted-foreground">
+          {article.excerpt}
+        </p>
 
         <div className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted-foreground">
           <span className="font-semibold text-foreground">{AUTHOR.name}</span>

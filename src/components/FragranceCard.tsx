@@ -76,7 +76,7 @@ export function FragranceCard({
             </p>
           )}
           <p className="text-sm font-semibold text-muted-foreground">{fragrance.brand}</p>
-          <h2 className="font-serif text-[1.575rem] font-bold leading-tight text-card-foreground">
+          <h2 className="font-serif text-2xl font-bold leading-tight text-card-foreground">
             {fragrance.name}
           </h2>
         </div>
@@ -85,7 +85,7 @@ export function FragranceCard({
 
       <div className="mt-4 flex flex-wrap gap-2">
         <span
-          className={`rounded-full px-3 py-1 text-xs font-bold uppercase ${badgeClass[fragrance.priceRange]}`}
+          className={`rounded-full px-3 py-1 text-xs font-bold uppercase tabular-nums ${badgeClass[fragrance.priceRange]}`}
         >
           {fragrance.priceDisplay}
         </span>
@@ -95,7 +95,7 @@ export function FragranceCard({
           </span>
         )}
         {mode === "result" && (
-          <span className="rounded-full bg-primary px-3 py-1 text-xs font-bold text-primary-foreground">
+          <span className="rounded-full bg-primary px-3 py-1 text-xs font-bold tabular-nums text-primary-foreground">
             {matchScore}% match
           </span>
         )}
