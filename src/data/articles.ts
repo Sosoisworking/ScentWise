@@ -31,8 +31,8 @@ export type Article = {
 };
 
 export const AUTHOR = {
-  name: "Scentwise Fragrance Editorial Team",
-  bio: "Scentwise's editorial team researches, drafts and reviews every article on this site. We are enthusiasts and researchers, not certified perfumers, and we say so plainly.",
+  name: "WhichScent Fragrance Editorial Team",
+  bio: "WhichScent's editorial team researches, drafts and reviews every article on this site. We are enthusiasts and researchers, not certified perfumers, and we say so plainly.",
 };
 
 /**
@@ -704,7 +704,7 @@ export const ARTICLES: Article[] = [
   {
     slug: "fragrance-concentrations",
     title: "Eau de Parfum vs. Eau de Toilette vs. Parfum: What's the Difference?",
-    seoTitle: "EDP vs EDT vs Parfum: Fragrance Concentrations Explained — Scentwise",
+    seoTitle: "EDP vs EDT vs Parfum: Fragrance Concentrations Explained — WhichScent",
     description:
       "What Eau de Toilette, Eau de Parfum and Parfum actually mean, why concentration doesn't guarantee longevity, and how to pick the right format for how you wear fragrance.",
     excerpt:
@@ -720,7 +720,7 @@ export const ARTICLES: Article[] = [
   {
     slug: "how-to-choose-a-fragrance",
     title: "How to Choose a Fragrance That Actually Fits You",
-    seoTitle: "How to Choose a Fragrance That Fits You — Scentwise",
+    seoTitle: "How to Choose a Fragrance That Fits You — WhichScent",
     description:
       "A practical, jargon-free method for choosing a fragrance: start with the occasion, learn the main families, test on skin, set a budget and sample before you buy.",
     excerpt:
@@ -740,7 +740,7 @@ export const ARTICLES: Article[] = [
   {
     slug: "best-summer-fragrances-under-150",
     title: "10 Great Summer Fragrances Under $150 CAD",
-    seoTitle: "10 Great Summer Fragrances Under $150 CAD — Scentwise",
+    seoTitle: "10 Great Summer Fragrances Under $150 CAD — WhichScent",
     description:
       "Ten fresh, citrus, aquatic and light woody fragrances that work in Canadian summer heat, all typically available under $150 CAD, plus what makes a scent summer-friendly.",
     excerpt:
@@ -760,7 +760,7 @@ export const ARTICLES: Article[] = [
   {
     slug: "best-winter-fragrances-under-150",
     title: "10 Great Winter Fragrances Under $150 CAD",
-    seoTitle: "10 Great Winter Fragrances Under $150 CAD — Scentwise",
+    seoTitle: "10 Great Winter Fragrances Under $150 CAD — WhichScent",
     description:
       "Warm, spicy, woody and gourmand fragrances built for Canadian winters — ten options typically under $150 CAD, plus advice on not overspraying indoors.",
     excerpt:
@@ -780,7 +780,7 @@ export const ARTICLES: Article[] = [
   {
     slug: "designer-vs-niche-fragrance",
     title: "Designer vs. Niche Fragrances: Which Should You Buy?",
-    seoTitle: "Designer vs Niche Fragrance: Which Should You Buy? — Scentwise",
+    seoTitle: "Designer vs Niche Fragrance: Which Should You Buy? — WhichScent",
     description:
       "What separates designer from niche perfumery, why price isn't a quality guarantee, and how to decide which category fits your experience level and budget.",
     excerpt:
@@ -796,7 +796,7 @@ export const ARTICLES: Article[] = [
   {
     slug: "fragrance-longevity",
     title: "Why Does My Fragrance Stop Lasting? Understanding Fragrance Longevity",
-    seoTitle: "Why Your Fragrance Seems to Stop Lasting — Scentwise",
+    seoTitle: "Why Your Fragrance Seems to Stop Lasting — WhichScent",
     description:
       "Olfactory adaptation, skin chemistry, climate and application all shape how long a fragrance lasts. Here's how to diagnose weak performance before blaming the bottle.",
     excerpt:
@@ -816,7 +816,7 @@ export const ARTICLES: Article[] = [
   {
     slug: "dupes-vs-originals",
     title: "Fragrance Dupes vs. Originals: What Are You Actually Getting?",
-    seoTitle: "Fragrance Dupes vs Originals: What You're Really Buying — Scentwise",
+    seoTitle: "Fragrance Dupes vs Originals: What You're Really Buying — WhichScent",
     description:
       "How fragrance dupes differ from the originals they reference, why they cost less, when they make sense, and how to tell a legitimate alternative from a counterfeit.",
     excerpt:
@@ -836,7 +836,7 @@ export const ARTICLES: Article[] = [
   {
     slug: "how-to-buy-fragrance-online",
     title: "How to Safely Buy Fragrance Online in Canada",
-    seoTitle: "How to Safely Buy Fragrance Online in Canada — Scentwise",
+    seoTitle: "How to Safely Buy Fragrance Online in Canada — WhichScent",
     description:
       "A checklist for buying fragrance online in Canada: vetting retailers, understanding grey-market versus counterfeit, return policies, payment safety and realistic pricing.",
     excerpt:

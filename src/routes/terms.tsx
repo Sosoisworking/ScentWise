@@ -10,17 +10,17 @@ const UPDATED = "October 6, 2026";
 export const Route = createFileRoute("/terms")({
   head: () => ({
     meta: [
-      { title: "Terms of Service — Scentwise" },
+      { title: "Terms of Service — WhichScent" },
       {
         name: "description",
         content:
-          "The rules for using Scentwise: acceptable use, accuracy of fragrance and price data, third-party links, intellectual property and liability.",
+          "The rules for using WhichScent: acceptable use, accuracy of fragrance and price data, third-party links, intellectual property and liability.",
       },
-      { property: "og:title", content: "Scentwise Terms of Service" },
+      { property: "og:title", content: "WhichScent Terms of Service" },
       {
         property: "og:description",
         content:
-          "Acceptable use, data accuracy, third-party links and liability for the Scentwise site.",
+          "Acceptable use, data accuracy, third-party links and liability for the WhichScent site.",
       },
       { property: "og:url", content: `${SITE_URL}/terms` },
     ],
@@ -39,14 +39,14 @@ function TermsPage() {
         <h1 className="font-serif text-4xl font-bold sm:text-5xl">Terms of Service</h1>
         <p className="mt-2 text-sm text-muted-foreground">Last updated: {UPDATED}</p>
         <p className="mt-4 text-lg text-muted-foreground">
-          These terms govern your use of Scentwise, an independent fragrance discovery and education
-          site operated by So Hib Corp in Toronto, Ontario, Canada. By using the site you agree to
-          them. If you do not agree, please stop using the site.
+          These terms govern your use of WhichScent, an independent fragrance discovery and
+          education site operated by So Hib Corp in Toronto, Ontario, Canada. By using the site you
+          agree to them. If you do not agree, please stop using the site.
         </p>
 
-        <S title="1. What Scentwise provides">
+        <S title="1. What WhichScent provides">
           <p>
-            Scentwise offers editorial content: a guided fragrance quiz, a directory of brand
+            WhichScent offers editorial content: a guided fragrance quiz, a directory of brand
             websites, comparisons of fragrance retailers and an educational hub. We do not sell
             fragrance, hold inventory, process payments or ship anything. Every purchase you make
             happens on a third-party retailer's site under that retailer's own terms.
@@ -88,7 +88,7 @@ function TermsPage() {
             non-commercial purposes. You may not scrape or bulk-copy the database to build a
             competing product, resell our content, attempt to overload or break the site, probe it
             for vulnerabilities without permission, or misrepresent yourself as affiliated with
-            Scentwise.
+            WhichScent.
           </p>
         </S>
 
@@ -107,7 +107,7 @@ function TermsPage() {
 
         <S title="7. Intellectual property">
           <p>
-            The site's text, design, scoring logic and curated data are owned by Scentwise and
+            The site's text, design, scoring logic and curated data are owned by WhichScent and
             protected by copyright. Brand names, product names and logos belong to their respective
             owners and are used descriptively for identification and commentary — nominative fair
             use, not a claim of affiliation, sponsorship or endorsement. Brief quotation with a link
@@ -119,10 +119,10 @@ function TermsPage() {
           <p>
             The site is provided "as is" and "as available", without warranties of any kind, express
             or implied, including merchantability, fitness for a particular purpose and
-            non-infringement. To the fullest extent permitted by law, Scentwise and its contributors
-            are not liable for any indirect, incidental or consequential loss, or for any loss
-            arising from a purchase you make from a third-party retailer, or from reliance on price
-            or note data. Where liability cannot be excluded, it is limited to CAD $100.
+            non-infringement. To the fullest extent permitted by law, WhichScent and its
+            contributors are not liable for any indirect, incidental or consequential loss, or for
+            any loss arising from a purchase you make from a third-party retailer, or from reliance
+            on price or note data. Where liability cannot be excluded, it is limited to CAD $100.
           </p>
         </S>
 

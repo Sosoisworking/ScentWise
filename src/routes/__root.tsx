@@ -39,14 +39,14 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Scentwise — AI Fragrance Discovery" },
+      { title: "WhichScent — AI Fragrance Discovery" },
       {
         name: "description",
         content:
-          "Discover your signature scent with Scentwise: a guided fragrance quiz, verified brand directory, retailer guide and learn hub.",
+          "Discover your signature scent with WhichScent: a guided fragrance quiz, verified brand directory, retailer guide and learn hub.",
       },
-      { property: "og:site_name", content: "Scentwise" },
-      { property: "og:title", content: "Scentwise — AI Fragrance Discovery" },
+      { property: "og:site_name", content: "WhichScent" },
+      { property: "og:title", content: "WhichScent — AI Fragrance Discovery" },
       {
         property: "og:description",
         content:
@@ -56,7 +56,7 @@ export const Route = createRootRoute({
       { property: "og:image", content: `${SITE_URL}/og-image.png` },
       { property: "og:image:width", content: "1200" },
       { property: "og:image:height", content: "630" },
-      { property: "og:image:alt", content: "Scentwise — AI Fragrance Discovery" },
+      { property: "og:image:alt", content: "WhichScent — AI Fragrance Discovery" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:image", content: `${SITE_URL}/og-image.png` },
       { name: "theme-color", content: "#B08A57" },
@@ -83,7 +83,7 @@ export const Route = createRootRoute({
             {
               "@type": "Organization",
               "@id": `${SITE_URL}#organization`,
-              name: "Scentwise",
+              name: "WhichScent",
               url: SITE_URL,
               description:
                 "Independent fragrance discovery platform featuring a guided quiz, verified brand directory and retailer guide.",
@@ -92,7 +92,7 @@ export const Route = createRootRoute({
               "@type": "WebSite",
               "@id": `${SITE_URL}#website`,
               url: SITE_URL,
-              name: "Scentwise",
+              name: "WhichScent",
               publisher: { "@id": `${SITE_URL}#organization` },
             },
           ],

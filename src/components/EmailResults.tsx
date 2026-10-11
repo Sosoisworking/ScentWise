@@ -15,7 +15,7 @@ type Props = {
 function buildPlainText(args: Props): string {
   const { results, season, occasion, gender, longevity, selectedNotes, avoidedNotes = [] } = args;
   const lines: string[] = [];
-  lines.push("Your Scentwise Matches");
+  lines.push("Your WhichScent Matches");
   lines.push("=======================");
   lines.push("");
   const prefs: string[] = [];
@@ -43,7 +43,7 @@ function buildPlainText(args: Props): string {
     lines.push("");
   });
 
-  lines.push("Discover more at Scentwise — your AI-powered fragrance guide.");
+  lines.push("Discover more at WhichScent — your AI-powered fragrance guide.");
   return lines.join("\n");
 }
 
@@ -57,7 +57,7 @@ export function EmailResults(props: Props) {
   const [copied, setCopied] = useState(false);
 
   const body = useMemo(() => buildPlainText(props), [props]);
-  const subject = "Your Scentwise fragrance matches";
+  const subject = "Your WhichScent fragrance matches";
 
   const mailtoHref = useMemo(() => {
     const target = isValidEmail(email) ? email.trim() : "";

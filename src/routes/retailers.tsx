@@ -7,7 +7,7 @@ import { SITE_URL } from "../lib/site";
 export const Route = createFileRoute("/retailers")({
   head: () => ({
     meta: [
-      { title: "Top Places to Buy Fragrances — Scentwise Retailer Guide" },
+      { title: "Top Places to Buy Fragrances — WhichScent Retailer Guide" },
       {
         name: "description",
         content:
@@ -257,7 +257,7 @@ function RetailersPage() {
 
         <footer className="mt-16 border-t border-border pt-8 text-center text-xs text-muted-foreground">
           <p>
-            Scentwise is independent. We don't take affiliate commissions from the retailers listed
+            WhichScent is independent. We don't take affiliate commissions from the retailers listed
             above.
           </p>
           <Link to="/" className="mt-4 inline-block font-bold text-primary hover:underline">

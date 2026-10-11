@@ -219,7 +219,7 @@ export default function App({ search = {} }: { search?: QuizSearch }) {
         type="button"
         onClick={reset}
         className={`fixed bottom-5 right-5 z-40 rounded-full ${hideOnNoteStep} bg-foreground px-5 py-3 text-sm font-bold text-background shadow-scent transition hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring`}
-        aria-label="Restart Scentwise quiz"
+        aria-label="Restart WhichScent quiz"
       >
         Restart
       </button>
@@ -229,7 +229,7 @@ export default function App({ search = {} }: { search?: QuizSearch }) {
           type="button"
           onClick={goBack}
           className={`fixed bottom-24 left-5 z-40 rounded-full border bg-card px-5 py-3 text-sm font-bold text-card-foreground shadow-scent transition hover:scale-105 hover:border-primary hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${hideOnNoteStep}`}
-          aria-label="Go back to previous Scentwise quiz step"
+          aria-label="Go back to previous WhichScent quiz step"
         >
           ← Back
         </button>

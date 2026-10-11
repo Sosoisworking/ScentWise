@@ -1,4 +1,4 @@
-// Scentwise Brand Directory dataset.
+// WhichScent Brand Directory dataset.
 //
 // Category definitions:
 // - DESIGNER: Brands born from large fashion houses; mass-market appeal,

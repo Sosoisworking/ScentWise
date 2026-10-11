@@ -9,14 +9,14 @@ const STORAGE_KEY = "scentwise-adsense-checklist";
 export const Route = createFileRoute("/adsense-readiness")({
   head: () => ({
     meta: [
-      { title: "AdSense Readiness Checklist — Scentwise (Internal)" },
+      { title: "AdSense Readiness Checklist — WhichScent (Internal)" },
       {
         name: "description",
         content:
-          "Internal Scentwise checklist tracking Google AdSense approval readiness: content depth, policy pages, crawlability, contact details and HTTPS.",
+          "Internal WhichScent checklist tracking Google AdSense approval readiness: content depth, policy pages, crawlability, contact details and HTTPS.",
       },
       { name: "robots", content: "noindex, nofollow" },
-      { property: "og:title", content: "AdSense Readiness Checklist — Scentwise" },
+      { property: "og:title", content: "AdSense Readiness Checklist — WhichScent" },
       {
         property: "og:description",
         content: "Internal tracker for AdSense approval prerequisites.",
@@ -89,7 +89,7 @@ const GROUPS: { title: string; blurb: string; items: Item[] }[] = [
       {
         id: "policy-about",
         label: "About page identifies the publisher",
-        detail: "/about explains who runs Scentwise, editorial standards and independence.",
+        detail: "/about explains who runs WhichScent, editorial standards and independence.",
         status: "done",
       },
       {

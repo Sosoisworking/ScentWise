@@ -9,13 +9,13 @@ const EMAIL = "sohibcorp0706@gmail.com";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact Scentwise — Corrections, Questions, Partnerships" },
+      { title: "Contact WhichScent — Corrections, Questions, Partnerships" },
       {
         name: "description",
         content:
-          "Reach the Scentwise team by email for data corrections, fragrance questions, brand directory submissions, press and advertising enquiries.",
+          "Reach the WhichScent team by email for data corrections, fragrance questions, brand directory submissions, press and advertising enquiries.",
       },
-      { property: "og:title", content: "Contact Scentwise" },
+      { property: "og:title", content: "Contact WhichScent" },
       {
         property: "og:description",
         content:
@@ -58,9 +58,9 @@ function ContactPage() {
       <SiteHeader current="home" breadcrumb="Home → Contact" />
 
       <div className="relative z-10 mx-auto max-w-[820px] px-5 pb-16 pt-4">
-        <h1 className="font-serif text-4xl font-bold sm:text-5xl">Contact Scentwise</h1>
+        <h1 className="font-serif text-4xl font-bold sm:text-5xl">Contact WhichScent</h1>
         <p className="mt-4 text-lg text-muted-foreground">
-          Scentwise is a small independent editorial project operated by So Hib Corp in Toronto,
+          WhichScent is a small independent editorial project operated by So Hib Corp in Toronto,
           Ontario, Canada. There is no call centre and no ticketing system — email reaches the
           people who actually maintain the database, and we aim to reply within two business days.
         </p>

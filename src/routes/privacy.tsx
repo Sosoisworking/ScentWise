@@ -10,16 +10,16 @@ const UPDATED = "October 11, 2026";
 export const Route = createFileRoute("/privacy")({
   head: () => ({
     meta: [
-      { title: "Privacy Policy — Cookies & Ad Data | Scentwise" },
+      { title: "Privacy Policy — Cookies & Ad Data | WhichScent" },
       {
         name: "description",
         content:
-          "How Scentwise handles data: cookies, Google AdSense and third-party ad vendors, analytics, your choices and how to contact us.",
+          "How WhichScent handles data: cookies, Google AdSense and third-party ad vendors, analytics, your choices and how to contact us.",
       },
-      { property: "og:title", content: "Scentwise Privacy Policy" },
+      { property: "og:title", content: "WhichScent Privacy Policy" },
       {
         property: "og:description",
-        content: "Cookies, third-party advertising data and your privacy choices on Scentwise.",
+        content: "Cookies, third-party advertising data and your privacy choices on WhichScent.",
       },
       { property: "og:url", content: `${SITE_URL}/privacy` },
     ],
@@ -38,7 +38,7 @@ function PrivacyPage() {
         <h1 className="font-serif text-4xl font-bold sm:text-5xl">Privacy Policy</h1>
         <p className="mt-2 text-sm text-muted-foreground">Last updated: {UPDATED}</p>
         <p className="mt-4 text-lg text-muted-foreground">
-          This policy explains what Scentwise collects when you use this site, what our advertising
+          This policy explains what WhichScent collects when you use this site, what our advertising
           and infrastructure partners collect, and the choices you have. It is written to be read,
           not to be skimmed past — if anything here is unclear, email us at{" "}
           <a href={`mailto:${EMAIL}`} className="font-semibold text-primary underline">
@@ -49,9 +49,9 @@ function PrivacyPage() {
 
         <S title="Who we are">
           <p>
-            Scentwise is an independent fragrance discovery and education site operated by So Hib
+            WhichScent is an independent fragrance discovery and education site operated by So Hib
             Corp in Toronto, Ontario, Canada. For the purposes of Canadian privacy law (PIPEDA) and
-            the EU/UK GDPR, Scentwise is the data controller for the limited personal information
+            the EU/UK GDPR, WhichScent is the data controller for the limited personal information
             described below. Our advertising and hosting partners act as independent controllers or
             processors for the data they collect, as described in their own policies.
           </p>
@@ -71,7 +71,7 @@ function PrivacyPage() {
             answer you.
           </p>
           <p>
-            <strong className="text-foreground">No account data.</strong> Scentwise has no sign-up,
+            <strong className="text-foreground">No account data.</strong> WhichScent has no sign-up,
             no password and no newsletter database. We do not sell personal information, and we do
             not knowingly collect information from children under 13.
           </p>
@@ -79,7 +79,7 @@ function PrivacyPage() {
 
         <S title="Cookies and similar technologies">
           <p>
-            A cookie is a small file a site or its partners store on your device. Scentwise itself
+            A cookie is a small file a site or its partners store on your device. WhichScent itself
             relies mainly on your browser's local storage to remember quiz progress and interface
             preferences — strictly functional, and no use for tracking you across other sites.
           </p>
@@ -94,7 +94,7 @@ function PrivacyPage() {
 
         <S title="Advertising, Google AdSense and third-party ad data">
           <p>
-            Scentwise is free to read and is funded by advertising. We use Google AdSense and may
+            WhichScent is free to read and is funded by advertising. We use Google AdSense and may
             use other third-party advertising vendors and ad networks to serve ads on this site.
           </p>
           <ul className="list-disc space-y-2 pl-5">
@@ -104,7 +104,7 @@ function PrivacyPage() {
             </li>
             <li>
               Google's use of advertising cookies — including the DoubleClick DART cookie — enables
-              it and its partners to serve ads to you based on your visit to Scentwise and/or other
+              it and its partners to serve ads to you based on your visit to WhichScent and/or other
               sites on the internet.
             </li>
             <li>
@@ -212,14 +212,14 @@ function PrivacyPage() {
           <p>
             You can also send a Do Not Track signal, clear site data in your browser, or use the
             opt-out links above to stop personalised ads while continuing to use every feature of
-            Scentwise.
+            WhichScent.
           </p>
         </S>
 
         <S title="Changes to this policy">
           <p>
             If we add a new vendor or materially change how data is used, we will update this page
-            and revise the date at the top. Continuing to use Scentwise after a change means you
+            and revise the date at the top. Continuing to use WhichScent after a change means you
             accept the updated policy. See also our{" "}
             <Link to="/terms" className="font-semibold text-primary underline">
               Terms of Service

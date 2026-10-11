@@ -6,5 +6,5 @@ export async function downloadBrandsJson() {
   const ws = XLSX.utils.json_to_sheet(BRANDS);
   const wb = XLSX.utils.book_new();
   XLSX.utils.book_append_sheet(wb, ws, "Brands");
-  XLSX.writeFile(wb, "scentwise-brand-directory.xlsx");
+  XLSX.writeFile(wb, "whichscent-brand-directory.xlsx");
 }
