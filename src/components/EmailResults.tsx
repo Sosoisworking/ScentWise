@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import type { Fragrance } from "../data/fragrances";
-import { scoreFragrance, type GenderPreference, type LongevityPreference } from "../utils/scoring";
+import { SITE_URL } from "../lib/site";
+import type { GenderPreference, LongevityPreference } from "../utils/scoring";
 
 type Props = {
   results: Fragrance[];
@@ -15,8 +16,8 @@ type Props = {
 function buildPlainText(args: Props): string {
   const { results, season, occasion, gender, longevity, selectedNotes, avoidedNotes = [] } = args;
   const lines: string[] = [];
-  lines.push("Your WhichScent Matches");
-  lines.push("=======================");
+  lines.push("Your WhichScent shortlist");
+  lines.push("=========================");
   lines.push("");
   const prefs: string[] = [];
   if (gender) prefs.push(`Gender: ${gender}`);
@@ -32,8 +33,7 @@ function buildPlainText(args: Props): string {
   }
 
   results.forEach((f, i) => {
-    const score = scoreFragrance(f, season, occasion, selectedNotes, gender, longevity);
-    lines.push(`${i + 1}. ${f.brand} — ${f.name}  (${score}% match)`);
+    lines.push(`${i + 1}. ${f.brand} — ${f.name}`);
     lines.push(`   ${f.concentration} · ${f.priceDisplay} · ${f.family.join(" / ")}`);
     lines.push(`   Top:   ${f.topNotes.join(", ")}`);
     lines.push(`   Heart: ${f.heartNotes.join(", ")}`);
@@ -43,7 +43,8 @@ function buildPlainText(args: Props): string {
     lines.push("");
   });
 
-  lines.push("Discover more at WhichScent — your AI-powered fragrance guide.");
+  lines.push("Ranked by how many of your notes each one contains. Try a sample before you buy.");
+  lines.push(`Take the quiz again: ${SITE_URL}`);
   return lines.join("\n");
 }
 
@@ -57,7 +58,7 @@ export function EmailResults(props: Props) {
   const [copied, setCopied] = useState(false);
 
   const body = useMemo(() => buildPlainText(props), [props]);
-  const subject = "Your WhichScent fragrance matches";
+  const subject = "Your WhichScent fragrance shortlist";
 
   const mailtoHref = useMemo(() => {
     const target = isValidEmail(email) ? email.trim() : "";

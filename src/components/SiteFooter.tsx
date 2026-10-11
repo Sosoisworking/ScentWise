@@ -30,7 +30,7 @@ export function SiteFooter() {
           <div className="max-w-sm">
             <p className="font-serif text-xl font-bold text-foreground">WhichScent</p>
             <p className="mt-2 text-sm text-muted-foreground">
-              An independent fragrance discovery guide: a guided scent quiz, a verified brand
+              An independent fragrance discovery guide: a guided scent quiz, an official brand
               directory, retailer comparisons and plain-English fragrance education. We are not
               owned by, or affiliated with, any perfume house or retailer.
             </p>

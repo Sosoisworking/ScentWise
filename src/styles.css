@@ -52,6 +52,7 @@
   --color-popover-foreground: var(--popover-foreground);
   --color-primary: var(--primary);
   --color-primary-hover: var(--primary-hover);
+  --color-primary-soft: var(--primary-soft);
   --color-primary-foreground: var(--primary-foreground);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
@@ -87,20 +88,23 @@
   --card-foreground: oklch(0.18 0.005 85);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.18 0.005 85);
-  --primary: oklch(0.67 0.085 64.5);
-  --primary-hover: oklch(0.58 0.08 61.9);
+  /* Text and button fills: ≥4.5:1 with white text, on the page, on cards and on its own 15% tint. */
+  --primary: oklch(0.52 0.085 64.5);
+  --primary-hover: oklch(0.45 0.08 62);
   --primary-foreground: oklch(1 0 0);
+  /* The lighter brand gold, for decoration only (illustrations, bullets), never text. */
+  --primary-soft: oklch(0.67 0.085 64.5);
   --secondary: oklch(0.95 0.018 75);
   --secondary-foreground: oklch(0.32 0.025 66);
   --muted: oklch(0.94 0.012 72);
   --muted-foreground: oklch(0.48 0.012 61);
   --accent: oklch(0.94 0.028 72);
   --accent-foreground: oklch(0.31 0.025 62);
-  --destructive: oklch(0.58 0.21 28);
+  --destructive: oklch(0.53 0.21 28);
   --destructive-foreground: oklch(1 0 0);
   --border: oklch(0 0 0 / 8%);
   --input: oklch(0 0 0 / 10%);
-  --ring: oklch(0.67 0.085 64.5);
+  --ring: oklch(0.52 0.085 64.5);
   --budget: oklch(0.96 0.024 134);
   --budget-foreground: oklch(0.43 0.12 136);
   --mid: oklch(0.96 0.04 78);
@@ -124,14 +128,15 @@
   --primary: oklch(0.74 0.09 64.5);
   --primary-hover: oklch(0.79 0.095 62);
   --primary-foreground: oklch(0.18 0.02 65);
+  --primary-soft: oklch(0.74 0.09 64.5);
   --secondary: oklch(0.25 0.012 70);
   --secondary-foreground: oklch(0.9 0.015 75);
   --muted: oklch(0.24 0.01 70);
   --muted-foreground: oklch(0.68 0.015 70);
   --accent: oklch(0.27 0.02 68);
   --accent-foreground: oklch(0.92 0.02 75);
-  --destructive: oklch(0.65 0.2 28);
-  --destructive-foreground: oklch(0.98 0 0);
+  --destructive: oklch(0.68 0.2 28);
+  --destructive-foreground: oklch(0.18 0.02 28);
   --border: oklch(1 0 0 / 12%);
   --input: oklch(1 0 0 / 16%);
   --ring: oklch(0.74 0.09 64.5);
@@ -182,6 +187,10 @@
   h2,
   h3 {
     text-wrap: balance;
+  }
+  /* Headings receive focus from script when a quiz step changes; that isn't a control. */
+  [tabindex="-1"]:focus {
+    outline: none;
   }
   body {
     background-color: var(--color-background);

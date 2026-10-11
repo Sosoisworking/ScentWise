@@ -4,6 +4,7 @@ import type { GenderPreference, LongevityPreference } from "./scoring";
 
 // Quiz answers in the homepage URL, so a results link can be shared and reopened:
 // /?season=fall&longevity=long&occasion=date&gender=female&love=Vanilla,Rose&avoid=Oud
+// Steps 2–5 carry only ?step=N, so the browser's Back button moves between steps.
 
 export interface QuizSearch {
   season?: string;
@@ -12,17 +13,21 @@ export interface QuizSearch {
   gender?: string;
   love?: string;
   avoid?: string;
+  step?: number;
 }
 
 const KEYS = ["season", "longevity", "occasion", "gender", "love", "avoid"] as const;
 
-/** TanStack Router `validateSearch`: keep only known string params. */
+/** TanStack Router `validateSearch`: keep only known params of the right type. */
 export function validateQuizSearch(search: Record<string, unknown>): QuizSearch {
   const out: QuizSearch = {};
   for (const key of KEYS) {
     const value = search[key];
     if (typeof value === "string" && value.length <= 500) out[key] = value;
   }
+  // A number, so the URL reads ?step=2 rather than the quoted ?step="2".
+  const step = Number(search.step);
+  if (Number.isInteger(step)) out.step = step;
   return out;
 }
 
@@ -70,4 +75,10 @@ export function toQuizSearch(quiz: SharedQuiz): QuizSearch {
   if (quiz.loved.length) search.love = quiz.loved.join(",");
   if (quiz.avoided.length) search.avoid = quiz.avoided.join(",");
   return search;
+}
+
+/** The in-progress step (2–5) named in the URL, if any. */
+export function parseStep(search: QuizSearch): number | null {
+  const step = Number(search.step);
+  return Number.isInteger(step) && step >= 2 && step <= 5 ? step : null;
 }

@@ -1,5 +1,6 @@
 import { FRAGRANCES, type Fragrance } from "../data/fragrances";
 import { containsAnyNote, matchNote } from "./noteMatching";
+import { PRICE_BANDS, priceBand } from "./price";
 
 export type GenderPreference = "male" | "female" | "unisex" | "";
 export type LongevityPreference = "short" | "medium" | "long" | "";
@@ -54,21 +55,21 @@ export function scoreFragrance(
   return Math.round(score);
 }
 
+/** Best fit in each price band (under $100, $100–$200, $200+), cheapest band first. */
 export function getInitialRecommendations(
   season: string,
   occasion: string,
   gender: GenderPreference = "",
   longevity: LongevityPreference = "",
 ): Fragrance[] {
-  const tiers: Fragrance["priceRange"][] = ["budget", "mid", "premium"];
-  return tiers.map(
-    (tier) =>
-      [...FRAGRANCES.filter((f) => f.priceRange === tier)].sort(
+  return PRICE_BANDS.map(
+    (band) =>
+      FRAGRANCES.filter((f) => priceBand(f).id === band.id).sort(
         (a, b) =>
           scoreFragrance(b, season, occasion, [], gender, longevity) -
           scoreFragrance(a, season, occasion, [], gender, longevity),
       )[0],
-  );
+  ).filter(Boolean);
 }
 
 export function getRefinedResults(
@@ -85,9 +86,12 @@ export function getRefinedResults(
     .map((f) => ({
       fragrance: f,
       score: scoreFragrance(f, season, occasion, lovedNotes, gender, longevity),
+      matched: lovedNotes.filter((note) => matchNote(f, note).weight > 0).length,
     }))
     .filter((x) => x.score > 20)
     .sort((a, b) => {
+      // Containing more of your notes always wins; the fit score orders ties.
+      if (b.matched !== a.matched) return b.matched - a.matched;
       if (b.score !== a.score) return b.score - a.score;
       const longevityDiff =
         longevityRank[b.fragrance.longevity] - longevityRank[a.fragrance.longevity];

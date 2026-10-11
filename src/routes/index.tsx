@@ -11,7 +11,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Take a five-step fragrance quiz to discover perfume matches by season, vibe, notes, budget, and longevity.",
+          "A six-step fragrance quiz: pick your season, staying power, occasion and the notes you love, and get a ranked shortlist to sample, with typical Canadian prices.",
       },
       { property: "og:title", content: "WhichScent — AI Fragrance Discovery" },
       {

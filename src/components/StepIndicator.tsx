@@ -1,18 +1,21 @@
 type StepIndicatorProps = { step: number };
 
+const STEPS = 6;
+
 export function StepIndicator({ step }: StepIndicatorProps) {
   return (
-    <nav className="flex items-center justify-center gap-3" aria-label="Quiz progress">
-      {Array.from({ length: 6 }, (_, index) => {
-        const value = index + 1;
-        return (
-          <span
-            key={value}
-            className={`h-2.5 rounded-full transition-all duration-300 ${value <= step ? "w-8 bg-primary" : "w-2.5 bg-border"}`}
-            aria-label={`Step ${value}${value === step ? ", current" : ""}`}
+    <div className="flex items-center gap-2.5">
+      <ol className="flex items-center gap-1" aria-hidden="true">
+        {Array.from({ length: STEPS }, (_, index) => (
+          <li
+            key={index}
+            className={`h-2 w-4 rounded-full transition-colors duration-300 ${index < step ? "bg-primary" : "bg-border"}`}
           />
-        );
-      })}
-    </nav>
+        ))}
+      </ol>
+      <p className="text-xs font-semibold tabular-nums text-muted-foreground" aria-live="polite">
+        Step {step} of {STEPS}
+      </p>
+    </div>
   );
 }
