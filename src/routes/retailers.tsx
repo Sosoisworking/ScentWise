@@ -131,7 +131,7 @@ const TIPS = [
 
 function Pill({ children }: { children: React.ReactNode }) {
   return (
-    <span className="rounded-full bg-secondary px-3 py-1 text-[11px] font-semibold text-secondary-foreground">
+    <span className="rounded-full bg-secondary px-3 py-1 text-xs font-semibold text-secondary-foreground">
       {children}
     </span>
   );
@@ -170,9 +170,7 @@ function RetailersPage() {
                 <h2 className="font-serif text-xl font-bold text-foreground">{r.name}</h2>
                 <span className="text-xs text-muted-foreground">{r.domain}</span>
               </div>
-              <p className="mt-3 text-[14px] leading-relaxed text-muted-foreground">
-                {r.description}
-              </p>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{r.description}</p>
               <div className="mt-4 flex flex-wrap gap-2">
                 <Pill>💸 {r.pills.price}</Pill>
                 <Pill>✓ {r.pills.authenticity}</Pill>
@@ -180,7 +178,7 @@ function RetailersPage() {
               </div>
               <div className="mt-5 flex items-center justify-between gap-3 border-t border-border pt-4">
                 <div>
-                  <p className="text-[10px] font-bold uppercase tracking-wide text-muted-foreground">
+                  <p className="text-xs font-bold uppercase tracking-wide text-muted-foreground">
                     Best for
                   </p>
                   <p className="text-sm font-semibold text-foreground">{r.bestFor}</p>
@@ -246,7 +244,7 @@ function RetailersPage() {
                 key={i}
                 className="flex gap-3 rounded-xl border bg-card p-4 text-sm leading-relaxed text-foreground shadow-scent"
               >
-                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary text-[11px] font-bold text-primary-foreground">
+                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground">
                   {i + 1}
                 </span>
                 <span>{t}</span>

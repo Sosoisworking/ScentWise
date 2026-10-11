@@ -55,7 +55,7 @@ export function SiteFooter() {
               </button>
             </nav>
             <nav className="grid gap-y-2" aria-label="Popular guides">
-              <p className="text-[11px] font-bold uppercase tracking-wide text-foreground">
+              <p className="text-xs font-bold uppercase tracking-wide text-foreground">
                 Popular guides
               </p>
               {ARTICLE_LINKS.map((item) => (

@@ -1,6 +1,39 @@
 @import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
+/* Self-hosted variable fonts: no third-party font request, and only the subsets a page uses. */
+@import "@fontsource-variable/schibsted-grotesk";
+@import "@fontsource-variable/schibsted-grotesk/wght-italic.css";
+@import "@fontsource-variable/playfair-display";
+
+/* Local fallbacks scaled to the web fonts' measured width and line metrics, so text doesn't
+   jump when the real faces swap in. */
+@font-face {
+  font-family: "Schibsted Grotesk Fallback";
+  src: local("Arial");
+  size-adjust: 103.33%;
+  ascent-override: 94.84%;
+  descent-override: 25.16%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "Playfair Display Fallback";
+  src: local("Georgia");
+  font-weight: 400;
+  size-adjust: 88.57%;
+  ascent-override: 121.94%;
+  descent-override: 28.23%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "Playfair Display Fallback";
+  src: local("Georgia Bold"), local("Georgia-Bold");
+  font-weight: 700;
+  size-adjust: 88.57%;
+  ascent-override: 121.94%;
+  descent-override: 28.23%;
+  line-gap-override: 0%;
+}
 
 @custom-variant dark (&:is(.dark *));
 
@@ -77,8 +110,8 @@
   --shimmer: linear-gradient(90deg, transparent, var(--primary), transparent);
   --shadow-scent: 0 2px 12px oklch(0 0 0 / 6%);
   --shadow-scent-hover: 0 18px 38px oklch(0.45 0.05 60 / 15%);
-  --font-heading: "Playfair Display", Georgia, serif;
-  --font-body: "Inter", system-ui, sans-serif;
+  --font-heading: "Playfair Display Variable", "Playfair Display Fallback", Georgia, serif;
+  --font-body: "Schibsted Grotesk Variable", "Schibsted Grotesk Fallback", system-ui, sans-serif;
 }
 
 .dark {
@@ -144,6 +177,11 @@
   }
   html {
     font-family: var(--font-body);
+  }
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
   }
   body {
     background-color: var(--color-background);

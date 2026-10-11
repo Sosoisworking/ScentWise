@@ -313,7 +313,7 @@ function ReadinessPage() {
                               {item.label}
                             </span>
                             <span
-                              className={`rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide ${
+                              className={`rounded-full px-2 py-0.5 text-xs font-bold uppercase tracking-wide ${
                                 item.status === "done"
                                   ? "bg-primary text-primary-foreground"
                                   : "border border-border text-muted-foreground"

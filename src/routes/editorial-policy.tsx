@@ -92,7 +92,7 @@ function EditorialPolicyPage() {
               {section.body.map((paragraph) => (
                 <p
                   key={paragraph}
-                  className="mt-3 text-[15px] leading-relaxed text-muted-foreground"
+                  className="mt-3 max-w-[34rem] text-base leading-[1.7] text-muted-foreground"
                 >
                   {paragraph}
                 </p>

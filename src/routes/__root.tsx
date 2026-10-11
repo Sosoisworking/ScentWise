@@ -9,6 +9,8 @@ import {
 import { Analytics } from "@vercel/analytics/react";
 
 import appCss from "../styles.css?url";
+import bodyFont from "@fontsource-variable/schibsted-grotesk/files/schibsted-grotesk-latin-wght-normal.woff2?url";
+import displayFont from "@fontsource-variable/playfair-display/files/playfair-display-latin-wght-normal.woff2?url";
 import { ConsentBanner } from "../components/ConsentBanner";
 import { SITE_URL } from "../lib/site";
 
@@ -16,8 +18,8 @@ function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
-        <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
+        <h1 className="font-serif text-7xl font-bold text-foreground">404</h1>
+        <h2 className="mt-4 font-serif text-2xl font-bold text-foreground">Page not found</h2>
         <p className="mt-2 text-sm text-muted-foreground">
           The page you're looking for doesn't exist or has been moved.
         </p>
@@ -66,11 +68,14 @@ export const Route = createRootRoute({
       { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
       { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
       { rel: "manifest", href: "/site.webmanifest" },
-      { rel: "preconnect", href: "https://fonts.googleapis.com" },
-      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      // Preload the Latin subsets every page uses so text renders in the real faces sooner.
+      { rel: "preload", href: bodyFont, as: "font", type: "font/woff2", crossOrigin: "anonymous" },
       {
-        rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap",
+        rel: "preload",
+        href: displayFont,
+        as: "font",
+        type: "font/woff2",
+        crossOrigin: "anonymous",
       },
       { rel: "stylesheet", href: appCss },
     ],
