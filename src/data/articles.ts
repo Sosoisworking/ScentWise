@@ -2,6 +2,15 @@ import basicsImg from "../assets/learn-basics.jpg";
 import buyingImg from "../assets/learn-buying.jpg";
 import summerImg from "../assets/learn-summer.jpg";
 import winterImg from "../assets/learn-winter.jpg";
+// Photos below are from Unsplash (free under the Unsplash License, no credit required):
+// designer-niche: Lera Ginzburg, unsplash.com/photos/N8WxMVijPKw
+// longevity: Shashi Chaturvedula, unsplash.com/photos/DoREIFvzb60
+// dupes: Denise Chan, unsplash.com/photos/SUKlXOejFG8
+// buy-online: Anastasiya Doicheva, unsplash.com/photos/2w-EQD1SkuY
+import designerNicheImg from "../assets/learn-designer-niche.jpg";
+import longevityImg from "../assets/learn-longevity.jpg";
+import dupesImg from "../assets/learn-dupes.jpg";
+import buyOnlineImg from "../assets/learn-buy-online.jpg";
 
 export type ArticleCategory =
   "Fragrance Basics" | "Buying Guides" | "Fragrance Education" | "Comparisons" | "Seasonal Guides";
@@ -779,8 +788,8 @@ export const ARTICLES: Article[] = [
     category: "Comparisons",
     published: "2026-03-20",
     updated: "2026-08-23",
-    image: basicsImg,
-    imageAlt: "Amber glass fragrance bottle resting on soft off-white linen in warm light",
+    image: designerNicheImg,
+    imageAlt: "Minimal perfume bottles with blank labels in streaks of sunlight",
     body: designerNiche,
     related: ["dupes-vs-originals", "how-to-choose-a-fragrance", "fragrance-concentrations"],
   },
@@ -795,8 +804,8 @@ export const ARTICLES: Article[] = [
     category: "Fragrance Education",
     published: "2026-04-04",
     updated: "2026-08-23",
-    image: basicsImg,
-    imageAlt: "Amber glass fragrance bottle resting on soft off-white linen in warm light",
+    image: longevityImg,
+    imageAlt: "A woman applying a fragrance oil to her wrist in soft morning light",
     body: longevity,
     related: [
       "fragrance-concentrations",
@@ -815,8 +824,8 @@ export const ARTICLES: Article[] = [
     category: "Comparisons",
     published: "2026-04-18",
     updated: "2026-08-23",
-    image: buyingImg,
-    imageAlt: "Hands holding a small fragrance sample vial and a scent card at a shop counter",
+    image: dupesImg,
+    imageAlt: "Two near-identical unlabelled amber glass bottles lying on linen",
     body: dupes,
     related: [
       "how-to-buy-fragrance-online",
@@ -835,8 +844,8 @@ export const ARTICLES: Article[] = [
     category: "Buying Guides",
     published: "2026-05-06",
     updated: "2026-08-23",
-    image: buyingImg,
-    imageAlt: "Hands holding a small fragrance sample vial and a scent card at a shop counter",
+    image: buyOnlineImg,
+    imageAlt: "A plain cardboard parcel box in warm afternoon sunlight",
     body: buyOnline,
     related: ["dupes-vs-originals", "how-to-choose-a-fragrance", "designer-vs-niche-fragrance"],
   },
