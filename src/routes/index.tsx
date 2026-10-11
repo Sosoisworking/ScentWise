@@ -1,8 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import App from "../App";
 import { SITE_URL } from "../lib/site";
+import { validateQuizSearch } from "../utils/quizUrl";
 
 export const Route = createFileRoute("/")({
+  validateSearch: validateQuizSearch,
   head: () => ({
     meta: [
       { title: "Scentwise — AI Fragrance Discovery" },
@@ -24,5 +26,5 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
-  return <App />;
+  return <App search={Route.useSearch()} />;
 }

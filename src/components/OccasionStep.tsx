@@ -1,24 +1,6 @@
+import { OCCASION_OPTIONS as occasions } from "../data/quizOptions";
 import { useState } from "react";
 import type { GenderPreference } from "../utils/scoring";
-
-const occasions = [
-  { key: "date", emoji: "💋", label: "Date Night" },
-  { key: "office", emoji: "💼", label: "Office" },
-  { key: "party", emoji: "🎉", label: "Party" },
-  { key: "everyday", emoji: "🌿", label: "Everyday" },
-  { key: "fresh", emoji: "🌊", label: "Fresh" },
-  { key: "boozy", emoji: "🥂", label: "Boozy" },
-  { key: "luxury", emoji: "👑", label: "Luxury" },
-  { key: "casual", emoji: "😌", label: "Casual" },
-  { key: "gym", emoji: "🏃", label: "Gym" },
-  { key: "vacation", emoji: "🏖️", label: "Vacation" },
-  { key: "wedding", emoji: "💐", label: "Wedding" },
-  { key: "cozy", emoji: "🕯️", label: "Cozy" },
-  { key: "black-tie", emoji: "🖤", label: "Black Tie" },
-  { key: "brunch", emoji: "🍊", label: "Brunch" },
-  { key: "rainy", emoji: "🌧️", label: "Rainy Day" },
-  { key: "signature", emoji: "✨", label: "Signature" },
-];
 
 const genderOptions: Array<{ key: GenderPreference; label: string; emoji: string }> = [
   { key: "male", label: "Male", emoji: "♂" },

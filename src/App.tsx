@@ -1,4 +1,5 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { useNavigate } from "@tanstack/react-router";
 import { SiteHeader } from "./components/SiteHeader";
 import { SiteFooter } from "./components/SiteFooter";
 import { FragranceCard } from "./components/FragranceCard";
@@ -14,6 +15,7 @@ import {
   type GenderPreference,
   type LongevityPreference,
 } from "./utils/scoring";
+import { parseSharedQuiz, toQuizSearch, type QuizSearch } from "./utils/quizUrl";
 
 type QuizState = {
   step: number;
@@ -36,8 +38,45 @@ const initialState: QuizState = {
 };
 const tierLabels = ["Budget Gem", "Best Value", "Premium Pick"];
 
-export default function App() {
-  const [quiz, setQuiz] = useState<QuizState>(initialState);
+function stateFromSearch(search: QuizSearch): QuizState {
+  const shared = parseSharedQuiz(search);
+  if (!shared) return initialState;
+  return {
+    step: 6,
+    season: shared.season,
+    occasion: shared.occasion,
+    gender: shared.gender,
+    longevity: shared.longevity,
+    selectedNotes: shared.loved,
+    avoidedNotes: shared.avoided,
+  };
+}
+
+export default function App({ search = {} }: { search?: QuizSearch }) {
+  // A shared results link (/?season=…&occasion=…) opens straight on the results.
+  const [quiz, setQuiz] = useState<QuizState>(() => stateFromSearch(search));
+  const navigate = useNavigate();
+
+  // Keep the URL in step: results carry the answers so they can be shared; any other step
+  // clears them.
+  const urlSearch =
+    quiz.step === 6
+      ? toQuizSearch({
+          season: quiz.season,
+          occasion: quiz.occasion,
+          gender: quiz.gender,
+          longevity: quiz.longevity,
+          loved: quiz.selectedNotes,
+          avoided: quiz.avoidedNotes,
+        })
+      : {};
+  const urlKey = JSON.stringify(urlSearch);
+  useEffect(() => {
+    if (JSON.stringify(search) !== urlKey) {
+      void navigate({ to: "/", search: urlSearch, replace: true, resetScroll: false });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [urlKey]);
   const [loading, setLoading] = useState(false);
 
   const advance = (next: Partial<QuizState>) => {
@@ -77,6 +116,17 @@ export default function App() {
       }
       return { ...current, selectedNotes: [...current.selectedNotes, note] };
     });
+  };
+
+  // A vibe loves its notes (and un-avoids them); tapping an active vibe removes them.
+  const applyVibe = (notes: string[], remove: boolean) => {
+    setQuiz((current) => ({
+      ...current,
+      selectedNotes: remove
+        ? current.selectedNotes.filter((n) => !notes.includes(n))
+        : [...current.selectedNotes, ...notes.filter((n) => !current.selectedNotes.includes(n))],
+      avoidedNotes: current.avoidedNotes.filter((n) => !notes.includes(n)),
+    }));
   };
 
   const clearNotes = () =>
@@ -141,6 +191,7 @@ export default function App() {
             lovedNotes={quiz.selectedNotes}
             avoidedNotes={quiz.avoidedNotes}
             onCycle={cycleNote}
+            onApplyVibe={applyVibe}
             onClear={clearNotes}
             longevity={quiz.longevity}
             onLongevityChange={setLongevity}

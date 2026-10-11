@@ -1,6 +1,6 @@
 import { useId, useMemo, useState } from "react";
 import { FRAGRANCES } from "../data/fragrances";
-import { NOTES, NOTE_FAMILIES, type CanonicalNote } from "../data/notes";
+import { NOTES, NOTE_BY_NAME, NOTE_FAMILIES, type CanonicalNote } from "../data/notes";
 import { containsAnyNote, containsNote } from "../utils/noteMatching";
 import type { LongevityPreference } from "../utils/scoring";
 
@@ -10,6 +10,7 @@ type NoteSelectorProps = {
   lovedNotes: string[];
   avoidedNotes: string[];
   onCycle: (note: string) => void;
+  onApplyVibe: (notes: string[], remove: boolean) => void;
   onClear: () => void;
   longevity: LongevityPreference;
   onLongevityChange: (longevity: LongevityPreference) => void;
@@ -27,6 +28,20 @@ const longevityOptions: Array<{
   { key: "medium", label: "Medium", icon: "⏱⏱" },
   { key: "long", label: "Long", icon: "⏱⏱⏱" },
 ];
+
+// One-tap starting points for people who don't know note names yet. Each loves a small
+// set of notes, which then show as selected below and can be adjusted.
+const VIBES: Array<{ label: string; notes: string[] }> = [
+  { label: "Fresh & clean", notes: ["Any citrus", "Sea Notes", "Musk"] },
+  { label: "Sweet & cozy", notes: ["Vanilla", "Tonka Bean", "Caramel"] },
+  { label: "Floral & romantic", notes: ["Rose", "Jasmine", "Peony"] },
+  { label: "Woody & smoky", notes: ["Any woods", "Incense", "Leather"] },
+  { label: "Warm & spicy", notes: ["Any spice", "Amber"] },
+  { label: "Fruity & playful", notes: ["Any fruit", "Berries"] },
+];
+
+const longevityLabel = (value: LongevityPreference) =>
+  longevityOptions.find((o) => o.key === value)?.label ?? "Any";
 
 // Notes shown per family before "Show more"; picked notes are always shown.
 const VISIBLE_PER_FAMILY = 8;
@@ -55,6 +70,7 @@ export function NoteSelector({
   lovedNotes,
   avoidedNotes,
   onCycle,
+  onApplyVibe,
   onClear,
   longevity,
   onLongevityChange,
@@ -64,6 +80,10 @@ export function NoteSelector({
 }: NoteSelectorProps) {
   const [query, setQuery] = useState("");
   const [expanded, setExpanded] = useState<Set<string>>(new Set());
+  const [editingLongevity, setEditingLongevity] = useState(false);
+  // Last tapped note, whose description is shown under its family (hover titles don't
+  // exist on touch screens).
+  const [lastTapped, setLastTapped] = useState<string | null>(null);
   const hintId = useId();
 
   // How many catalogue fragrances contain each note; never changes, so it decides which
@@ -137,35 +157,76 @@ export function NoteSelector({
         </div>
 
         <div className="mt-8 space-y-6">
-          <fieldset className="rounded-2xl border bg-card p-5 shadow-scent">
-            <legend className="px-2 text-xs font-bold uppercase tracking-[0.2em] text-primary">
-              Longevity
-            </legend>
-            <div
-              className="mt-4 grid gap-2 sm:grid-cols-3"
-              role="radiogroup"
-              aria-label="Longevity preference"
-            >
-              {longevityOptions.map((option) => {
-                const active = longevity === option.key;
+          <div className="rounded-2xl border bg-card px-5 py-4 shadow-scent">
+            <div className="flex flex-wrap items-center justify-between gap-2 text-sm">
+              <p>
+                <span className="font-bold uppercase tracking-[0.2em] text-primary text-xs">
+                  Longevity
+                </span>{" "}
+                <span className="ml-2 font-semibold text-card-foreground">
+                  {longevityLabel(longevity)}
+                </span>
+              </p>
+              <button
+                type="button"
+                onClick={() => setEditingLongevity((v) => !v)}
+                aria-expanded={editingLongevity}
+                className="font-semibold text-primary underline-offset-2 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              >
+                {editingLongevity ? "Done" : "Change"}
+              </button>
+            </div>
+            {editingLongevity && (
+              <div
+                className="mt-4 grid gap-2 sm:grid-cols-3"
+                role="radiogroup"
+                aria-label="Longevity preference"
+              >
+                {longevityOptions.map((option) => {
+                  const active = longevity === option.key;
+                  return (
+                    <button
+                      key={option.key}
+                      type="button"
+                      role="radio"
+                      aria-checked={active}
+                      onClick={() => onLongevityChange(active ? "" : option.key)}
+                      className={`rounded-full border px-4 py-3 text-sm font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${active ? "border-primary bg-primary text-primary-foreground" : "border-border bg-card text-card-foreground hover:border-primary hover:bg-accent"}`}
+                    >
+                      <span aria-hidden="true" className="mr-2">
+                        {option.icon}
+                      </span>
+                      {option.label}
+                    </button>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+
+          <div>
+            <p className="mb-3 text-center text-xs font-bold uppercase tracking-[0.2em] text-primary">
+              Not sure? Start with a vibe
+            </p>
+            <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
+              {VIBES.map((vibe) => {
+                const active = vibe.notes.every((n) => lovedNotes.includes(n));
                 return (
                   <button
-                    key={option.key}
+                    key={vibe.label}
                     type="button"
-                    role="radio"
-                    aria-checked={active}
-                    onClick={() => onLongevityChange(active ? "" : option.key)}
-                    className={`rounded-full border px-4 py-3 text-sm font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${active ? "border-primary bg-primary text-primary-foreground" : "border-border bg-card text-card-foreground hover:border-primary hover:bg-accent"}`}
+                    aria-pressed={active}
+                    onClick={() => onApplyVibe(vibe.notes, active)}
+                    title={vibe.notes.join(", ")}
+                    className={`rounded-2xl border px-4 py-2 text-left text-sm transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${active ? "border-primary bg-primary text-primary-foreground" : "border-border bg-card text-card-foreground hover:border-primary hover:bg-accent"}`}
                   >
-                    <span aria-hidden="true" className="mr-2">
-                      {option.icon}
-                    </span>
-                    {option.label}
+                    <span className="block font-semibold">{vibe.label}</span>
+                    <span className="block text-xs opacity-75">{vibe.notes.join(" · ")}</span>
                   </button>
                 );
               })}
             </div>
-          </fieldset>
+          </div>
 
           <div>
             <label htmlFor="note-search" className="sr-only">
@@ -206,7 +267,10 @@ export function NoteSelector({
                       disabled={disabled}
                       aria-describedby={hintId}
                       aria-label={`${note.name}, ${stateLabel[state]}. ${note.description}${state === "avoided" ? "" : ` ${count} fragrances.`}`}
-                      onClick={() => onCycle(note.name)}
+                      onClick={() => {
+                        onCycle(note.name);
+                        setLastTapped(note.name);
+                      }}
                       className={`inline-flex items-center rounded-full border px-4 py-2 text-sm font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-40 ${chipClass[state]} ${note.wildcard ? "italic" : ""}`}
                     >
                       {state === "loved" && (
@@ -249,6 +313,12 @@ export function NoteSelector({
                   </button>
                 )}
               </div>
+              {lastTapped && NOTE_BY_NAME.get(lastTapped)?.family === family.id && (
+                <p aria-live="polite" className="mt-3 text-sm text-muted-foreground">
+                  <span className="font-semibold text-card-foreground">{lastTapped}:</span>{" "}
+                  {NOTE_BY_NAME.get(lastTapped)?.description}
+                </p>
+              )}
             </fieldset>
           ))}
         </div>

@@ -10,7 +10,7 @@ const sephora = JSON.parse(read("src/data/sephora-ca.json"));
 const taxonomy = JSON.parse(read("src/data/note-taxonomy.json"));
 
 const SEASONS = ["spring", "summer", "fall", "winter"];
-// Must match the keys in src/components/OccasionStep.tsx (checked below).
+// Must match the keys in src/data/quizOptions.ts (checked below).
 const OCCASIONS = [
   "date",
   "office",
@@ -88,7 +88,7 @@ export function slugify(s) {
     .replace(/^-+|-+$/g, "");
 }
 
-const occasionSource = read("src/components/OccasionStep.tsx");
+const occasionSource = read("src/data/quizOptions.ts");
 for (const o of OCCASIONS) {
   if (!occasionSource.includes(`key: "${o}"`)) errors.push(`OCCASIONS out of sync: "${o}"`);
 }
