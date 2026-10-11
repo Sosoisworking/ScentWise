@@ -65,10 +65,10 @@ function PrivacyPage() {
             because there are no accounts on this site.
           </p>
           <p>
-            <strong className="text-foreground">Email you send us.</strong> If you email us —
-            including via the "email my results" feature, which composes a message in your own mail
-            client — we receive whatever you choose to send and keep it only as long as needed to
-            answer you.
+            <strong className="text-foreground">Email you send us.</strong> If you email us, we
+            receive whatever you choose to send and keep it only as long as needed to answer you.
+            The "email my results" feature only opens a draft in your own mail app, addressed to
+            whoever you choose; nothing is sent to us.
           </p>
           <p>
             <strong className="text-foreground">No account data.</strong> WhichScent has no sign-up,

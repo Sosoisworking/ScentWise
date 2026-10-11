@@ -1,5 +1,5 @@
 import type { Fragrance } from "../data/fragrances";
-import { scoreFragrance, type GenderPreference, type LongevityPreference } from "../utils/scoring";
+import { priceBand, type PriceBandId } from "../utils/price";
 import { LongevityBadge, LongevityBar } from "./LongevityBar";
 import { NotePills } from "./NotePills";
 import { explainMatch } from "../utils/noteMatching";
@@ -8,23 +8,22 @@ type FragranceCardProps = {
   fragrance: Fragrance;
   label?: string;
   mode: "initial" | "result";
-  season?: string;
-  occasion?: string;
+  /** Position in the results, shown instead of a percentage. */
+  rank?: number;
   selectedNotes?: string[];
-  gender?: GenderPreference;
-  longevity?: LongevityPreference;
 };
 
-const badgeClass: Record<Fragrance["priceRange"], string> = {
-  budget: "bg-budget text-budget-foreground",
-  mid: "bg-mid text-mid-foreground",
-  premium: "bg-premium text-premium-foreground",
+const badgeClass: Record<PriceBandId, string> = {
+  "under-100": "bg-budget text-budget-foreground",
+  "100-200": "bg-mid text-mid-foreground",
+  "200-plus": "bg-premium text-premium-foreground",
 };
 
+// Decorative, so it uses the soft gold rather than the text gold.
 function BottleIcon() {
   return (
     <svg
-      className="h-[4.2rem] w-[3.15rem] text-primary"
+      className="h-[4.2rem] w-[3.15rem] text-primary-soft"
       viewBox="0 0 80 110"
       fill="none"
       aria-hidden="true"
@@ -54,13 +53,9 @@ export function FragranceCard({
   fragrance,
   label,
   mode,
-  season = "",
-  occasion = "",
+  rank,
   selectedNotes = [],
-  gender,
-  longevity,
 }: FragranceCardProps) {
-  const matchScore = scoreFragrance(fragrance, season, occasion, selectedNotes, gender, longevity);
   const match =
     mode === "result" && selectedNotes.length > 0 ? explainMatch(fragrance, selectedNotes) : null;
   const buttonGridClass =
@@ -85,7 +80,7 @@ export function FragranceCard({
 
       <div className="mt-4 flex flex-wrap gap-2">
         <span
-          className={`rounded-full px-3 py-1 text-xs font-bold uppercase tabular-nums ${badgeClass[fragrance.priceRange]}`}
+          className={`rounded-full px-3 py-1 text-xs font-bold uppercase tabular-nums ${badgeClass[priceBand(fragrance).id]}`}
         >
           {fragrance.priceDisplay}
         </span>
@@ -94,15 +89,18 @@ export function FragranceCard({
             {fragrance.concentration}
           </span>
         )}
-        {mode === "result" && (
+        {mode === "result" && rank !== undefined && (
           <span className="rounded-full bg-primary px-3 py-1 text-xs font-bold tabular-nums text-primary-foreground">
-            {matchScore}% match
+            #{rank}
           </span>
         )}
       </div>
 
       {mode === "result" && (
         <p className="mt-3 text-sm font-semibold text-primary">{fragrance.family.join(" · ")}</p>
+      )}
+      {mode === "result" && !match && (
+        <p className="mt-2 text-sm text-muted-foreground">Picked for your season and occasion</p>
       )}
       {match && (
         <p className="mt-2 text-sm text-card-foreground">
@@ -135,7 +133,7 @@ export function FragranceCard({
           href={fragrance.fragrancebuyLink}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-full bg-primary px-4 py-3 text-sm font-bold text-primary-foreground transition hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className="inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-full border bg-card px-4 py-3 text-sm font-bold text-card-foreground transition hover:border-primary hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           aria-label={`Buy ${fragrance.brand} ${fragrance.name} at Fragrancebuy`}
         >
           Fragrancebuy →

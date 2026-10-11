@@ -17,7 +17,7 @@ export const Route = createFileRoute("/retailers")({
       {
         property: "og:description",
         content:
-          "Verified online fragrance retailers compared — price, authenticity and shipping at a glance.",
+          "Online fragrance retailers compared — price, authenticity and shipping at a glance.",
       },
       { property: "og:url", content: `${SITE_URL}/retailers` },
     ],

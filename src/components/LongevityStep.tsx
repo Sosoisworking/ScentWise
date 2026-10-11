@@ -19,8 +19,10 @@ const options: LongevityOption[] = [
 ];
 
 export function LongevityStep({
+  selected = "",
   onSelect,
 }: {
+  selected?: LongevityPreference;
   onSelect: (longevity: Exclude<LongevityPreference, "">) => void;
 }) {
   return (
@@ -34,10 +36,11 @@ export function LongevityStep({
       <div className="mt-10 grid gap-4 sm:grid-cols-3">
         {options.map((option) => (
           <button
+            aria-pressed={selected === option.key}
             key={option.key}
             type="button"
             onClick={() => onSelect(option.key)}
-            className="group rounded-2xl border bg-card p-7 text-left shadow-scent transition duration-300 hover:-translate-y-1 hover:border-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className={`group rounded-2xl border bg-card p-7 text-left shadow-scent transition duration-300 hover:-translate-y-1 hover:border-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${selected === option.key ? "border-primary ring-2 ring-primary" : ""}`}
             aria-label={`Choose ${option.label} longevity`}
           >
             <span className="text-3xl text-primary" aria-hidden="true">

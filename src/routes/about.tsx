@@ -45,35 +45,39 @@ function AboutPage() {
 
         <Section title="How the recommendation engine works">
           <p>
-            There is no black box here. Every fragrance in our database is tagged by hand with the
-            attributes that matter to a real buyer: dominant note families, projection and longevity
-            band, the seasons where it reads best, the occasions it suits, gender presentation, and
-            a Canadian price band.
+            There is no black box here. Every fragrance in our database carries the attributes that
+            matter to a real buyer: its note pyramid and scent family, how long it lasts, the
+            seasons where it reads best, the occasions it suits, who it's marketed for, and a
+            typical Canadian price range. Every addition is reviewed by a person before it goes
+            live.
           </p>
           <p>
-            When you take the quiz, each candidate scent is scored across four weighted dimensions.
-            Season fit and occasion fit come first, because a beautiful winter oud genuinely does
-            not work at a July brunch. Longevity is matched against the staying power you asked for,
-            rather than assuming everyone wants a twelve-hour monster. Note overlap is then layered
-            on top: the more of your chosen notes a fragrance actually contains in a leading role,
-            the higher it climbs. Ties break in favour of longer wear, unless you told us you wanted
-            something light.
+            Each fragrance gets a fit score out of 100 from five of your answers. The notes you love
+            count most: 30 points, or 40 if you skip longevity, and a note in the base of the
+            pyramid counts a little more than one that fades in the first few minutes. Occasion is
+            worth 20 to 25 points, season 15, who it's marketed for 20, and staying power 15. A near
+            miss, like medium wear when you asked for long, earns partial credit. Anything
+            containing a note you said to avoid is removed entirely.
           </p>
           <p>
-            The first results screen deliberately shows three price tiers — a budget gem, a
-            best-value pick and a premium option — so you can see what an extra hundred dollars
-            really buys you before you refine by notes.
+            Results are ranked first by how many of your loved notes each fragrance contains, so one
+            with three of your notes always sits above one with two. The fit score orders the rest,
+            and ties go to longer wear unless you asked for something light.
+          </p>
+          <p>
+            The first picks show the best fit at three price points (under $100, $100 to $200, and
+            $200 and up, based on each bottle's typical Canadian price) so you can see what extra
+            money buys before you refine by notes.
           </p>
         </Section>
 
         <Section title="Where our data comes from">
           <p>
-            Fragrance attributes come from the brands' own published note pyramids, cross-checked
-            against community consensus on longevity and projection, and adjusted when our own
-            wear-testing disagrees with the marketing copy. Brand directory entries — country of
-            origin, founding year, official website — are verified against each brand's own site
-            rather than aggregator databases, because aggregators are full of dead domains and
-            resellers posing as official stores.
+            Notes come from each brand's published note pyramid. Longevity, season and occasion tags
+            are our editorial judgement, not lab measurements, and skin chemistry will move them
+            either way. The brand directory links every brand to its own website rather than to
+            resellers or aggregator listings, which are full of dead domains and resellers posing as
+            official stores.
           </p>
           <p>
             Prices are shown as Canadian-dollar ranges, not exact figures, and they are indicative.
@@ -88,8 +92,7 @@ function AboutPage() {
           <p>
             No brand pays to appear in our database, and no retailer can buy a higher ranking.
             Placement in the quiz results is decided entirely by your answers and our scoring
-            weights. The retailer guide includes sellers we think are worth avoiding as well as ones
-            we like, which is the whole point of a guide.
+            weights.
           </p>
           <p>
             The site is free to use and is supported by advertising, and in future may include

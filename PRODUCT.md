@@ -49,7 +49,8 @@ WhichScent (renamed from Scentwise on 2026-10-11 _(owner)_) is a free fragrance 
 
 - Learn article photos: 4 original assets plus 4 Unsplash photos, each picked and approved by the owner. _(owner)_
 - No testimonials, user counts, reviews, press mentions or ratings exist. Don't invent any.
-- Unverified claim to check with the owner: the About page says attributes are "adjusted when our own wear-testing disagrees with the marketing copy." Nothing in the repository shows wear-testing happens.
+- No wear-testing happens _(owner, 2026-10-11)_. The About page's old wear-testing claim has been removed; don't reintroduce it.
+- No "retailers to avoid" list exists yet. Phase 2 adds one; until then, the site must not claim one.
 
 ## Product Principles
 

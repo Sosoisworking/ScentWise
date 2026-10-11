@@ -45,14 +45,14 @@ export const Route = createRootRoute({
       {
         name: "description",
         content:
-          "Discover your signature scent with WhichScent: a guided fragrance quiz, verified brand directory, retailer guide and learn hub.",
+          "Discover your signature scent with WhichScent: a guided fragrance quiz, official brand directory, retailer guide and learn hub.",
       },
       { property: "og:site_name", content: "WhichScent" },
       { property: "og:title", content: "WhichScent — AI Fragrance Discovery" },
       {
         property: "og:description",
         content:
-          "A guided fragrance quiz, verified brand directory and honest retailer guide to help you find your signature scent.",
+          "A guided fragrance quiz, official brand directory and honest retailer guide to help you find your signature scent.",
       },
       { property: "og:type", content: "website" },
       { property: "og:image", content: `${SITE_URL}/og-image.png` },
@@ -91,7 +91,7 @@ export const Route = createRootRoute({
               name: "WhichScent",
               url: SITE_URL,
               description:
-                "Independent fragrance discovery platform featuring a guided quiz, verified brand directory and retailer guide.",
+                "Independent fragrance discovery platform featuring a guided quiz, official brand directory and retailer guide.",
             },
             {
               "@type": "WebSite",

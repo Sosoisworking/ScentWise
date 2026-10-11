@@ -251,9 +251,9 @@ function ArticlePage() {
             </Link>
           </div>
           <div className="rounded-3xl border border-border bg-card p-6">
-            <h2 className="font-serif text-xl font-bold">Browse the fragrance database</h2>
+            <h2 className="font-serif text-xl font-bold">Browse brands and retailers</h2>
             <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-              Explore verified brands and official sites, or compare where to buy before you order.
+              Find a brand's own website, or compare where to buy before you order.
             </p>
             <div className="mt-4 flex flex-wrap gap-2">
               <Link

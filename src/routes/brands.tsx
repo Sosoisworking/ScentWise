@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
-import { BRANDS } from "../data/brands";
+import { BRANDS, BRANDS_UPDATED } from "../data/brands";
 import { filterBrands, groupByLetter, type CategoryFilter } from "../utils/brandFilters";
 import { downloadBrandsJson } from "../utils/exportJson";
 import { BrandCard } from "../components/directory/BrandCard";
@@ -17,12 +17,12 @@ export const Route = createFileRoute("/brands")({
       {
         name: "description",
         content:
-          "Browse 80+ verified official fragrance brand websites — designer, niche and luxury houses. No resellers, no marketplaces. Direct links to the source.",
+          "Browse official fragrance brand websites — designer, niche and luxury houses. No resellers, no marketplaces. Direct links to the source.",
       },
       { property: "og:title", content: "Official Fragrance Brand Directory — WhichScent" },
       {
         property: "og:description",
-        content: "Every fragrance house. One place. 80+ verified official brand websites.",
+        content: "Every fragrance house. One place. Official brand websites only.",
       },
       { property: "og:url", content: `${SITE_URL}/brands` },
     ],
@@ -36,7 +36,7 @@ export const Route = createFileRoute("/brands")({
           name: "Official Fragrance Brand Directory",
           url: `${SITE_URL}/brands`,
           description:
-            "Directory of verified official fragrance brand websites across designer, niche and luxury categories.",
+            "Directory of official fragrance brand websites across designer, niche and luxury categories.",
         }),
       },
     ],
@@ -72,7 +72,11 @@ function BrandDirectory() {
   const featured = useMemo(() => BRANDS.filter((b) => b.featured), []);
   const isSearching = query.trim().length > 0;
 
-  const lastUpdated = new Date().toLocaleDateString("en-US", { month: "long", year: "numeric" });
+  const lastUpdated = new Date(`${BRANDS_UPDATED}T12:00:00`).toLocaleDateString("en-CA", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  });
 
   return (
     <main className="min-h-screen overflow-hidden bg-background text-foreground">
@@ -100,11 +104,11 @@ function BrandDirectory() {
             Every fragrance house. One place.
           </h1>
           <p className="mx-auto mt-5 max-w-xl text-base text-muted-foreground">
-            {BRANDS.length}+ verified official brand websites — no resellers, no marketplaces.
-            Direct links to the source.
+            {BRANDS.length} fragrance houses, each linked to its own website. No resellers, no
+            marketplaces.
           </p>
           <div className="mt-6 flex flex-wrap justify-center gap-2">
-            {[`${BRANDS.length}+ Brands`, "3 Categories", "All Verified"].map((s) => (
+            {[`${BRANDS.length} brands`, "3 categories", "Official sites only"].map((s) => (
               <span
                 key={s}
                 className="rounded-full bg-card px-4 py-2 text-xs font-bold shadow-scent"
@@ -241,9 +245,13 @@ function BrandDirectory() {
 
         {/* Footer */}
         <footer className="mt-20 border-t border-border pt-8 text-center text-xs text-muted-foreground">
-          <p>Data sourced from Fragrantica, Niche Gallery, and ScentAdvice directories.</p>
-          <p className="mt-1">
-            All links verified as official brand websites — not resellers or marketplaces.
+          <p>
+            Every link goes to the brand's own website, never a reseller or marketplace. Spot an
+            outdated link or detail?{" "}
+            <Link to="/contact" className="font-semibold text-primary hover:underline">
+              Tell us
+            </Link>
+            .
           </p>
           <p className="mt-1">Last updated: {lastUpdated}</p>
           <Link to="/" className="mt-4 inline-block font-bold text-primary hover:underline">

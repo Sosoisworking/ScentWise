@@ -78,7 +78,7 @@ const TOPICS: Topic[] = [
     id: "longevity",
     title: "Scent Longevity & How to Improve It",
     intro:
-      "Longevity is the #1 frustration new fragrance buyers report. It's mostly driven by concentration, base notes, skin type and application technique — not just price.",
+      "How long a fragrance lasts is mostly down to concentration, base notes, skin type and how you apply it, not just price.",
     faqs: [
       {
         q: "Why does my perfume disappear after 1 hour?",

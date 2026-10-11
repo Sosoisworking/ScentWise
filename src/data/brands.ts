@@ -30,6 +30,9 @@ export interface Brand {
   featured?: boolean;
 }
 
+// Bump this whenever brand entries change; the directory shows it as "Last updated".
+export const BRANDS_UPDATED = "2026-10-11";
+
 export const BRANDS: Brand[] = [
   // A
   {
@@ -691,7 +694,7 @@ export const BRANDS: Brand[] = [
     name: "Nishane",
     slug: "nishane",
     category: "niche",
-    officialUrl: "https://www.nishane.com.tr",
+    officialUrl: "https://www.nishane.com",
     country: "Turkey",
     founded: 2012,
     tagline: "Istanbul-born niche house — first global Turkish artistic perfumery.",
