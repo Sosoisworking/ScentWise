@@ -7,13 +7,13 @@ export const Route = createFileRoute("/")({
   validateSearch: validateQuizSearch,
   head: () => ({
     meta: [
-      { title: "Scentwise — AI Fragrance Discovery" },
+      { title: "WhichScent — AI Fragrance Discovery" },
       {
         name: "description",
         content:
           "Take a five-step fragrance quiz to discover perfume matches by season, vibe, notes, budget, and longevity.",
       },
-      { property: "og:title", content: "Scentwise — AI Fragrance Discovery" },
+      { property: "og:title", content: "WhichScent — AI Fragrance Discovery" },
       {
         property: "og:description",
         content: "Find your signature scent with a warm, guided fragrance quiz.",

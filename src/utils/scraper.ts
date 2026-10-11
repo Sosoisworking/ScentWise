@@ -1,4 +1,4 @@
-// Scraper pseudo-code reference for compiling the Scentwise brand directory.
+// Scraper pseudo-code reference for compiling the WhichScent brand directory.
 // This file is intentionally non-executing — it documents the data pipeline used
 // to assemble src/data/brands.ts from public directories.
 //

@@ -7,13 +7,13 @@ import { SITE_URL } from "../lib/site";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About Scentwise — Who Builds These Recommendations" },
+      { title: "About WhichScent — Who Builds These Recommendations" },
       {
         name: "description",
         content:
-          "How Scentwise scores fragrance matches, where our price and brand data comes from, how we make money, and what we will never do.",
+          "How WhichScent scores fragrance matches, where our price and brand data comes from, how we make money, and what we will never do.",
       },
-      { property: "og:title", content: "About Scentwise" },
+      { property: "og:title", content: "About WhichScent" },
       {
         property: "og:description",
         content:
@@ -33,9 +33,9 @@ function AboutPage() {
       <SiteHeader current="home" breadcrumb="Home → About" />
 
       <div className="relative z-10 mx-auto max-w-[820px] px-5 pb-16 pt-4">
-        <h1 className="font-serif text-4xl font-bold sm:text-5xl">About Scentwise</h1>
+        <h1 className="font-serif text-4xl font-bold sm:text-5xl">About WhichScent</h1>
         <p className="mt-4 text-lg text-muted-foreground">
-          Scentwise is published by So Hib Corp in Toronto, Ontario, Canada. It exists because
+          WhichScent is published by So Hib Corp in Toronto, Ontario, Canada. It exists because
           buying fragrance online is an unusually bad shopping experience. You cannot smell a web
           page, most "top 10" lists are affiliate rankings in disguise, and the same bottle can
           swing by a hundred dollars between two Canadian sellers in the same week. We built a tool

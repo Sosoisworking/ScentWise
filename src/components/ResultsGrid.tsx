@@ -70,10 +70,10 @@ export function ResultsGrid({
   // The page URL already carries the quiz answers, so the link reopens these results.
   const share = async () => {
     const url = window.location.href;
-    const text = `My Scentwise matches: ${summary || "I am still exploring my perfect scent."}`;
+    const text = `My WhichScent matches: ${summary || "I am still exploring my perfect scent."}`;
     try {
       if (navigator.share) {
-        await navigator.share({ title: "My Scentwise matches", text, url });
+        await navigator.share({ title: "My WhichScent matches", text, url });
         return;
       }
       await navigator.clipboard.writeText(`${text}\n${url}`);

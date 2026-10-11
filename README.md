@@ -1,4 +1,4 @@
-# Scentwise
+# WhichScent
 
 Independent fragrance discovery site: a guided scent quiz, a verified brand directory, a Canadian retailer guide and a learn hub.
 

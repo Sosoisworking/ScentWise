@@ -359,7 +359,7 @@ export function NoteSelector({
           <button
             type="button"
             onClick={onBack}
-            aria-label="Go back to previous Scentwise quiz step"
+            aria-label="Go back to previous WhichScent quiz step"
             className="rounded-full border bg-card px-4 py-4 text-sm font-bold text-card-foreground transition hover:border-primary hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             ←
@@ -374,7 +374,7 @@ export function NoteSelector({
           <button
             type="button"
             onClick={onRestart}
-            aria-label="Restart Scentwise quiz"
+            aria-label="Restart WhichScent quiz"
             className="rounded-full border bg-card px-4 py-4 text-sm font-bold text-card-foreground transition hover:border-primary hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             ↺

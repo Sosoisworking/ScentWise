@@ -20,7 +20,7 @@ export const Route = createFileRoute("/learn/$slug")({
     const url = `${SITE}/learn/${params.slug}`;
     if (!article) {
       return {
-        meta: [{ title: "Article not found — Scentwise" }, { name: "robots", content: "noindex" }],
+        meta: [{ title: "Article not found — WhichScent" }, { name: "robots", content: "noindex" }],
       };
     }
     const image = `${SITE}${article.image}`;
@@ -54,7 +54,7 @@ export const Route = createFileRoute("/learn/$slug")({
             dateModified: article.updated,
             mainEntityOfPage: { "@type": "WebPage", "@id": url },
             author: { "@type": "Organization", name: AUTHOR.name, url: `${SITE}/editorial-policy` },
-            publisher: { "@type": "Organization", name: "Scentwise", url: SITE },
+            publisher: { "@type": "Organization", name: "WhichScent", url: SITE },
           }),
         },
         {

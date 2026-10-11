@@ -12,13 +12,13 @@ const SITE = SITE_URL;
 export const Route = createFileRoute("/learn/")({
   head: () => ({
     meta: [
-      { title: "Fragrance Learn Hub: Guides, Comparisons & FAQs — Scentwise" },
+      { title: "Fragrance Learn Hub: Guides, Comparisons & FAQs — WhichScent" },
       {
         name: "description",
         content:
           "Editorial fragrance guides on concentrations, longevity, seasonal picks under $150 CAD, designer vs niche, dupes and buying safely online — plus plain-English FAQs.",
       },
-      { property: "og:title", content: "Fragrance Learn Hub — Scentwise" },
+      { property: "og:title", content: "Fragrance Learn Hub — WhichScent" },
       {
         property: "og:description",
         content:

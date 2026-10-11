@@ -13,13 +13,13 @@ import { SITE_URL } from "../lib/site";
 export const Route = createFileRoute("/brands")({
   head: () => ({
     meta: [
-      { title: "Official Fragrance Brand Directory — Scentwise" },
+      { title: "Official Fragrance Brand Directory — WhichScent" },
       {
         name: "description",
         content:
           "Browse 80+ verified official fragrance brand websites — designer, niche and luxury houses. No resellers, no marketplaces. Direct links to the source.",
       },
-      { property: "og:title", content: "Official Fragrance Brand Directory — Scentwise" },
+      { property: "og:title", content: "Official Fragrance Brand Directory — WhichScent" },
       {
         property: "og:description",
         content: "Every fragrance house. One place. 80+ verified official brand websites.",

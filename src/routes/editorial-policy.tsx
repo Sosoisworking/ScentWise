@@ -8,13 +8,13 @@ import { SITE_URL } from "../lib/site";
 export const Route = createFileRoute("/editorial-policy")({
   head: () => ({
     meta: [
-      { title: "Editorial Policy: How We Research & Review Articles — Scentwise" },
+      { title: "Editorial Policy: How We Research & Review Articles — WhichScent" },
       {
         name: "description",
         content:
-          "How Scentwise researches, drafts, reviews and corrects its fragrance articles, where AI tools are used, and what we deliberately never claim.",
+          "How WhichScent researches, drafts, reviews and corrects its fragrance articles, where AI tools are used, and what we deliberately never claim.",
       },
-      { property: "og:title", content: "Scentwise Editorial Policy" },
+      { property: "og:title", content: "WhichScent Editorial Policy" },
       {
         property: "og:description",
         content:
@@ -80,7 +80,7 @@ function EditorialPolicyPage() {
           Editorial policy
         </h1>
         <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-          Scentwise publishes editorial articles about choosing, wearing and buying fragrance. This
+          WhichScent publishes editorial articles about choosing, wearing and buying fragrance. This
           page explains how that content is made, reviewed and corrected, so you can judge how much
           weight to give it.
         </p>

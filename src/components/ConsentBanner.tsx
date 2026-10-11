@@ -53,7 +53,7 @@ export function ConsentBanner() {
       className="fixed inset-x-3 bottom-3 z-50 mx-auto max-w-[640px] animate-scent-in rounded-2xl border bg-card p-4 text-card-foreground shadow-scent-hover sm:p-5"
     >
       <p className="text-sm leading-6 text-muted-foreground">
-        Scentwise uses essential storage to remember your theme and this choice. With your
+        WhichScent uses essential storage to remember your theme and this choice. With your
         permission, our advertising partners may also set cookies to show and measure ads. See our{" "}
         <Link
           to="/privacy"
