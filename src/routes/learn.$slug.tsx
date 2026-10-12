@@ -4,7 +4,8 @@ import { SiteHeader } from "../components/SiteHeader";
 import { SiteFooter } from "../components/SiteFooter";
 import { ArticleBody, headings } from "../components/article/ArticleBody";
 import { ArticleCard } from "../components/article/ArticleCard";
-import { ARTICLES, AUTHOR, formatDate, getArticle, readingTime } from "../data/articles";
+import { articleBody, readingTime } from "../data/articleBodies";
+import { ARTICLES, AUTHOR, formatDate, getArticle } from "../data/articles";
 import { SITE_URL } from "../lib/site";
 
 const SITE = SITE_URL;
@@ -137,7 +138,8 @@ function ShareLinks({ title, url }: { title: string; url: string }) {
 
 function ArticlePage() {
   const { article } = Route.useLoaderData();
-  const toc = headings(article.body);
+  const body = articleBody(article.slug);
+  const toc = headings(body);
   const related = article.related
     .map((slug) => ARTICLES.find((a) => a.slug === slug))
     .filter((a): a is (typeof ARTICLES)[number] => Boolean(a));
@@ -184,7 +186,7 @@ function ArticlePage() {
             Updated <time dateTime={article.updated}>{formatDate(article.updated)}</time>
           </span>
           <span aria-hidden>·</span>
-          <span>{readingTime(article.body)} min read</span>
+          <span>{readingTime(body)} min read</span>
         </div>
 
         <img
@@ -216,7 +218,7 @@ function ArticlePage() {
           </nav>
         )}
 
-        <ArticleBody body={article.body} />
+        <ArticleBody body={body} />
 
         <ShareLinks title={article.title} url={url} />
 

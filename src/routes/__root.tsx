@@ -7,6 +7,7 @@ import {
   useLocation,
 } from "@tanstack/react-router";
 import { Analytics } from "@vercel/analytics/react";
+import { useEffect } from "react";
 
 import appCss from "../styles.css?url";
 import bodyFont from "@fontsource-variable/schibsted-grotesk/files/schibsted-grotesk-latin-wght-normal.woff2?url";
@@ -17,6 +18,9 @@ import { SiteHeader } from "../components/SiteHeader";
 import { SITE_URL } from "../lib/site";
 
 function NotFoundComponent() {
+  useEffect(() => {
+    document.title = "Page not found — WhichScent";
+  }, []);
   return (
     <main className="flex min-h-screen flex-col bg-background text-foreground">
       <SiteHeader current="home" />

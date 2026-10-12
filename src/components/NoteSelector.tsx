@@ -324,19 +324,18 @@ export function NoteSelector({
               <span className="mr-1 inline-flex items-center gap-1 font-semibold text-foreground">
                 <Heart className="h-3.5 w-3.5 fill-current" aria-hidden="true" />
                 {lovedNotes.length}
-                <span className="sr-only">loved</span>
+                <span className="sr-only"> loved</span>
               </span>
             )}
             {avoidedNotes.length > 0 && (
               <span className="mr-1 inline-flex items-center gap-1 font-semibold text-destructive">
                 <X className="h-3.5 w-3.5" aria-hidden="true" />
                 {avoidedNotes.length}
-                <span className="sr-only">avoided</span>
+                <span className="sr-only"> avoided</span>
               </span>
             )}
             {pickedCount > 0 && "· "}
-            <span className="font-semibold text-foreground">{matchCount}</span>
-            <span className="max-sm:hidden"> fragrances</span> match
+            <span className="font-semibold text-foreground">{matchCount}</span> fragrances match
             {lovedNotes.length > 1 && (
               <>
                 {" "}
