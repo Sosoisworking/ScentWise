@@ -31,10 +31,10 @@ export function OccasionStep({
 }) {
   return (
     <section className="mx-auto max-w-[900px] text-center animate-scent-in">
-      <h1 className="font-serif text-4xl font-bold text-foreground sm:text-6xl">
+      <h1 className="font-serif text-3xl font-bold text-foreground sm:text-6xl">
         Where will you wear it?
       </h1>
-      <div className="mt-10 grid grid-cols-2 gap-3 lg:grid-cols-4">
+      <div className="mt-6 grid grid-cols-2 gap-3 sm:mt-10 lg:grid-cols-4">
         {occasions.map((occasion) => {
           const Icon = ICONS[occasion.key];
           return (
@@ -43,7 +43,7 @@ export function OccasionStep({
               type="button"
               aria-pressed={selected === occasion.key}
               onClick={() => onSelect(occasion.key)}
-              className={`rounded-2xl border bg-card px-4 py-6 shadow-scent transition duration-300 hover:-translate-y-1 hover:border-primary hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${selected === occasion.key ? "border-primary ring-2 ring-primary" : ""}`}
+              className={`rounded-2xl border bg-card px-4 py-4 shadow-scent sm:py-6 transition duration-300 hover:-translate-y-1 hover:border-primary hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${selected === occasion.key ? "border-primary ring-2 ring-primary" : ""}`}
             >
               <Icon
                 className="mx-auto h-7 w-7 text-primary"

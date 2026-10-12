@@ -19,11 +19,10 @@ export function priceSpan(fragrance: Fragrance): [number, number] {
   return [numbers[0] ?? 0, numbers[numbers.length - 1] ?? 0];
 }
 
-/** Band from the middle of the bottle's usual Canadian price range. */
+/** Band from the low end of the bottle's usual Canadian price: where you can usually get it. */
 export function priceBand(fragrance: Fragrance): PriceBand {
-  const [low, high] = priceSpan(fragrance);
-  const middle = (low + high) / 2;
-  if (middle < 100) return PRICE_BANDS[0];
-  if (middle < 200) return PRICE_BANDS[1];
+  const [low] = priceSpan(fragrance);
+  if (low < 100) return PRICE_BANDS[0];
+  if (low < 200) return PRICE_BANDS[1];
   return PRICE_BANDS[2];
 }

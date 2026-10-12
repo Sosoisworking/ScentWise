@@ -5,7 +5,7 @@ const STEPS = 7;
 export function StepIndicator({ step }: StepIndicatorProps) {
   return (
     <div className="flex items-center gap-2.5">
-      <ol className="flex items-center gap-1" aria-hidden="true">
+      <ol className="hidden items-center gap-1 sm:flex" aria-hidden="true">
         {Array.from({ length: STEPS }, (_, index) => (
           <li
             key={index}

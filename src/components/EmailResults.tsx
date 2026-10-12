@@ -56,7 +56,9 @@ function buildPlainText(args: Props): string {
     lines.push("");
   });
 
-  lines.push("Ranked by how many of your notes each one contains. Try a sample before you buy.");
+  lines.push(
+    "Fragrances that fit who it's for and your wear time come first, then by how many of your notes they contain. Try a sample before you buy.",
+  );
   lines.push(`Take the quiz again: ${SITE_URL}`);
   return lines.join("\n");
 }
@@ -138,7 +140,7 @@ export function EmailResults(props: Props) {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="you@example.com"
-              className="mt-2 w-full rounded-full border bg-background px-4 py-3 text-sm text-foreground outline-none transition focus:border-primary focus-visible:ring-2 focus-visible:ring-ring"
+              className="mt-2 w-full rounded-full border bg-background px-4 py-3 text-base text-foreground sm:text-sm outline-none transition focus:border-primary focus-visible:ring-2 focus-visible:ring-ring"
             />
           </label>
 

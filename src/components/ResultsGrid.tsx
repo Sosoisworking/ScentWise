@@ -3,7 +3,7 @@ import { Link } from "@tanstack/react-router";
 import type { Answers } from "../App";
 import { OCCASION_OPTIONS, SEASON_OPTIONS } from "../data/quizOptions";
 import { PRICE_BANDS, type PriceBandId } from "../utils/price";
-import { getRefinedResults } from "../utils/scoring";
+import { fitsAnswers, getRefinedResults } from "../utils/scoring";
 import { EmailResults } from "./EmailResults";
 import { FragranceCard } from "./FragranceCard";
 
@@ -84,10 +84,16 @@ function BudgetFilter({
 }) {
   return (
     <div
-      className="mt-4 flex flex-wrap justify-center gap-2"
+      className="mt-4 flex flex-wrap items-center justify-center gap-1.5 sm:gap-2"
       role="radiogroup"
-      aria-label="Price range, typical Canadian price"
+      aria-labelledby="budget-label"
     >
+      <span
+        id="budget-label"
+        className="w-full text-center text-xs text-muted-foreground sm:w-auto sm:pr-1 sm:text-sm"
+      >
+        Lowest usual price
+      </span>
       {BUDGET_OPTIONS.map((option) => {
         const active = value === option.id;
         return (
@@ -97,7 +103,7 @@ function BudgetFilter({
             role="radio"
             aria-checked={active}
             onClick={() => onChange(option.id)}
-            className={`min-h-11 rounded-full border px-4 text-sm font-semibold tabular-nums transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${active ? "border-primary bg-primary text-primary-foreground" : "bg-card text-card-foreground hover:border-primary hover:bg-accent"}`}
+            className={`min-h-11 rounded-full border px-3 text-xs font-semibold tabular-nums transition sm:px-4 sm:text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${active ? "border-primary bg-primary text-primary-foreground" : "bg-card text-card-foreground hover:border-primary hover:bg-accent"}`}
           >
             {option.label}
           </button>
@@ -119,6 +125,8 @@ export function ResultsGrid({
   const PAGE = 8;
   const [visibleCount, setVisibleCount] = useState(PAGE);
   const [shareStatus, setShareStatus] = useState("");
+  // Phones see a one-line summary of the answers; tapping it opens the chips to change one.
+  const [answersOpen, setAnswersOpen] = useState(false);
   const allResults = getRefinedResults(
     season,
     occasion,
@@ -161,25 +169,25 @@ export function ResultsGrid({
   return (
     <section className="mx-auto max-w-[900px] animate-scent-in">
       {viewingShared && (
-        <div className="mb-8 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 rounded-2xl border bg-card px-5 py-4 text-center text-sm text-card-foreground shadow-scent">
-          <p>You're looking at a shortlist someone shared with you.</p>
+        <p className="mb-4 flex flex-wrap items-center justify-center gap-x-1 text-center text-sm text-muted-foreground">
+          Someone shared this shortlist with you.
           <button
             type="button"
             onClick={onStartFresh}
-            className="min-h-11 rounded-full bg-primary px-5 font-bold text-primary-foreground transition hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="min-h-11 px-1 font-semibold text-primary underline-offset-2 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
-            Take the quiz yourself
+            Take the quiz yourself →
           </button>
-        </div>
+        </p>
       )}
 
       <div className="text-center">
-        <h1 className="font-serif text-4xl font-bold text-foreground sm:text-6xl">
+        <h1 className="font-serif text-3xl font-bold text-foreground sm:text-6xl">
           {empty ? "No matches yet" : "Your shortlist to sample"}
         </h1>
-        <p className="mx-auto mt-4 max-w-[34rem] text-base text-muted-foreground">
+        <p className="mx-auto mt-3 max-w-[34rem] text-sm text-muted-foreground sm:mt-4 sm:text-base">
           {!empty
-            ? "Ranked by how many of your notes each one contains, then by how well it fits your other answers. Try a sample before you buy a bottle."
+            ? "Fragrances that fit who it's for and how long you want it to last come first, ranked by how many of your notes they contain. Try a sample before you buy a bottle."
             : budget
               ? "Nothing in this price range fits your answers. Try another price range."
               : avoidedNotes.length > 0
@@ -188,8 +196,31 @@ export function ResultsGrid({
         </p>
       </div>
 
+      <button
+        type="button"
+        onClick={() => setAnswersOpen((open) => !open)}
+        aria-expanded={answersOpen}
+        aria-controls="answer-chips"
+        className="mx-auto mt-6 flex min-h-11 max-w-full items-center gap-2 rounded-3xl border bg-card px-4 py-2 text-left text-sm text-card-foreground sm:hidden"
+      >
+        <span className="min-w-0">
+          {[
+            SEASON_OPTIONS.find((o) => o.key === season)?.label,
+            OCCASION_OPTIONS.find((o) => o.key === occasion)?.label,
+            GENDER_LABEL[gender],
+            LONGEVITY_LABEL[longevity],
+            selectedNotes.length ? `loves ${selectedNotes.join(", ")}` : "",
+          ]
+            .filter(Boolean)
+            .join(" · ")}
+        </span>
+        <span className="shrink-0 font-semibold text-primary">
+          {answersOpen ? "Done" : "Change"}
+        </span>
+      </button>
       <div
-        className="mt-8 flex flex-wrap justify-center gap-2"
+        id="answer-chips"
+        className={`mt-4 flex-wrap justify-center gap-2 sm:mt-8 sm:flex ${answersOpen ? "flex" : "hidden"}`}
         role="group"
         aria-label="Your answers"
       >
@@ -244,13 +275,19 @@ export function ResultsGrid({
           Start over
         </button>
       </div>
-      <p aria-live="polite" className="mt-2 h-5 text-center text-sm text-muted-foreground">
+      <p aria-live="polite" className="mt-1 min-h-5 text-center text-sm text-muted-foreground">
         {shareStatus}
       </p>
 
       {!empty && (
         <>
-          <div className="mt-8 grid gap-5 lg:grid-cols-2">
+          {!fitsAnswers(results[0], gender, longevity) && (
+            <p className="mx-auto mt-6 max-w-[34rem] rounded-2xl border bg-card px-5 py-4 text-center text-sm text-card-foreground">
+              Nothing here fits every answer, so these are the closest we have. Each card says what
+              doesn't fit.
+            </p>
+          )}
+          <div className="mt-6 grid gap-5 sm:mt-8 lg:grid-cols-2">
             {results.map((fragrance, index) => (
               <FragranceCard
                 key={fragrance.id}
@@ -258,6 +295,7 @@ export function ResultsGrid({
                 mode="result"
                 rank={index + 1}
                 selectedNotes={selectedNotes}
+                answers={{ season, occasion, gender, longevity }}
               />
             ))}
           </div>

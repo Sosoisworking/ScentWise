@@ -16,23 +16,23 @@ export function MarketedForStep({
 }) {
   return (
     <section className="mx-auto max-w-[900px] text-center animate-scent-in">
-      <h1 className="font-serif text-4xl font-bold tracking-normal text-foreground sm:text-6xl">
+      <h1 className="font-serif text-3xl font-bold tracking-normal text-foreground sm:text-6xl">
         Who is it marketed for?
       </h1>
       <p className="mx-auto mt-4 max-w-[34rem] text-base text-muted-foreground">
         Scent has no gender; this only decides which bottles we lean towards. Skip it with No
         preference.
       </p>
-      <div className="mt-10 grid gap-4 sm:grid-cols-2">
+      <div className="mt-6 grid grid-cols-2 gap-3 sm:mt-10 sm:gap-4">
         {options.map((option) => (
           <button
             key={option.key}
             type="button"
             aria-pressed={selected === option.key}
             onClick={() => onSelect(option.key)}
-            className={`rounded-2xl border bg-card p-6 text-left shadow-scent transition duration-300 hover:-translate-y-1 hover:border-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${selected === option.key ? "border-primary ring-2 ring-primary" : ""}`}
+            className={`rounded-2xl border bg-card p-4 text-left sm:p-6 shadow-scent transition duration-300 hover:-translate-y-1 hover:border-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${selected === option.key ? "border-primary ring-2 ring-primary" : ""}`}
           >
-            <span className="block font-serif text-2xl font-bold text-foreground">
+            <span className="block font-serif text-xl font-bold text-foreground sm:text-2xl">
               {option.label}
             </span>
             <span className="mt-1 block text-sm text-muted-foreground">{option.text}</span>

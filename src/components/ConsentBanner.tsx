@@ -71,9 +71,9 @@ export function ConsentBanner() {
       aria-label="Cookie consent"
       className="fixed inset-x-3 bottom-3 z-50 mx-auto max-w-[640px] animate-scent-in rounded-2xl border bg-card p-4 text-card-foreground shadow-scent-hover sm:p-5"
     >
-      <p className="text-sm leading-6 text-muted-foreground">
-        WhichScent uses essential storage to remember your theme and this choice. With your
-        permission, our advertising partners may also set cookies to show and measure ads. See our{" "}
+      <p className="text-sm leading-5 text-muted-foreground sm:leading-6">
+        We save your theme and this choice on your device. With your permission, ad partners may
+        also set cookies to show and measure ads. See our{" "}
         <Link
           to="/privacy"
           className="font-semibold text-primary underline-offset-2 hover:underline"
@@ -82,18 +82,18 @@ export function ConsentBanner() {
         </Link>
         .
       </p>
-      <div className="mt-3 flex flex-wrap justify-end gap-2">
+      <div className="mt-3 grid grid-cols-2 gap-2 sm:flex sm:justify-end">
         <button
           type="button"
           onClick={() => choose("declined")}
-          className="rounded-full border bg-card px-4 py-2 text-sm font-bold text-card-foreground transition hover:border-primary hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className="min-h-11 rounded-full border bg-card px-4 text-sm font-bold text-card-foreground transition hover:border-primary hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
         >
           Essential only
         </button>
         <button
           type="button"
           onClick={() => choose("accepted")}
-          className="rounded-full bg-primary px-4 py-2 text-sm font-bold text-primary-foreground transition hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className="min-h-11 rounded-full bg-primary px-4 text-sm font-bold text-primary-foreground transition hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
         >
           Accept all
         </button>
