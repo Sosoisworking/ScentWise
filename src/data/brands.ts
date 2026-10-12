@@ -27,7 +27,6 @@ export interface Brand {
   country: string;
   founded: number;
   tagline: string;
-  featured?: boolean;
 }
 
 // Bump this whenever brand entries change; the directory shows it as "Last updated".
@@ -166,7 +165,6 @@ export const BRANDS: Brand[] = [
     country: "France",
     founded: 2007,
     tagline: "The art of being unique — bold luxury in refillable flacons.",
-    featured: true,
   },
 
   // C
@@ -209,7 +207,6 @@ export const BRANDS: Brand[] = [
     country: "France",
     founded: 1910,
     tagline: "The definitive luxury house — timeless, irreplaceable, No. 5.",
-    featured: true,
   },
   {
     id: "c5",
@@ -260,7 +257,6 @@ export const BRANDS: Brand[] = [
     country: "UK/France",
     founded: 1760,
     tagline: "Appointed to royal houses — Aventus defined niche prestige.",
-    featured: true,
   },
 
   // D
@@ -283,7 +279,6 @@ export const BRANDS: Brand[] = [
     country: "France",
     founded: 1946,
     tagline: "Sauvage, J'adore, Miss Dior — French haute couture for skin.",
-    featured: true,
   },
   {
     id: "d3",
@@ -368,7 +363,6 @@ export const BRANDS: Brand[] = [
     country: "France",
     founded: 2000,
     tagline: "The editor of perfumers — every bottle credits its master nose.",
-    featured: true,
   },
 
   // G
@@ -487,7 +481,6 @@ export const BRANDS: Brand[] = [
     country: "UK",
     founded: 1994,
     tagline: "Layering culture redefined — understated British luxury.",
-    featured: true,
   },
   {
     id: "j3",
@@ -572,7 +565,6 @@ export const BRANDS: Brand[] = [
     country: "USA",
     founded: 2006,
     tagline: "Santal 33 defined a generation — handmade to order in every city.",
-    featured: true,
   },
   {
     id: "l5",
@@ -615,7 +607,6 @@ export const BRANDS: Brand[] = [
     country: "France",
     founded: 2009,
     tagline: "Baccarat Rouge 540 defined modern luxury niche perfumery.",
-    featured: true,
   },
   {
     id: "m3",
@@ -722,7 +713,6 @@ export const BRANDS: Brand[] = [
     country: "France",
     founded: 2009,
     tagline: "18th-century Versailles opulence — Delina and Layton are cult icons.",
-    featured: true,
   },
   {
     id: "p2",
@@ -819,7 +809,6 @@ export const BRANDS: Brand[] = [
     country: "USA",
     founded: 2006,
     tagline: "Black Orchid, Tobacco Vanille — Private Blend is niche luxury defined.",
-    featured: true,
   },
 
   // V

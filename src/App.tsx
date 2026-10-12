@@ -6,11 +6,12 @@ import { FragranceCard } from "./components/FragranceCard";
 import { ArrowLeft, RotateCcw } from "lucide-react";
 import { LongevityStep } from "./components/LongevityStep";
 import { MarketedForStep } from "./components/MarketedForStep";
-import { NoteSelector } from "./components/NoteSelector";
+import { NoteSelector, type NoteMode } from "./components/NoteSelector";
 import { OccasionStep } from "./components/OccasionStep";
 import { ResultsGrid } from "./components/ResultsGrid";
 import { SeasonStep } from "./components/SeasonStep";
 import { StepIndicator } from "./components/StepIndicator";
+import { WhereToBuyNote } from "./components/WhereToBuyNote";
 import {
   getInitialRecommendations,
   type GenderPreference,
@@ -124,7 +125,8 @@ export default function App({ search = {} }: { search?: QuizSearch }) {
   const [viewingShared, setViewingShared] = useState(false);
   // Set when a summary chip on the results sends the visitor back to change one answer.
   const [editing, setEditing] = useState(false);
-  const [undo, setUndo] = useState<{ answers: Answers; step: number } | null>(null);
+  // Restart and Clear can be undone for a few seconds; the label says which happened.
+  const [undo, setUndo] = useState<{ answers: Answers; step: number; label: string } | null>(null);
 
   useEffect(() => {
     const saved = loadSaved();
@@ -201,7 +203,7 @@ export default function App({ search = {} }: { search?: QuizSearch }) {
   };
 
   const restart = () => {
-    setUndo({ answers, step });
+    setUndo({ answers, step, label: "Quiz restarted." });
     startFresh();
   };
 
@@ -243,21 +245,18 @@ export default function App({ search = {} }: { search?: QuizSearch }) {
     [answers.gender, answers.season, answers.occasion, answers.longevity],
   );
 
-  // Tap cycle on a note: not selected → loved → avoided → not selected.
-  const cycleNote = (note: string) => {
+  // A note tapped in Love or Avoid mode joins that list (leaving the other), or leaves it if
+  // it was already there.
+  const toggleNote = (note: string, mode: NoteMode) => {
     setAnswers((current) => {
-      const without = (list: string[]) => list.filter((item) => item !== note);
-      if (current.selectedNotes.includes(note)) {
-        return {
-          ...current,
-          selectedNotes: without(current.selectedNotes),
-          avoidedNotes: [...current.avoidedNotes, note],
-        };
-      }
-      if (current.avoidedNotes.includes(note)) {
-        return { ...current, avoidedNotes: without(current.avoidedNotes) };
-      }
-      return { ...current, selectedNotes: [...current.selectedNotes, note] };
+      const loved = current.selectedNotes.filter((n) => n !== note);
+      const avoided = current.avoidedNotes.filter((n) => n !== note);
+      const had = (mode === "loved" ? current.selectedNotes : current.avoidedNotes).includes(note);
+      return {
+        ...current,
+        selectedNotes: mode === "loved" && !had ? [...loved, note] : loved,
+        avoidedNotes: mode === "avoided" && !had ? [...avoided, note] : avoided,
+      };
     });
   };
 
@@ -272,8 +271,10 @@ export default function App({ search = {} }: { search?: QuizSearch }) {
     }));
   };
 
-  const clearNotes = () =>
+  const clearNotes = () => {
+    setUndo({ answers, step, label: "Notes cleared." });
     setAnswers((current) => ({ ...current, selectedNotes: [], avoidedNotes: [] }));
+  };
 
   const setLongevity = (longevity: LongevityPreference) => {
     setAnswers((current) => ({ ...current, longevity }));
@@ -332,15 +333,20 @@ export default function App({ search = {} }: { search?: QuizSearch }) {
                     <FragranceCard key={fragrance.id} fragrance={fragrance} mode="initial" />
                   ))}
                 </div>
+                <WhereToBuyNote />
               </section>
             )}
             {step === 6 && (
               <NoteSelector
                 lovedNotes={answers.selectedNotes}
                 avoidedNotes={answers.avoidedNotes}
-                onCycle={cycleNote}
+                onToggle={toggleNote}
                 onApplyVibe={applyVibe}
                 onClear={clearNotes}
+                season={answers.season}
+                occasion={answers.occasion}
+                gender={answers.gender}
+                budget={answers.budget}
                 longevity={answers.longevity}
                 onLongevityChange={setLongevity}
                 onSubmit={() => answer({}, RESULTS)}
@@ -404,7 +410,7 @@ export default function App({ search = {} }: { search?: QuizSearch }) {
           role="status"
           className="fixed inset-x-3 bottom-[calc(0.75rem+var(--consent-offset,0px))] z-50 mx-auto flex max-w-[420px] items-center justify-between gap-4 rounded-full bg-foreground py-2 pl-5 pr-2 text-sm text-background shadow-scent-hover"
         >
-          <span>Quiz restarted.</span>
+          <span>{undo.label}</span>
           <button
             type="button"
             onClick={undoRestart}

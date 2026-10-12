@@ -79,7 +79,7 @@ export const ARTICLES: Article[] = [
       "Fresh, citrus and aquatic picks that hold up in the heat — ten options that usually sit under $150 CAD.",
     category: "Seasonal Guides",
     published: "2026-03-02",
-    updated: "2026-08-23",
+    updated: "2026-10-12",
     image: summerImg,
     imageAlt: "Citrus slices, mint leaves and a clear glass fragrance bottle on sunlit stone",
     related: [
@@ -98,7 +98,7 @@ export const ARTICLES: Article[] = [
       "Vanilla, amber, spice and smoke: ten cold-weather fragrances that usually stay under $150 CAD.",
     category: "Seasonal Guides",
     published: "2026-03-09",
-    updated: "2026-08-23",
+    updated: "2026-10-12",
     image: winterImg,
     imageAlt: "Dark amber fragrance bottle beside cinnamon sticks and a wool knit in moody light",
     related: [

@@ -22,7 +22,7 @@ export const Route = createFileRoute("/brands")({
       { property: "og:title", content: "Official Fragrance Brand Directory — WhichScent" },
       {
         property: "og:description",
-        content: "Every fragrance house. One place. Official brand websites only.",
+        content: "Designer, niche and luxury fragrance houses, each linked to its own website.",
       },
       { property: "og:url", content: `${SITE_URL}/brands` },
     ],
@@ -69,7 +69,6 @@ function BrandDirectory() {
   const grouped = useMemo(() => groupByLetter(filtered), [filtered]);
   const letters = useMemo(() => Object.keys(grouped).sort(), [grouped]);
   const availableLetters = useMemo(() => new Set(letters), [letters]);
-  const featured = useMemo(() => BRANDS.filter((b) => b.featured), []);
   const isSearching = query.trim().length > 0;
 
   const lastUpdated = new Date(`${BRANDS_UPDATED}T12:00:00`).toLocaleDateString("en-CA", {
@@ -101,22 +100,12 @@ function BrandDirectory() {
         {/* Hero */}
         <section className="mt-6 text-center sm:mt-12">
           <h1 className="mx-auto max-w-3xl font-serif text-4xl font-bold leading-tight text-foreground sm:text-6xl">
-            Every fragrance house. One place.
+            {BRANDS.length} fragrance houses, straight to the source
           </h1>
           <p className="mx-auto mt-5 max-w-xl text-base text-muted-foreground">
-            {BRANDS.length} fragrance houses, each linked to its own website. No resellers, no
+            Designer, niche and luxury houses, each linked to its own website. No resellers, no
             marketplaces.
           </p>
-          <div className="mt-6 flex flex-wrap justify-center gap-2">
-            {[`${BRANDS.length} brands`, "3 categories", "Official sites only"].map((s) => (
-              <span
-                key={s}
-                className="rounded-full bg-card px-4 py-2 text-xs font-bold shadow-scent"
-              >
-                {s}
-              </span>
-            ))}
-          </div>
         </section>
 
         {/* Category Tabs */}
@@ -181,20 +170,6 @@ function BrandDirectory() {
             </p>
           )}
         </div>
-
-        {/* Featured */}
-        {!isSearching && category === "all" && (
-          <section className="mt-12">
-            <h2 className="font-serif text-2xl font-bold text-foreground">Editor's Picks</h2>
-            <div className="mt-4 -mx-5 flex gap-4 overflow-x-auto px-5 pb-2">
-              {featured.map((b) => (
-                <div key={b.id} className="w-[300px] shrink-0">
-                  <BrandCard brand={b} accent />
-                </div>
-              ))}
-            </div>
-          </section>
-        )}
 
         {/* Grid. The alphabet bar lives inside it so it can stay pinned while the list scrolls. */}
         <section className={isSearching ? "mt-8" : "mt-12"}>

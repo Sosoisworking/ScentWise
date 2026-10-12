@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { Link } from "@tanstack/react-router";
 import type { Answers } from "../App";
 import { OCCASION_OPTIONS, SEASON_OPTIONS } from "../data/quizOptions";
 import { PRICE_BANDS, type PriceBandId } from "../utils/price";
 import { fitsAnswers, getRefinedResults } from "../utils/scoring";
 import { EmailResults } from "./EmailResults";
 import { FragranceCard } from "./FragranceCard";
+import { WhereToBuyNote } from "./WhereToBuyNote";
 
 type ResultsGridProps = {
   answers: Answers;
@@ -310,15 +310,7 @@ export function ResultsGrid({
               </button>
             </div>
           )}
-          <p className="mt-10 text-center text-sm text-muted-foreground">
-            Prices are typical Canadian ranges and change often.{" "}
-            <Link
-              to="/retailers"
-              className="font-semibold text-primary underline-offset-2 hover:underline"
-            >
-              Compare retailers before you buy →
-            </Link>
-          </p>
+          <WhereToBuyNote />
           <EmailResults
             results={results}
             season={season}

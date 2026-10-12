@@ -2,9 +2,9 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ScrollToTopButton } from "../components/ScrollToTopButton";
 import { SiteHeader } from "../components/SiteHeader";
 import { SiteFooter } from "../components/SiteFooter";
-import { SITE_URL } from "../lib/site";
+import { CONTACT_EMAIL, SITE_URL } from "../lib/site";
 
-const EMAIL = "sohibcorp0706@gmail.com";
+const EMAIL = CONTACT_EMAIL;
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -69,7 +69,7 @@ function ContactPage() {
           <p className="text-xs font-bold uppercase tracking-wide text-muted-foreground">Email</p>
           <a
             href={`mailto:${EMAIL}`}
-            className="mt-1 block break-all font-serif text-2xl font-bold text-primary underline"
+            className="mt-1 block break-all font-serif text-2xl font-bold text-primary underline [font-variant-numeric:lining-nums]"
           >
             {EMAIL}
           </a>
