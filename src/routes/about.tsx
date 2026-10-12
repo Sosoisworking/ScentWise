@@ -30,7 +30,7 @@ function AboutPage() {
   return (
     <main className="min-h-screen bg-background text-foreground">
       <div className="scent-aura" aria-hidden="true" />
-      <SiteHeader current="home" breadcrumb="Home → About" />
+      <SiteHeader current="about" breadcrumb="Home › About" />
 
       <div className="relative z-10 mx-auto max-w-[820px] px-5 pb-16 pt-4">
         <h1 className="font-serif text-4xl font-bold sm:text-5xl">About WhichScent</h1>
@@ -53,11 +53,12 @@ function AboutPage() {
           </p>
           <p>
             Each fragrance gets a fit score out of 100 from five of your answers. The notes you love
-            count most: 30 points, or 40 if you skip longevity, and a note in the base of the
-            pyramid counts a little more than one that fades in the first few minutes. Occasion is
-            worth 20 to 25 points, season 15, who it's marketed for 20, and staying power 15. A near
-            miss, like medium wear when you asked for long, earns partial credit. Anything
-            containing a note you said to avoid is removed entirely.
+            count most: 30 points, or more if you skip longevity or choose No preference for who
+            it's marketed for, and a note in the base of the pyramid counts a little more than one
+            that fades in the first few minutes. Occasion is worth 20 to 25 points, season 15, who
+            it's marketed for 20, and staying power 15. A near miss, like medium wear when you asked
+            for long, earns partial credit. Anything containing a note you said to avoid is removed
+            entirely.
           </p>
           <p>
             Results are ranked first by how many of your loved notes each fragrance contains, so one

@@ -900,25 +900,3 @@ export const BRANDS: Brand[] = [
     tagline: "This is Her, This is Him — rock-luxe attitude in a bottle.",
   },
 ];
-
-const FLAGS: Record<string, string> = {
-  Italy: "🇮🇹",
-  France: "🇫🇷",
-  UK: "🇬🇧",
-  USA: "🇺🇸",
-  Oman: "🇴🇲",
-  Sweden: "🇸🇪",
-  Spain: "🇪🇸",
-  Japan: "🇯🇵",
-  Germany: "🇩🇪",
-  Switzerland: "🇨🇭",
-  Venezuela: "🇻🇪",
-  Belgium: "🇧🇪",
-  UAE: "🇦🇪",
-  Turkey: "🇹🇷",
-  Netherlands: "🇳🇱",
-  "UK/France": "🇬🇧🇫🇷",
-  "UAE/USA": "🇦🇪🇺🇸",
-};
-
-export const flagFor = (country: string) => FLAGS[country] ?? "🌍";

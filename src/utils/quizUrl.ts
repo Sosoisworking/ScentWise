@@ -1,11 +1,17 @@
 import { NOTE_BY_NAME } from "../data/notes";
-import { GENDER_KEYS, LONGEVITY_KEYS, OCCASION_OPTIONS, SEASON_OPTIONS } from "../data/quizOptions";
+import {
+  GENDER_KEYS,
+  LEGACY_OCCASIONS,
+  LONGEVITY_KEYS,
+  OCCASION_OPTIONS,
+  SEASON_OPTIONS,
+} from "../data/quizOptions";
 import type { GenderPreference, LongevityPreference } from "./scoring";
 import { PRICE_BANDS, type PriceBandId } from "./price";
 
 // Quiz answers in the homepage URL, so a results link can be shared and reopened:
 // /?season=fall&longevity=long&occasion=date&gender=female&love=Vanilla,Rose&avoid=Oud&budget=100-200
-// Steps 2–5 carry only ?step=N, so the browser's Back button moves between steps.
+// Steps 2–6 carry only ?step=N, so the browser's Back button moves between steps.
 
 export interface QuizSearch {
   season?: string;
@@ -52,7 +58,8 @@ const notesFrom = (value: string | undefined) =>
 
 /** A complete, valid set of answers from the URL, or null. */
 export function parseSharedQuiz(search: QuizSearch): SharedQuiz | null {
-  const { season, occasion, gender, longevity } = search;
+  const { season, gender, longevity } = search;
+  const occasion = LEGACY_OCCASIONS[search.occasion ?? ""] ?? search.occasion;
   if (!SEASON_OPTIONS.some((s) => s.key === season)) return null;
   if (!OCCASION_OPTIONS.some((o) => o.key === occasion)) return null;
   if (!GENDER_KEYS.includes(gender as (typeof GENDER_KEYS)[number])) return null;
@@ -83,8 +90,8 @@ export function toQuizSearch(quiz: SharedQuiz): QuizSearch {
   return search;
 }
 
-/** The in-progress step (2–5) named in the URL, if any. */
+/** The in-progress step (2–6) named in the URL, if any. */
 export function parseStep(search: QuizSearch): number | null {
   const step = Number(search.step);
-  return Number.isInteger(step) && step >= 2 && step <= 5 ? step : null;
+  return Number.isInteger(step) && step >= 2 && step <= 6 ? step : null;
 }

@@ -118,9 +118,10 @@ export function ArticleBody({ body }: { body: string }) {
                   key={itemIndex}
                   className="flex gap-3 text-base leading-[1.7] text-muted-foreground"
                 >
-                  <span aria-hidden className="mt-[2px] shrink-0 text-primary-soft">
-                    ✦
-                  </span>
+                  <span
+                    aria-hidden
+                    className="mt-[0.7em] h-1.5 w-1.5 shrink-0 rounded-full bg-primary-soft"
+                  />
                   <span>{inline(item, `${key}-${itemIndex}`)}</span>
                 </li>
               ))}

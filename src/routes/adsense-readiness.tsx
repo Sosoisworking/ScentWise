@@ -221,7 +221,7 @@ function ReadinessPage() {
   return (
     <main className="min-h-screen bg-background text-foreground">
       <div className="scent-aura" aria-hidden="true" />
-      <SiteHeader current="home" breadcrumb="Home → AdSense readiness (internal)" />
+      <SiteHeader current="home" breadcrumb="Home › AdSense readiness (internal)" />
 
       <div className="relative z-10 mx-auto max-w-[880px] px-5 pb-16 pt-4">
         <p className="text-xs font-bold uppercase tracking-wide text-muted-foreground">

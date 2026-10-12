@@ -1,6 +1,6 @@
 type StepIndicatorProps = { step: number };
 
-const STEPS = 6;
+const STEPS = 7;
 
 export function StepIndicator({ step }: StepIndicatorProps) {
   return (

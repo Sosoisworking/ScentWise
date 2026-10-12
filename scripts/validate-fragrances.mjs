@@ -11,24 +11,7 @@ const taxonomy = JSON.parse(read("src/data/note-taxonomy.json"));
 
 const SEASONS = ["spring", "summer", "fall", "winter"];
 // Must match the keys in src/data/quizOptions.ts (checked below).
-const OCCASIONS = [
-  "date",
-  "office",
-  "party",
-  "everyday",
-  "fresh",
-  "boozy",
-  "luxury",
-  "casual",
-  "gym",
-  "vacation",
-  "wedding",
-  "cozy",
-  "black-tie",
-  "brunch",
-  "rainy",
-  "signature",
-];
+const OCCASIONS = ["everyday", "office", "date", "party", "formal", "vacation", "gym", "cozy"];
 const FAMILIES = [
   "Citrus",
   "Floral",

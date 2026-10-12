@@ -324,9 +324,10 @@ function LearnPage() {
                 <ul className="mt-3 space-y-2 text-sm text-foreground">
                   {topic.tips.map((tip) => (
                     <li key={tip} className="flex gap-2">
-                      <span aria-hidden className="text-primary">
-                        ✦
-                      </span>
+                      <span
+                        aria-hidden
+                        className="mt-[0.55em] h-1.5 w-1.5 shrink-0 rounded-full bg-primary-soft"
+                      />
                       <span>{tip}</span>
                     </li>
                   ))}

@@ -1,6 +1,6 @@
 import type { Fragrance } from "../data/fragrances";
 import { priceBand, type PriceBandId } from "../utils/price";
-import { LongevityBadge, LongevityBar } from "./LongevityBar";
+import { LongevityBar } from "./LongevityBar";
 import { NotePills } from "./NotePills";
 import { explainMatch } from "../utils/noteMatching";
 
@@ -65,11 +65,6 @@ export function FragranceCard({
     <article className="flex h-full flex-col rounded-2xl border bg-card p-[1.3125rem] shadow-scent transition duration-300 hover:-translate-y-1 hover:shadow-scent-hover">
       <div className="flex items-start justify-between gap-4">
         <div>
-          {label && (
-            <p className="mb-2 text-xs font-bold uppercase tracking-[0.18em] text-primary">
-              {label}
-            </p>
-          )}
           <p className="text-sm font-semibold text-muted-foreground">{fragrance.brand}</p>
           <h2 className="font-serif text-2xl font-bold leading-tight text-card-foreground">
             {fragrance.name}
@@ -82,7 +77,7 @@ export function FragranceCard({
         <span
           className={`rounded-full px-3 py-1 text-xs font-bold uppercase tabular-nums ${badgeClass[priceBand(fragrance).id]}`}
         >
-          {fragrance.priceDisplay}
+          {label ? `${label} · ${fragrance.priceDisplay}` : fragrance.priceDisplay}
         </span>
         {mode === "result" && (
           <span className="rounded-full bg-secondary px-3 py-1 text-xs font-bold uppercase text-secondary-foreground">

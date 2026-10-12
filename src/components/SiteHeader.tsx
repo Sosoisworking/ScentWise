@@ -24,7 +24,7 @@ export function SiteHeader({
   right,
 }: SiteHeaderProps) {
   return (
-    <header className="relative z-10 mx-auto flex max-w-[1100px] flex-wrap items-center justify-between gap-x-4 gap-y-3 px-5 py-4 sm:py-6">
+    <header className="relative z-10 mx-auto flex w-full max-w-[1100px] flex-wrap items-center justify-between gap-x-4 gap-y-3 px-5 py-4 sm:py-6">
       <Link to="/" className="min-w-0 shrink">
         <p className="font-serif text-2xl font-bold text-foreground">WhichScent</p>
         <p className="text-sm text-muted-foreground">{tagline}</p>

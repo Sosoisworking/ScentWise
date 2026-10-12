@@ -16,7 +16,12 @@ type ResultsGridProps = {
   onStartFresh: () => void;
 };
 
-const GENDER_LABEL: Record<string, string> = { male: "Men", female: "Women", unisex: "Unisex" };
+const GENDER_LABEL: Record<string, string> = {
+  male: "Men",
+  female: "Women",
+  unisex: "Unisex",
+  any: "No preference",
+};
 const LONGEVITY_LABEL: Record<string, string> = {
   short: "Short wear",
   medium: "Medium wear",
@@ -198,15 +203,15 @@ export function ResultsGrid({
         <AnswerChip
           name="Occasion"
           value={OCCASION_OPTIONS.find((o) => o.key === occasion)?.label ?? occasion}
-          onClick={() => onEdit(3)}
+          onClick={() => onEdit(4)}
         />
         <AnswerChip
           name="Loves"
           value={selectedNotes.length ? selectedNotes.join(", ") : "No notes yet"}
-          onClick={() => onEdit(5)}
+          onClick={() => onEdit(6)}
         />
         {avoidedNotes.length > 0 && (
-          <AnswerChip name="Avoids" value={avoidedNotes.join(", ")} onClick={() => onEdit(5)} />
+          <AnswerChip name="Avoids" value={avoidedNotes.join(", ")} onClick={() => onEdit(6)} />
         )}
       </div>
 
@@ -216,7 +221,7 @@ export function ResultsGrid({
         {empty && !budget && (
           <button
             type="button"
-            onClick={() => onEdit(5)}
+            onClick={() => onEdit(6)}
             className="min-h-11 rounded-full bg-primary px-6 text-sm font-bold text-primary-foreground transition hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             Edit notes

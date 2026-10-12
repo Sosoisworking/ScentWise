@@ -1,5 +1,5 @@
 import type { Brand } from "../../data/brands";
-import { flagFor } from "../../data/brands";
+import { Star } from "lucide-react";
 
 const categoryStyles: Record<Brand["category"], { label: string; cls: string }> = {
   designer: { label: "Designer", cls: "bg-budget text-budget-foreground" },
@@ -17,7 +17,8 @@ export function BrandCard({ brand, accent = false }: { brand: Brand; accent?: bo
     >
       {brand.featured && (
         <span className="absolute right-3 top-3 rounded-full bg-primary/10 px-2 py-0.5 text-xs font-bold uppercase tracking-wide text-primary">
-          ★ Featured
+          <Star className="mr-1 inline h-3 w-3 fill-current align-[-1px]" aria-hidden="true" />
+          Featured
         </span>
       )}
       <div className="flex items-start justify-between gap-2 pr-16">
@@ -27,9 +28,7 @@ export function BrandCard({ brand, accent = false }: { brand: Brand; accent?: bo
         <span className={`rounded-full px-2 py-0.5 text-xs font-semibold ${cat.cls}`}>
           {cat.label}
         </span>
-        <span className="text-xs text-muted-foreground">
-          {flagFor(brand.country)} {brand.country}
-        </span>
+        <span className="text-xs text-muted-foreground">{brand.country}</span>
         <span className="text-xs text-muted-foreground">· est. {brand.founded}</span>
       </div>
       <p className="mt-3 line-clamp-2 text-sm leading-relaxed text-muted-foreground">

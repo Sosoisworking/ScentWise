@@ -2,11 +2,12 @@ import { FRAGRANCES, type Fragrance } from "../data/fragrances";
 import { containsAnyNote, matchNote } from "./noteMatching";
 import { PRICE_BANDS, priceBand, type PriceBandId } from "./price";
 
-export type GenderPreference = "male" | "female" | "unisex" | "";
+/** "any" is an explicit "no preference"; "" means not answered. Neither affects the score. */
+export type GenderPreference = "male" | "female" | "unisex" | "any" | "";
 export type LongevityPreference = "short" | "medium" | "long" | "";
 
 function getGenderAffinity(fragrance: Fragrance, gender: GenderPreference): number {
-  if (!gender) return 0;
+  if (!gender || gender === "any") return 0;
   const { marketedFor } = fragrance;
   if (gender === "unisex") return marketedFor === "unisex" ? 1 : 0.45;
   if (marketedFor === gender) return 1;
@@ -35,10 +36,11 @@ export function scoreFragrance(
   season: string,
   occasion: string,
   lovedNotes: string[],
-  gender: GenderPreference = "",
+  genderPreference: GenderPreference = "",
   longevity: LongevityPreference = "",
 ): number {
   let score = 0;
+  const gender = genderPreference === "any" ? "" : genderPreference;
   const noteScore =
     lovedNotes.length > 0
       ? lovedNotes.reduce((sum, note) => sum + matchNote(fragrance, note).weight, 0) /
