@@ -147,7 +147,7 @@ export function NoteSelector({
     <>
       <section className="mx-auto max-w-[900px] animate-scent-in pb-44">
         <div className="text-center">
-          <h1 className="font-serif text-4xl font-bold text-foreground sm:text-6xl">
+          <h1 className="font-serif text-3xl font-bold text-foreground sm:text-6xl">
             Pick what you love
           </h1>
           <p id={hintId} className="mx-auto mt-4 max-w-xl text-sm text-muted-foreground">
@@ -236,7 +236,7 @@ export function NoteSelector({
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search notes, e.g. vanilla, oud, peony"
               autoComplete="off"
-              className="w-full rounded-full border bg-card px-5 py-3 text-sm text-card-foreground shadow-scent placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="w-full rounded-full border bg-card px-5 py-3 text-base text-card-foreground shadow-scent sm:text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             />
           </div>
 
@@ -336,8 +336,14 @@ export function NoteSelector({
                 <span className="sr-only"> avoided</span>
               </span>
             )}
-            {pickedCount > 0 && "· "}
-            <span className="font-semibold text-foreground">{matchCount}</span> fragrances match
+            {pickedCount === 0 ? (
+              "No notes picked yet. You can skip straight to results."
+            ) : (
+              <>
+                · <span className="font-semibold text-foreground">{matchCount}</span>{" "}
+                {lovedNotes.length > 0 ? "contain a note you love" : "left after your avoids"}
+              </>
+            )}
             {lovedNotes.length > 1 && (
               <>
                 {" "}

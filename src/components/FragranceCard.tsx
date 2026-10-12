@@ -163,34 +163,13 @@ export function FragranceCard({
         </p>
       )}
       <p className="mt-4 flex-1 text-sm leading-6 text-muted-foreground">{fragrance.description}</p>
-      {mode === "result" ? (
-        <>
-          {/* Phones get the pyramid on request, so a result fits closer to one screen. */}
-          <details className="group mt-4 sm:hidden">
-            <summary className="flex min-h-11 cursor-pointer list-none items-center gap-1 text-sm font-semibold text-primary [&::-webkit-details-marker]:hidden">
-              <span className="group-open:hidden">Show full note pyramid</span>
-              <span className="hidden group-open:inline">Hide note pyramid</span>
-            </summary>
-            <div className="mt-2">
-              <NotePills
-                top={fragrance.topNotes}
-                heart={fragrance.heartNotes}
-                base={fragrance.baseNotes}
-                highlight={match?.highlight ?? []}
-              />
-            </div>
-          </details>
-          <div className="mt-5 hidden sm:block">
-            <NotePills
-              top={fragrance.topNotes}
-              heart={fragrance.heartNotes}
-              base={fragrance.baseNotes}
-              highlight={match?.highlight ?? []}
-            />
-          </div>
-        </>
-      ) : (
-        <div className="mt-5">
+      {/* Phones get the pyramid on request, so a card fits closer to one screen. */}
+      <details className="group mt-4 sm:hidden">
+        <summary className="flex min-h-11 cursor-pointer list-none items-center gap-1 text-sm font-semibold text-primary [&::-webkit-details-marker]:hidden">
+          <span className="group-open:hidden">Show full note pyramid</span>
+          <span className="hidden group-open:inline">Hide note pyramid</span>
+        </summary>
+        <div className="mt-2">
           <NotePills
             top={fragrance.topNotes}
             heart={fragrance.heartNotes}
@@ -198,10 +177,21 @@ export function FragranceCard({
             highlight={match?.highlight ?? []}
           />
         </div>
-      )}
-      <div className="mt-5">
-        <LongevityBar longevity={fragrance.longevity} />
+      </details>
+      <div className="mt-5 hidden sm:block">
+        <NotePills
+          top={fragrance.topNotes}
+          heart={fragrance.heartNotes}
+          base={fragrance.baseNotes}
+          highlight={match?.highlight ?? []}
+        />
       </div>
+      {/* The fit line already states wear time when the visitor answered it. */}
+      {!(mode === "result" && answers?.longevity) && (
+        <div className="mt-5">
+          <LongevityBar longevity={fragrance.longevity} />
+        </div>
+      )}
       <div className={`mt-5 grid gap-2 ${buttonGridClass}`}>
         <a
           href={fragrance.fragrancebuyLink}

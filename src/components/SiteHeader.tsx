@@ -27,7 +27,7 @@ export function SiteHeader({
     <header className="relative z-10 mx-auto flex w-full max-w-[1100px] flex-wrap items-center justify-between gap-x-4 gap-y-3 px-5 py-4 sm:py-6">
       <Link to="/" className="min-w-0 shrink">
         <p className="font-serif text-2xl font-bold text-foreground">WhichScent</p>
-        <p className="text-sm text-muted-foreground">{tagline}</p>
+        <p className="hidden text-sm text-muted-foreground sm:block">{tagline}</p>
         {breadcrumb && <p className="mt-1 text-xs text-muted-foreground">{breadcrumb}</p>}
       </Link>
       <div className="flex items-center gap-2 md:order-last">
@@ -35,7 +35,7 @@ export function SiteHeader({
         {right && <div className="ml-1 sm:ml-2">{right}</div>}
       </div>
       <nav
-        className="-mx-5 flex w-[calc(100%+2.5rem)] items-center gap-2 overflow-x-auto px-5 pb-1 [scrollbar-width:none] md:mx-0 md:w-auto md:flex-1 md:justify-end md:overflow-visible md:px-0 md:pb-0 sm:gap-3 [&::-webkit-scrollbar]:hidden"
+        className="-mx-5 flex w-[calc(100%+2.5rem)] items-center gap-2 overflow-x-auto px-5 pb-1 [mask-image:linear-gradient(to_right,#000_85%,transparent)] [scrollbar-width:none] md:mx-0 md:[mask-image:none] md:w-auto md:flex-1 md:justify-end md:overflow-visible md:px-0 md:pb-0 sm:gap-3 [&::-webkit-scrollbar]:hidden"
         aria-label="Primary"
       >
         {NAV.map((item) => {

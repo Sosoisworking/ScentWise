@@ -26,24 +26,24 @@ export function LongevityStep({
 }) {
   return (
     <section className="mx-auto max-w-[900px] text-center animate-scent-in">
-      <h1 className="font-serif text-4xl font-bold tracking-normal text-foreground sm:text-6xl">
+      <h1 className="font-serif text-3xl font-bold tracking-normal text-foreground sm:text-6xl">
         How long should it last?
       </h1>
       <p className="mx-auto mt-4 max-w-[560px] text-base text-muted-foreground">
         Pick the longevity that fits your day.
       </p>
-      <div className="mt-10 grid gap-4 sm:grid-cols-3">
+      <div className="mt-6 grid gap-3 sm:mt-10 sm:grid-cols-3 sm:gap-4">
         {options.map((option) => (
           <button
             aria-pressed={selected === option.key}
             key={option.key}
             type="button"
             onClick={() => onSelect(option.key)}
-            className={`group rounded-2xl border bg-card p-7 text-left shadow-scent transition duration-300 hover:-translate-y-1 hover:border-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${selected === option.key ? "border-primary ring-2 ring-primary" : ""}`}
+            className={`group rounded-2xl border bg-card p-4 text-left sm:p-7 shadow-scent transition duration-300 hover:-translate-y-1 hover:border-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${selected === option.key ? "border-primary ring-2 ring-primary" : ""}`}
             aria-label={`Choose ${option.label} longevity`}
           >
             <LongevityMeter longevity={option.key} className="max-w-24" />
-            <span className="mt-5 block font-serif text-3xl font-bold text-foreground">
+            <span className="mt-3 block font-serif text-2xl font-bold text-foreground sm:mt-5 sm:text-3xl">
               {option.label}
             </span>
             <span className="mt-2 block text-sm text-muted-foreground">{option.text}</span>

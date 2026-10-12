@@ -152,7 +152,7 @@ function BrandDirectory() {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search brands — e.g. Creed, Byredo, Dior..."
-              className="h-12 w-full rounded-full border border-border bg-card px-6 pr-12 text-sm shadow-scent focus:border-primary focus:outline-none focus:ring-2 focus:ring-ring [&::-webkit-search-cancel-button]:appearance-none"
+              className="h-12 w-full rounded-full border border-border bg-card px-6 pr-12 text-base shadow-scent sm:text-sm focus:border-primary focus:outline-none focus:ring-2 focus:ring-ring [&::-webkit-search-cancel-button]:appearance-none"
               aria-label="Search brands"
             />
             {query && (

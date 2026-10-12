@@ -1,6 +1,7 @@
 import type { Fragrance } from "../data/fragrances";
 
 const levels: Fragrance["longevity"][] = ["short", "medium", "long"];
+const WEAR = { short: "Short wear", medium: "Medium wear", long: "Long wear" } as const;
 
 /** Three segments, filled up to the given wear time. */
 export function LongevityMeter({
@@ -27,9 +28,7 @@ export function LongevityBar({ longevity }: { longevity: Fragrance["longevity"] 
   return (
     <div className="space-y-2">
       <LongevityMeter longevity={longevity} />
-      <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
-        {longevity} longevity
-      </p>
+      <p className="text-xs font-semibold text-muted-foreground">{WEAR[longevity]}</p>
     </div>
   );
 }

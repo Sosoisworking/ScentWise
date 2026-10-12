@@ -319,7 +319,7 @@ export default function App({ search = {} }: { search?: QuizSearch }) {
             {step === 5 && (
               <section className="mx-auto max-w-[900px] animate-scent-in">
                 <div className="text-center">
-                  <h1 className="font-serif text-4xl font-bold text-foreground sm:text-6xl">
+                  <h1 className="font-serif text-3xl font-bold text-foreground sm:text-6xl">
                     Your first picks
                   </h1>
                   <p className="mx-auto mt-4 max-w-[34rem] text-base text-muted-foreground">

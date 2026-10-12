@@ -169,16 +169,16 @@ export function ResultsGrid({
   return (
     <section className="mx-auto max-w-[900px] animate-scent-in">
       {viewingShared && (
-        <div className="mb-8 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 rounded-2xl border bg-card px-5 py-4 text-center text-sm text-card-foreground shadow-scent">
-          <p>You're looking at a shortlist someone shared with you.</p>
+        <p className="mb-4 flex flex-wrap items-center justify-center gap-x-1 text-center text-sm text-muted-foreground">
+          Someone shared this shortlist with you.
           <button
             type="button"
             onClick={onStartFresh}
-            className="min-h-11 rounded-full bg-primary px-5 font-bold text-primary-foreground transition hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="min-h-11 px-1 font-semibold text-primary underline-offset-2 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
-            Take the quiz yourself
+            Take the quiz yourself →
           </button>
-        </div>
+        </p>
       )}
 
       <div className="text-center">
