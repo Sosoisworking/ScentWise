@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import type { Fragrance } from "../data/fragrances";
 import { SITE_URL } from "../lib/site";
+import { PRICE_BANDS, type PriceBandId } from "../utils/price";
 import type { GenderPreference, LongevityPreference } from "../utils/scoring";
 
 type Props = {
@@ -11,10 +12,20 @@ type Props = {
   longevity: LongevityPreference;
   selectedNotes: string[];
   avoidedNotes?: string[];
+  budget?: PriceBandId | "";
 };
 
 function buildPlainText(args: Props): string {
-  const { results, season, occasion, gender, longevity, selectedNotes, avoidedNotes = [] } = args;
+  const {
+    results,
+    season,
+    occasion,
+    gender,
+    longevity,
+    selectedNotes,
+    avoidedNotes = [],
+    budget = "",
+  } = args;
   const lines: string[] = [];
   lines.push("Your WhichScent shortlist");
   lines.push("=========================");
@@ -26,6 +37,7 @@ function buildPlainText(args: Props): string {
   if (longevity) prefs.push(`Longevity: ${longevity}`);
   if (selectedNotes.length) prefs.push(`Notes you love: ${selectedNotes.join(", ")}`);
   if (avoidedNotes.length) prefs.push(`Notes you avoid: ${avoidedNotes.join(", ")}`);
+  if (budget) prefs.push(`Price: ${PRICE_BANDS.find((b) => b.id === budget)?.label}`);
   if (prefs.length) {
     lines.push("Your preferences:");
     prefs.forEach((p) => lines.push(`  • ${p}`));

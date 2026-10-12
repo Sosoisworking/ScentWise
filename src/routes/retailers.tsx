@@ -152,8 +152,8 @@ function RetailersPage() {
             Shops to avoid: the warning signs
           </h2>
           <p className="mt-3 max-w-[34rem] text-base leading-relaxed text-muted-foreground">
-            Fake perfume is usually sold through convincing copies of real shops. The Canadian
-            Anti-Fraud Centre's warning signs, applied to fragrance:
+            Fake perfume is usually sold through convincing copies of real shops. These warning
+            signs draw largely on the Canadian Anti-Fraud Centre's guidance:
           </p>
           <ul className="mt-5 max-w-[40rem] list-disc space-y-2 pl-5 text-base leading-relaxed text-foreground">
             {WARNING_SIGNS.map((sign) => (

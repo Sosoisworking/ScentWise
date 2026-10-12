@@ -139,7 +139,7 @@ export const CROSS_BORDER_RULES: Array<{ title: string; text: string }> = [
   },
 ];
 
-/** Warning signs, from the Canadian Anti-Fraud Centre's counterfeit-goods guidance. */
+/** Warning signs, drawn largely from the Canadian Anti-Fraud Centre's counterfeit-goods guidance. */
 export const WARNING_SIGNS: string[] = [
   "A price far below every other shop, especially on a new or popular release.",
   'Ads on social media pushing "today only" or countdown-timer deals.',

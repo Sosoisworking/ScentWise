@@ -213,7 +213,7 @@ export function ResultsGrid({
       <BudgetFilter value={budget} onChange={onBudgetChange} />
 
       <div className="mt-6 flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
-        {empty && !budget ? (
+        {empty && !budget && (
           <button
             type="button"
             onClick={() => onEdit(5)}
@@ -221,7 +221,8 @@ export function ResultsGrid({
           >
             Edit notes
           </button>
-        ) : (
+        )}
+        {!empty && (
           <button
             type="button"
             onClick={share}
@@ -283,6 +284,7 @@ export function ResultsGrid({
             longevity={longevity}
             selectedNotes={selectedNotes}
             avoidedNotes={avoidedNotes}
+            budget={budget}
           />
         </>
       )}
