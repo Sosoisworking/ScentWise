@@ -1,7 +1,10 @@
 import { Link } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 
-/** Turns `[label](/path)` and `**bold**` into elements. */
+const linkClass =
+  "font-semibold text-primary underline decoration-primary/40 underline-offset-2 hover:decoration-primary";
+
+/** Turns `[label](/path)`, `[label](https://…)` and `**bold**` into elements. */
 function inline(text: string, keyPrefix: string): ReactNode[] {
   const nodes: ReactNode[] = [];
   const pattern = /\[([^\]]+)\]\(([^)]+)\)|\*\*([^*]+)\*\*/g;
@@ -12,13 +15,21 @@ function inline(text: string, keyPrefix: string): ReactNode[] {
     if (match.index > last) nodes.push(text.slice(last, match.index));
     if (match[1] && match[2]) {
       nodes.push(
-        <Link
-          key={`${keyPrefix}-l${i}`}
-          to={match[2]}
-          className="font-semibold text-primary underline decoration-primary/40 underline-offset-2 hover:decoration-primary"
-        >
-          {match[1]}
-        </Link>,
+        match[2].startsWith("https://") ? (
+          <a
+            key={`${keyPrefix}-l${i}`}
+            href={match[2]}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={linkClass}
+          >
+            {match[1]}
+          </a>
+        ) : (
+          <Link key={`${keyPrefix}-l${i}`} to={match[2]} className={linkClass}>
+            {match[1]}
+          </Link>
+        ),
       );
     } else if (match[3]) {
       nodes.push(

@@ -15,7 +15,7 @@ import {
   type GenderPreference,
   type LongevityPreference,
 } from "./utils/scoring";
-import { priceBand } from "./utils/price";
+import { priceBand, type PriceBandId } from "./utils/price";
 import {
   parseSharedQuiz,
   parseStep,
@@ -31,6 +31,7 @@ export type Answers = {
   gender: GenderPreference;
   selectedNotes: string[];
   avoidedNotes: string[];
+  budget: PriceBandId | "";
 };
 
 const emptyAnswers: Answers = {
@@ -40,6 +41,7 @@ const emptyAnswers: Answers = {
   gender: "",
   selectedNotes: [],
   avoidedNotes: [],
+  budget: "",
 };
 
 // Answers survive a refresh for as long as this browser tab is open.
@@ -72,6 +74,7 @@ function fromShared(shared: SharedQuiz): Answers {
     longevity: shared.longevity,
     selectedNotes: shared.loved,
     avoidedNotes: shared.avoided,
+    budget: shared.budget,
   };
 }
 
@@ -83,6 +86,7 @@ function toShared(answers: Answers): SharedQuiz {
     longevity: answers.longevity,
     loved: answers.selectedNotes,
     avoided: answers.avoidedNotes,
+    budget: answers.budget,
   };
 }
 
@@ -201,6 +205,13 @@ export default function App({ search = {} }: { search?: QuizSearch }) {
   };
 
   const goBack = () => go(Math.max(1, step - 1));
+
+  // Filtering by price stays on the results and updates the link in place.
+  const setBudget = (budget: PriceBandId | "") => {
+    const merged = { ...answers, budget };
+    setAnswers(merged);
+    go(6, merged, true);
+  };
 
   const initialRecommendations = useMemo(
     () =>
@@ -329,6 +340,7 @@ export default function App({ search = {} }: { search?: QuizSearch }) {
                 answers={answers}
                 viewingShared={viewingShared}
                 onEdit={editAnswer}
+                onBudgetChange={setBudget}
                 onRestart={restart}
                 onStartFresh={startFresh}
               />

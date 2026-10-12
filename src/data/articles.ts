@@ -610,95 +610,89 @@ Dupes aren't automatically scams, and expensive originals aren't automatically s
 
 If you simply want a scent profile you enjoy, an affordable alternative may make sense. If you want the exact fragrance and complete brand experience, buy the original from a reputable source. The important thing is knowing what you're actually purchasing — and our [fragrance quiz](/) can help you describe the profile you're chasing in the first place.`;
 
-const buyOnline = `Buying fragrance online can be convenient and affordable. You can compare prices across multiple retailers, discover brands that aren't available locally, and find promotions that may not be offered in stores.
+const buyOnline = `Buying fragrance online in Canada comes down to three questions: who is selling it, where it ships from, and what you'll actually pay by the time it reaches your door. A bottle that looks cheaper on a US site can cost more once duty, tax and fees are added, and a price that looks too good can be a fake.
 
-But a low price doesn't automatically make a website a good place to buy. Before purchasing, take a few minutes to evaluate the seller.
+This guide covers the Canadian side of each question. Our [retailer guide](/retailers) puts the shops side by side.
 
-## 1. Research the retailer
+## 1. Start with shops that ship from inside Canada
 
-Start with the retailer itself. Look for:
+A parcel that never crosses the border has no duty, no brokerage fee and no customs delay. Canadian shops fall into two groups.
 
-- Established contact information
-- Clear return policies
-- Customer service information
-- Secure checkout
-- Company information
-- Reviews from multiple sources
+- **Stores the brands sell through**, such as Sephora Canada, Shoppers Drug Mart and Holt Renfrew. You pay full retail, but stock comes from the brand, returns are easiest, and you can often test the scent in a store first.
+- **Canadian discounters**, such as FragranceBuy and PerfumeOnline. They buy from distributors and resellers rather than from the brands, so prices are lower but brand warranties may not apply and returns are stricter.
 
-Don't rely entirely on testimonials displayed on the retailer's own website. Our [retailer guide](/retailers) summarizes what to look for on the sites Canadians use most.
+## 2. Know what a US order really costs
 
-## 2. Understand the difference between authorized and independent sellers
+If you order from a US shop, these rules decide what's added when the parcel arrives:
 
-Not every legitimate fragrance retailer operates in exactly the same way. Some sellers are authorized retailers. Others may sell products through independent distribution channels.
+- **By courier** (UPS, FedEx, DHL): under C$40, no duty or sales tax. From C$40 to C$150, sales tax but no duty. Over C$150, duty and sales tax.
+- **By mail** (USPS to Canada Post): duty and tax apply above C$20.
+- **Duty on perfume**: Canada's general rate on perfume and eau de toilette is 6.5%. Trade agreements can lower it depending on where the bottle was made.
+- **Sales tax**: GST or HST, plus PST where it applies, is charged on the price plus duty.
+- **Fees**: couriers often add a brokerage fee when they collect duty and tax, and many Canadian cards charge about 2.5% on purchases in US dollars.
 
-These differences can affect:
+As an example, a C$180 bottle made in France and sent to Ontario by courier adds about C$11.70 in duty and C$24.92 in HST: roughly C$217 before any brokerage fee.
 
-- Pricing
-- Packaging
-- Availability
-- Warranty or return policies
-- Product sourcing
+## 3. Check where the bottle was made
 
-If authenticity is particularly important to you, investigate the retailer's sourcing and policies before purchasing.
+Since September 8, 2026, Canada adds a 50% surtax on perfume made in the United States, as part of its response to US tariffs. It applies even to orders under the thresholds above.
 
-## 3. Be careful with extremely low prices
+What counts is where the fragrance was made, not where the shop is. A French-made bottle shipped from a US warehouse isn't affected; a US-made one is, wherever you buy it. Check the "Made in" line on the product page or box. Canadian shops pay the surtax too when they import US-made stock, so their prices on those bottles may rise.
 
-Discounts happen. Clearance sales happen. Older packaging happens. But a price that seems dramatically lower than every other retailer deserves investigation.
+## 4. Grey market isn't the same as counterfeit
 
-Ask: why is this product so much cheaper? Don't automatically assume you've found an incredible deal.
+Grey-market fragrance is genuine product sold outside a brand's official Canadian distribution: excess stock, parallel imports and international distributors. It's legal in Canada and it's how discounters keep prices down. The trade-offs are no brand warranty, occasional packaging differences and stricter returns.
 
-## 4. Check the return policy
+A counterfeit is a different thing entirely: a copy made to pass as the real product. Our article on [dupes versus originals](/learn/dupes-vs-originals) covers the related question of openly "inspired-by" fragrances.
 
-Before paying, understand:
+## 5. Be wary of prices that look too good
 
-- Whether returns are accepted
-- How many days you have
-- Whether opened fragrances can be returned
-- Who pays return shipping
-- What happens if the product arrives damaged
+These warning signs, drawn largely from the Canadian Anti-Fraud Centre's guidance on counterfeit goods, apply directly to fragrance:
 
-A low price isn't attractive if you're unable to resolve a problem.
+- A price far below every other shop, especially on a new or popular release
+- Ads on social media pushing "today only" or countdown-timer deals
+- A Gmail, Hotmail or Yahoo address as the only contact
+- No physical address, no phone number or no written return policy
+- Marketplace sellers with little history, or "testers" and unboxed bottles with no proof of where they came from
 
-## 5. Protect your payment information
+Discounts and clearance sales are real. A price far below every other seller deserves a closer look before you pay.
 
-Use established payment methods and secure checkout systems. Avoid sending sensitive payment information through email, social media messages, or unofficial channels. Look for HTTPS in your browser and verify that you're actually on the retailer's intended domain.
+## 6. Read the return policy before you pay
 
-## 6. Understand grey-market fragrance
+Return terms vary more than prices do. At the time of writing, Sephora Canada accepts new or gently used products within 30 days, while Canadian discounters typically take back only unopened, sealed bottles within 7 to 14 days, charge return shipping, and may deduct a restocking fee of 25 to 50%.
 
-Grey-market products are generally genuine products sold outside a brand's preferred or authorized distribution network. Grey-market retail is not automatically synonymous with counterfeit products.
+Before you pay, check how many days you have, whether opened bottles qualify, who pays return shipping, and what happens if the bottle arrives damaged.
 
-However, consumers should understand that sourcing and warranty arrangements may differ. That is why retailer transparency matters.
+## 7. Pay in a way you can dispute
 
-## 7. Know the difference between grey market and counterfeit
+Use a credit card or a payment service that lets you dispute a charge, and avoid paying by e-transfer, gift card or cryptocurrency to a shop you don't know. Check that the address bar shows the shop's real domain before you enter card details.
 
-These terms should not be treated as interchangeable. A counterfeit product is designed to misrepresent itself as an authentic branded product. A grey-market product can be genuine while being sold through an alternative distribution channel.
+## 8. If a bottle turns out to be fake
 
-If you're unsure about a seller or product, investigate before purchasing. Our article on [dupes versus originals](/learn/dupes-vs-originals) covers the related question of inspired-by fragrances.
+Stop using it, keep the packaging and your order confirmation, and contact your card issuer about a dispute. Report it to the [Canadian Anti-Fraud Centre](https://antifraudcentre-centreantifraude.ca) at 1-888-495-8501, which also helps warn other buyers.
 
-## 8. Don't ignore your own experience
+## A quick checklist before you buy
 
-If you regularly buy fragrances online, keep track of reputable retailers you've had good experiences with. Save receipts and order confirmations. When purchasing expensive fragrances, document the product when it arrives, particularly if you have concerns about authenticity or damage.
+- Does it ship from inside Canada?
+- If not, what will duty, tax and fees add, and where was the bottle made?
+- Is the price realistic compared with other shops?
+- Does the seller list an address, a phone number and its own-domain email?
+- What is the return window, and does it cover opened bottles?
+- Can you dispute the payment if something goes wrong?
 
-## A simple safe-buying checklist
-
-Before purchasing, ask:
-
-- Who is selling it?
-- Where is the seller located?
-- Is the price realistic?
-- What is the return policy?
-- How can I contact customer service?
-- How is the product described?
-- Does the retailer explain its sourcing?
-- What payment protections are available?
-
-If several answers are unclear, consider another seller.
+If several answers are unclear, buy somewhere else.
 
 ## Final thoughts
 
-Online fragrance shopping doesn't have to be risky. The goal isn't to avoid every retailer that isn't a major department store — the goal is to make informed decisions.
+You don't need to avoid every shop that isn't a department store. Buy from inside Canada when you can, do the landed-cost maths when you can't, and walk away from prices that don't make sense. Once you know where to buy, our [fragrance quiz](/) can help you decide what to buy.
 
-Compare prices, research the seller, understand the distribution model, read the return policy, and be cautious when something seems too good to be true. A few minutes of research can save you considerably more money and frustration later. Once you know where to buy, our [fragrance quiz](/) can help you decide what to buy.`;
+## Sources
+
+- [CBSA: duty and tax thresholds for mail and courier shipments](https://www.cbsa-asfc.gc.ca/services/cusma-aceum/lvs-efv-eng.html)
+- [CBSA Customs Tariff 2026, chapter 33: perfume and toilet water, 3303.00.00](https://www.cbsa-asfc.gc.ca/trade-commerce/tariff-tarif/2026/01-99/ch33-2026-eng.pdf)
+- [CBSA Customs Notice 26-23: United States Surtax Order (2026)](https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn26-23-eng.html)
+- [Finance Canada: US products subject to counter-tariffs from September 8, 2026](https://www.canada.ca/en/department-finance/news/2026/08/list-of-products-from-the-united-states-subject-to-counter-tariffs-effective-september-8-2026.html)
+- [Canadian Anti-Fraud Centre](https://antifraudcentre-centreantifraude.ca)`;
 
 export const ARTICLES: Article[] = [
   {
@@ -838,12 +832,12 @@ export const ARTICLES: Article[] = [
     title: "How to Safely Buy Fragrance Online in Canada",
     seoTitle: "How to Safely Buy Fragrance Online in Canada — WhichScent",
     description:
-      "A checklist for buying fragrance online in Canada: vetting retailers, understanding grey-market versus counterfeit, return policies, payment safety and realistic pricing.",
+      "Buying fragrance online in Canada: shops that ship from inside Canada, what a US order really costs in duty, tax and the 2026 surtax, grey market versus fake, and the warning signs of a counterfeit shop.",
     excerpt:
-      "Vetting sellers, understanding grey market versus counterfeit, and the checklist to run before you pay.",
+      "Where to buy, what a US order really costs once duty, tax and the 2026 surtax are added, and how to spot a fake-perfume shop.",
     category: "Buying Guides",
     published: "2026-05-06",
-    updated: "2026-08-23",
+    updated: "2026-10-12",
     image: buyOnlineImg,
     imageAlt: "A plain cardboard parcel box in warm afternoon sunlight",
     body: buyOnline,

@@ -92,7 +92,8 @@ function AboutPage() {
           <p>
             No brand pays to appear in our database, and no retailer can buy a higher ranking.
             Placement in the quiz results is decided entirely by your answers and our scoring
-            weights.
+            weights. The retailer guide covers Canadian stores, discounters and US sites alike, and
+            lists the warning signs of shops to avoid.
           </p>
           <p>
             The site is free to use and is supported by advertising, and in future may include

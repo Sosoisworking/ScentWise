@@ -21,7 +21,7 @@ WhichScent (renamed from Scentwise on 2026-10-11 _(owner)_) is a free fragrance 
 ## Positioning
 
 - Transparent, hand-tagged scoring instead of a sponsored "top 10": no brand pays for placement and the scoring code has no concept of a sponsor. _(site copy, About page)_
-- Canadian-specific: CAD price bands, Canadian retailers including ones to avoid, and Sephora Canada availability shown only for brands Sephora Canada actually carries. _(owner asked for the Sephora rule)_
+- Canadian-specific: CAD price bands, a Canada-first retailer guide with the real cost of US orders, and Sephora Canada availability shown only for brands Sephora Canada actually carries. _(owner asked for the Sephora rule)_
 - A shortlist to sample, never a verdict: the site says skin chemistry outranks any score. _(site copy)_
 
 ## Operating Context
@@ -50,7 +50,8 @@ WhichScent (renamed from Scentwise on 2026-10-11 _(owner)_) is a free fragrance 
 - Learn article photos: 4 original assets plus 4 Unsplash photos, each picked and approved by the owner. _(owner)_
 - No testimonials, user counts, reviews, press mentions or ratings exist. Don't invent any.
 - No wear-testing happens _(owner, 2026-10-11)_. The About page's old wear-testing claim has been removed; don't reintroduce it.
-- No "retailers to avoid" list exists yet. Phase 2 adds one; until then, the site must not claim one.
+- The retailer guide (`src/data/retailers.ts`) lists Canadian authorized stores, Canadian discounters and US sites, with shipping and return terms checked on the date in `RETAILERS_CHECKED`, plus warning signs of shops to avoid. It names no specific shop as one to avoid; that would need documented evidence.
+- Cross-border rules (C$20 mail, C$40/C$150 courier thresholds, 6.5% perfume duty, 50% surtax on US-made perfume since 2026-09-08) come from CBSA and Finance Canada; recheck them when the guide is next reviewed.
 
 ## Product Principles
 

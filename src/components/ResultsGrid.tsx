@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import type { Answers } from "../App";
 import { OCCASION_OPTIONS, SEASON_OPTIONS } from "../data/quizOptions";
+import { PRICE_BANDS, type PriceBandId } from "../utils/price";
 import { getRefinedResults } from "../utils/scoring";
 import { EmailResults } from "./EmailResults";
 import { FragranceCard } from "./FragranceCard";
@@ -10,6 +11,7 @@ type ResultsGridProps = {
   answers: Answers;
   viewingShared: boolean;
   onEdit: (step: number) => void;
+  onBudgetChange: (budget: PriceBandId | "") => void;
   onRestart: () => void;
   onStartFresh: () => void;
 };
@@ -63,14 +65,52 @@ function AnswerChip({
   );
 }
 
+const BUDGET_OPTIONS: Array<{ id: PriceBandId | ""; label: string }> = [
+  { id: "", label: "Any price" },
+  ...PRICE_BANDS,
+];
+
+function BudgetFilter({
+  value,
+  onChange,
+}: {
+  value: PriceBandId | "";
+  onChange: (budget: PriceBandId | "") => void;
+}) {
+  return (
+    <div
+      className="mt-4 flex flex-wrap justify-center gap-2"
+      role="radiogroup"
+      aria-label="Price range, typical Canadian price"
+    >
+      {BUDGET_OPTIONS.map((option) => {
+        const active = value === option.id;
+        return (
+          <button
+            key={option.id || "any"}
+            type="button"
+            role="radio"
+            aria-checked={active}
+            onClick={() => onChange(option.id)}
+            className={`min-h-11 rounded-full border px-4 text-sm font-semibold tabular-nums transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${active ? "border-primary bg-primary text-primary-foreground" : "bg-card text-card-foreground hover:border-primary hover:bg-accent"}`}
+          >
+            {option.label}
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
 export function ResultsGrid({
   answers,
   viewingShared,
   onEdit,
+  onBudgetChange,
   onRestart,
   onStartFresh,
 }: ResultsGridProps) {
-  const { season, occasion, gender, longevity, selectedNotes, avoidedNotes } = answers;
+  const { season, occasion, gender, longevity, selectedNotes, avoidedNotes, budget } = answers;
   const PAGE = 8;
   const [visibleCount, setVisibleCount] = useState(PAGE);
   const [shareStatus, setShareStatus] = useState("");
@@ -82,6 +122,7 @@ export function ResultsGrid({
     longevity,
     avoidedNotes,
     24,
+    budget,
   );
   const results = allResults.slice(0, visibleCount);
   const empty = results.length === 0;
@@ -134,9 +175,11 @@ export function ResultsGrid({
         <p className="mx-auto mt-4 max-w-[34rem] text-base text-muted-foreground">
           {!empty
             ? "Ranked by how many of your notes each one contains, then by how well it fits your other answers. Try a sample before you buy a bottle."
-            : avoidedNotes.length > 0
-              ? "Every fragrance that fits these answers contains a note you're avoiding. Avoid fewer notes or love a few more."
-              : "Nothing in our catalogue fits these answers yet. Try a different season or occasion."}
+            : budget
+              ? "Nothing in this price range fits your answers. Try another price range."
+              : avoidedNotes.length > 0
+                ? "Every fragrance that fits these answers contains a note you're avoiding. Avoid fewer notes or love a few more."
+                : "Nothing in our catalogue fits these answers yet. Try a different season or occasion."}
         </p>
       </div>
 
@@ -167,8 +210,10 @@ export function ResultsGrid({
         )}
       </div>
 
+      <BudgetFilter value={budget} onChange={onBudgetChange} />
+
       <div className="mt-6 flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
-        {empty ? (
+        {empty && !budget && (
           <button
             type="button"
             onClick={() => onEdit(5)}
@@ -176,7 +221,8 @@ export function ResultsGrid({
           >
             Edit notes
           </button>
-        ) : (
+        )}
+        {!empty && (
           <button
             type="button"
             onClick={share}
@@ -238,6 +284,7 @@ export function ResultsGrid({
             longevity={longevity}
             selectedNotes={selectedNotes}
             avoidedNotes={avoidedNotes}
+            budget={budget}
           />
         </>
       )}
