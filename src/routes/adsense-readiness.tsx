@@ -35,7 +35,7 @@ const GROUPS: { title: string; blurb: string; items: Item[] }[] = [
     items: [
       {
         id: "content-quiz",
-        label: "Guided quiz with 90+ curated fragrances",
+        label: "Guided quiz with 190+ curated fragrances",
         detail:
           "src/data/fragrances.ts holds the editorial database powering scoring in src/utils/scoring.ts.",
         status: "done",

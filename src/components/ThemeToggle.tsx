@@ -25,12 +25,23 @@ export function ThemeToggle() {
 
   useEffect(() => {
     if (!hydrated) return;
-    document.documentElement.classList.toggle("dark", dark);
+    // Switch every colour at once: without this, elements with colour transitions fade while
+    // their text flips instantly, which flashes dark-on-dark for a moment.
+    const root = document.documentElement;
+    root.classList.add("theme-switching");
+    root.classList.toggle("dark", dark);
+    // Reading a computed style applies the new colours now, while transitions are off.
+    void window.getComputedStyle(document.body).color;
+    const timer = window.setTimeout(() => root.classList.remove("theme-switching"), 1);
     try {
       window.localStorage.setItem(STORAGE_KEY, dark ? "dark" : "light");
     } catch {
       /* storage unavailable */
     }
+    return () => {
+      window.clearTimeout(timer);
+      root.classList.remove("theme-switching");
+    };
   }, [dark, hydrated]);
 
   return (

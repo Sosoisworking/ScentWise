@@ -32,7 +32,7 @@ WhichScent (renamed from Scentwise on 2026-10-11 _(owner)_) is a free fragrance 
 
 ## Capabilities and Constraints
 
-- Data: 197 fragrances (`src/data/fragrances.json`) with notes from a 173-note taxonomy (`src/data/note-taxonomy.json`), 81 verified brands (`src/data/brands.ts`), 8 Learn articles (`src/data/articles.ts`). _(code)_
+- Data: 197 fragrances (`src/data/fragrances.json`) with notes from a 173-note taxonomy (`src/data/note-taxonomy.json`), 80 brands, each linked to its official site (`src/data/brands.ts`; a duplicate Mugler entry was removed on 2026-10-12), 8 Learn articles (`src/data/articles.ts`). _(code)_
 - Stack: TanStack Start (React 19, SSR) with Tailwind v4 and shadcn, deployed on Vercel. _(code)_
 - Monetization: Google AdSense is planned once the site is on its own domain; the site must stay policy-compliant (privacy, consent, original content). _(owner)_
 - Analytics: Vercel Web Analytics only, cookieless. _(owner)_

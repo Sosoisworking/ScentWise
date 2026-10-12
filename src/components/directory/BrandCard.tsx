@@ -2,9 +2,9 @@ import type { Brand } from "../../data/brands";
 import { Star } from "lucide-react";
 
 const categoryStyles: Record<Brand["category"], { label: string; cls: string }> = {
-  designer: { label: "Designer", cls: "bg-budget text-budget-foreground" },
-  niche: { label: "Niche", cls: "bg-premium text-premium-foreground" },
-  luxury: { label: "Luxury", cls: "bg-mid text-mid-foreground" },
+  designer: { label: "Designer", cls: "bg-secondary text-secondary-foreground" },
+  niche: { label: "Niche", cls: "bg-accent text-accent-foreground" },
+  luxury: { label: "Luxury", cls: "bg-primary/10 text-primary" },
 };
 
 export function BrandCard({ brand, accent = false }: { brand: Brand; accent?: boolean }) {

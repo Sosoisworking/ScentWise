@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
-import { formatDate, readingTime, type Article } from "../../data/articles";
+import { articleBody, readingTime } from "../../data/articleBodies";
+import { formatDate, type Article } from "../../data/articles";
 
 export function ArticleCard({
   article,
@@ -38,7 +39,7 @@ export function ArticleCard({
           <span aria-hidden>·</span>
           <time dateTime={article.published}>{formatDate(article.published)}</time>
           <span aria-hidden>·</span>
-          <span>{readingTime(article.body)} min read</span>
+          <span>{readingTime(articleBody(article.slug))} min read</span>
         </div>
         <div className="mt-5 pt-1">
           <Link

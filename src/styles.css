@@ -188,6 +188,11 @@
   h3 {
     text-wrap: balance;
   }
+  .theme-switching *,
+  .theme-switching *::before,
+  .theme-switching *::after {
+    transition: none !important;
+  }
   /* Headings receive focus from script when a quiz step changes; that isn't a control. */
   [tabindex="-1"]:focus {
     outline: none;

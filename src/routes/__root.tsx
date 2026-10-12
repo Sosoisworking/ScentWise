@@ -7,6 +7,7 @@ import {
   useLocation,
 } from "@tanstack/react-router";
 import { Analytics } from "@vercel/analytics/react";
+import { useEffect } from "react";
 
 import appCss from "../styles.css?url";
 import bodyFont from "@fontsource-variable/schibsted-grotesk/files/schibsted-grotesk-latin-wght-normal.woff2?url";
@@ -17,12 +18,17 @@ import { SiteHeader } from "../components/SiteHeader";
 import { SITE_URL } from "../lib/site";
 
 function NotFoundComponent() {
+  useEffect(() => {
+    document.title = "Page not found — WhichScent";
+  }, []);
   return (
     <main className="flex min-h-screen flex-col bg-background text-foreground">
       <SiteHeader current="home" />
       <div className="mx-auto flex max-w-md flex-1 flex-col items-center justify-center px-5 py-20 text-center">
-        <h1 className="font-serif text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 font-serif text-2xl font-bold text-foreground">Page not found</h2>
+        <p className="font-serif text-7xl font-bold text-foreground" aria-hidden="true">
+          404
+        </p>
+        <h1 className="mt-4 font-serif text-2xl font-bold text-foreground">Page not found</h1>
         <p className="mt-2 text-sm text-muted-foreground">
           This page doesn't exist or has moved. Try one of these instead:
         </p>

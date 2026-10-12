@@ -107,10 +107,10 @@ function AboutPage() {
         <Section title="What we will not do">
           <p>
             We do not claim fragrance is objective. Skin chemistry, memory and mood matter more than
-            any score, and a 92% match that you dislike on skin is a 0% match. We treat our output
-            as a shortlist to sample, never a verdict. We also will not pretend to authenticate
-            bottles we have never handled: our retailer notes describe reputation, sourcing model
-            and buyer-protection policies, not a lab test.
+            any score, and a top-ranked match that you dislike on skin is no match at all. We treat
+            our output as a shortlist to sample, never a verdict. We also will not pretend to
+            authenticate bottles we have never handled: our retailer notes describe reputation,
+            sourcing model and buyer-protection policies, not a lab test.
           </p>
         </Section>
 

@@ -311,13 +311,16 @@ function LearnPage() {
             <div className="mt-6 grid gap-6 lg:grid-cols-[1.4fr_1fr]">
               <dl className="space-y-5">
                 {topic.faqs.map((f) => (
-                  <div key={f.q} className="border-l-2 border-primary/40 pl-4">
+                  <div
+                    key={f.q}
+                    className="border-t border-border pt-5 first:border-t-0 first:pt-0"
+                  >
                     <dt className="font-serif text-lg font-bold text-foreground">{f.q}</dt>
                     <dd className="mt-2 text-sm leading-relaxed text-muted-foreground">{f.a}</dd>
                   </div>
                 ))}
               </dl>
-              <aside className="rounded-2xl border bg-background p-5">
+              <aside className="border-t border-border pt-5 lg:border-t-0 lg:border-l lg:pl-6 lg:pt-0">
                 <h4 className="text-xs font-bold uppercase tracking-wide text-muted-foreground">
                   Practical tips
                 </h4>

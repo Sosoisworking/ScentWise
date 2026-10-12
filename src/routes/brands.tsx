@@ -127,8 +127,9 @@ function BrandDirectory() {
               <button
                 key={c.key}
                 type="button"
+                aria-pressed={active}
                 onClick={() => setCategory(c.key)}
-                className={`rounded-full px-5 py-2.5 text-sm font-bold transition ${
+                className={`rounded-full px-5 py-2.5 text-sm font-bold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
                   active
                     ? "bg-primary text-primary-foreground shadow-scent"
                     : "bg-card text-foreground hover:bg-accent"
@@ -151,7 +152,7 @@ function BrandDirectory() {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search brands — e.g. Creed, Byredo, Dior..."
-              className="h-12 w-full rounded-full border border-border bg-card px-6 pr-12 text-sm shadow-scent focus:border-primary focus:outline-none focus:ring-2 focus:ring-ring"
+              className="h-12 w-full rounded-full border border-border bg-card px-6 pr-12 text-sm shadow-scent focus:border-primary focus:outline-none focus:ring-2 focus:ring-ring [&::-webkit-search-cancel-button]:appearance-none"
               aria-label="Search brands"
             />
             {query && (

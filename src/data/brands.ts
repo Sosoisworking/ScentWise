@@ -31,7 +31,7 @@ export interface Brand {
 }
 
 // Bump this whenever brand entries change; the directory shows it as "Last updated".
-export const BRANDS_UPDATED = "2026-10-11";
+export const BRANDS_UPDATED = "2026-10-12";
 
 export const BRANDS: Brand[] = [
   // A
@@ -810,16 +810,6 @@ export const BRANDS: Brand[] = [
   },
 
   // T
-  {
-    id: "t1",
-    name: "Thierry Mugler",
-    slug: "thierry-mugler",
-    category: "designer",
-    officialUrl: "https://www.mugler.com",
-    country: "France",
-    founded: 1974,
-    tagline: "Angel changed perfumery forever — gourmand icon with alien grace.",
-  },
   {
     id: "t2",
     name: "Tom Ford",
