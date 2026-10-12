@@ -1,23 +1,60 @@
+import { Check, X } from "lucide-react";
 import type { Fragrance } from "../data/fragrances";
-import { priceBand, type PriceBandId } from "../utils/price";
+import { OCCASION_OPTIONS, SEASON_OPTIONS } from "../data/quizOptions";
+import type { GenderPreference, LongevityPreference } from "../utils/scoring";
 import { LongevityBar } from "./LongevityBar";
 import { NotePills } from "./NotePills";
 import { explainMatch } from "../utils/noteMatching";
 
+export type FitAnswers = {
+  season: string;
+  occasion: string;
+  gender: GenderPreference;
+  longevity: LongevityPreference;
+};
+
 type FragranceCardProps = {
   fragrance: Fragrance;
-  label?: string;
   mode: "initial" | "result";
   /** Position in the results, shown instead of a percentage. */
   rank?: number;
   selectedNotes?: string[];
+  /** The visitor's answers, so the card can say plainly what fits and what doesn't. */
+  answers?: FitAnswers;
 };
 
-const badgeClass: Record<PriceBandId, string> = {
-  "under-100": "bg-budget text-budget-foreground",
-  "100-200": "bg-mid text-mid-foreground",
-  "200-plus": "bg-premium text-premium-foreground",
-};
+const WEAR = { short: "Short wear", medium: "Medium wear", long: "Long wear" } as const;
+const MARKETED = { male: "men", female: "women", unisex: "everyone" } as const;
+
+/** Each answer this fragrance meets or misses, worded so a miss is never hidden. */
+function fitLine(fragrance: Fragrance, answers: FitAnswers) {
+  const items: Array<{ ok: boolean; text: string }> = [];
+  const season = SEASON_OPTIONS.find((o) => o.key === answers.season)?.label;
+  if (season) {
+    const ok = fragrance.seasons.includes(answers.season);
+    items.push({ ok, text: ok ? season : `${season}: not its season` });
+  }
+  const occasion = OCCASION_OPTIONS.find((o) => o.key === answers.occasion)?.label;
+  if (occasion) {
+    const ok = fragrance.occasions.includes(answers.occasion);
+    items.push({ ok, text: ok ? occasion : `${occasion}: not a usual pick` });
+  }
+  if (answers.longevity) {
+    const ok = fragrance.longevity === answers.longevity;
+    const wear = WEAR[fragrance.longevity];
+    items.push({
+      ok,
+      text: ok ? wear : `${wear} (you asked ${WEAR[answers.longevity].toLowerCase()})`,
+    });
+  }
+  if (answers.gender && answers.gender !== "any") {
+    const ok =
+      fragrance.marketedFor === answers.gender ||
+      (answers.gender !== "unisex" && fragrance.marketedFor === "unisex");
+    items.push({ ok, text: `Marketed for ${MARKETED[fragrance.marketedFor]}` });
+  }
+  return items;
+}
 
 // Decorative, so it uses the soft gold rather than the text gold.
 function BottleIcon() {
@@ -51,10 +88,10 @@ function BottleIcon() {
 
 export function FragranceCard({
   fragrance,
-  label,
   mode,
   rank,
   selectedNotes = [],
+  answers,
 }: FragranceCardProps) {
   const match =
     mode === "result" && selectedNotes.length > 0 ? explainMatch(fragrance, selectedNotes) : null;
@@ -74,19 +111,17 @@ export function FragranceCard({
       </div>
 
       <div className="mt-4 flex flex-wrap gap-2">
-        <span
-          className={`rounded-full px-3 py-1 text-xs font-bold uppercase tabular-nums ${badgeClass[priceBand(fragrance).id]}`}
-        >
-          {label ? `${label} · ${fragrance.priceDisplay}` : fragrance.priceDisplay}
+        {mode === "result" && rank !== undefined && (
+          <span className="rounded-full bg-primary px-3 py-1 text-xs font-bold tabular-nums text-primary-foreground">
+            #{rank}
+          </span>
+        )}
+        <span className="rounded-full bg-secondary px-3 py-1 text-xs font-bold tabular-nums text-secondary-foreground">
+          {fragrance.priceDisplay}
         </span>
         {mode === "result" && (
           <span className="rounded-full bg-secondary px-3 py-1 text-xs font-bold uppercase text-secondary-foreground">
             {fragrance.concentration}
-          </span>
-        )}
-        {mode === "result" && rank !== undefined && (
-          <span className="rounded-full bg-primary px-3 py-1 text-xs font-bold tabular-nums text-primary-foreground">
-            #{rank}
           </span>
         )}
       </div>
@@ -94,8 +129,26 @@ export function FragranceCard({
       {mode === "result" && (
         <p className="mt-3 text-sm font-semibold text-primary">{fragrance.family.join(" · ")}</p>
       )}
-      {mode === "result" && !match && (
-        <p className="mt-2 text-sm text-muted-foreground">Picked for your season and occasion</p>
+      {mode === "result" && answers && (
+        <ul
+          className="mt-3 flex flex-wrap gap-x-3 gap-y-1 text-xs"
+          aria-label="How it fits your answers"
+        >
+          {fitLine(fragrance, answers).map((item) => (
+            <li
+              key={item.text}
+              className={`inline-flex items-center gap-1 ${item.ok ? "text-card-foreground" : "text-muted-foreground"}`}
+            >
+              {item.ok ? (
+                <Check className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
+              ) : (
+                <X className="h-3.5 w-3.5" aria-hidden="true" />
+              )}
+              <span className="sr-only">{item.ok ? "Fits: " : "Doesn't fit: "}</span>
+              {item.text}
+            </li>
+          ))}
+        </ul>
       )}
       {match && (
         <p className="mt-2 text-sm text-card-foreground">
@@ -105,21 +158,47 @@ export function FragranceCard({
               your notes: {match.matched.join(", ")}
             </>
           ) : (
-            <span className="text-muted-foreground">
-              None of your notes; picked for your season and occasion
-            </span>
+            <span className="text-muted-foreground">None of your notes</span>
           )}
         </p>
       )}
       <p className="mt-4 flex-1 text-sm leading-6 text-muted-foreground">{fragrance.description}</p>
-      <div className="mt-5">
-        <NotePills
-          top={fragrance.topNotes}
-          heart={fragrance.heartNotes}
-          base={fragrance.baseNotes}
-          highlight={match?.highlight ?? []}
-        />
-      </div>
+      {mode === "result" ? (
+        <>
+          {/* Phones get the pyramid on request, so a result fits closer to one screen. */}
+          <details className="group mt-4 sm:hidden">
+            <summary className="flex min-h-11 cursor-pointer list-none items-center gap-1 text-sm font-semibold text-primary [&::-webkit-details-marker]:hidden">
+              <span className="group-open:hidden">Show full note pyramid</span>
+              <span className="hidden group-open:inline">Hide note pyramid</span>
+            </summary>
+            <div className="mt-2">
+              <NotePills
+                top={fragrance.topNotes}
+                heart={fragrance.heartNotes}
+                base={fragrance.baseNotes}
+                highlight={match?.highlight ?? []}
+              />
+            </div>
+          </details>
+          <div className="mt-5 hidden sm:block">
+            <NotePills
+              top={fragrance.topNotes}
+              heart={fragrance.heartNotes}
+              base={fragrance.baseNotes}
+              highlight={match?.highlight ?? []}
+            />
+          </div>
+        </>
+      ) : (
+        <div className="mt-5">
+          <NotePills
+            top={fragrance.topNotes}
+            heart={fragrance.heartNotes}
+            base={fragrance.baseNotes}
+            highlight={match?.highlight ?? []}
+          />
+        </div>
+      )}
       <div className="mt-5">
         <LongevityBar longevity={fragrance.longevity} />
       </div>

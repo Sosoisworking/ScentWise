@@ -61,14 +61,15 @@ function AboutPage() {
             entirely.
           </p>
           <p>
-            Results are ranked first by how many of your loved notes each fragrance contains, so one
-            with three of your notes always sits above one with two. The fit score orders the rest,
-            and ties go to longer wear unless you asked for something light.
+            Results that fit who it's marketed for and the wear time you chose always come first;
+            anything that misses either sits below them, and its card says so. Within each group, a
+            fragrance with more of your loved notes ranks higher, the fit score orders the rest, and
+            ties go to longer wear unless you asked for something light.
           </p>
           <p>
             The first picks show the best fit at three price points (under $100, $100 to $200, and
-            $200 and up, based on each bottle's typical Canadian price) so you can see what extra
-            money buys before you refine by notes.
+            $200 and up, by the lowest price you can usually find it for in Canada) so you can see
+            what extra money buys before you refine by notes.
           </p>
         </Section>
 

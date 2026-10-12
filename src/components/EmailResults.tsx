@@ -56,7 +56,9 @@ function buildPlainText(args: Props): string {
     lines.push("");
   });
 
-  lines.push("Ranked by how many of your notes each one contains. Try a sample before you buy.");
+  lines.push(
+    "Fragrances that fit who it's for and your wear time come first, then by how many of your notes they contain. Try a sample before you buy.",
+  );
   lines.push(`Take the quiz again: ${SITE_URL}`);
   return lines.join("\n");
 }

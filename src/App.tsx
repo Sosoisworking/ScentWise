@@ -3,10 +3,9 @@ import { useNavigate } from "@tanstack/react-router";
 import { SiteHeader } from "./components/SiteHeader";
 import { SiteFooter } from "./components/SiteFooter";
 import { FragranceCard } from "./components/FragranceCard";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, RotateCcw } from "lucide-react";
 import { LongevityStep } from "./components/LongevityStep";
 import { MarketedForStep } from "./components/MarketedForStep";
-import { ScrollToTopButton } from "./components/ScrollToTopButton";
 import { NoteSelector } from "./components/NoteSelector";
 import { OccasionStep } from "./components/OccasionStep";
 import { ResultsGrid } from "./components/ResultsGrid";
@@ -18,7 +17,7 @@ import {
   type LongevityPreference,
 } from "./utils/scoring";
 import { LEGACY_OCCASIONS } from "./data/quizOptions";
-import { priceBand, type PriceBandId } from "./utils/price";
+import type { PriceBandId } from "./utils/price";
 import {
   parseSharedQuiz,
   parseStep,
@@ -189,7 +188,7 @@ export default function App({ search = {} }: { search?: QuizSearch }) {
   };
 
   const editAnswer = (target: number) => {
-    setEditing(target < 6);
+    setEditing(true);
     setViewingShared(false);
     go(target);
   };
@@ -213,7 +212,16 @@ export default function App({ search = {} }: { search?: QuizSearch }) {
     setUndo(null);
   };
 
-  const goBack = () => go(Math.max(1, step - 1));
+  // While changing one answer from the results, Back returns to the results.
+  const goBack = () => {
+    if (editing) {
+      setEditing(false);
+      go(RESULTS);
+    } else {
+      go(Math.max(1, step - 1));
+    }
+  };
+  const backLabel = editing ? "Back to results" : "Back";
 
   // Filtering by price stays on the results and updates the link in place.
   const setBudget = (budget: PriceBandId | "") => {
@@ -271,9 +279,9 @@ export default function App({ search = {} }: { search?: QuizSearch }) {
     setAnswers((current) => ({ ...current, longevity }));
   };
 
-  // Steps 2–5 get floating Back and Restart; the note step has its own action bar and the
-  // results have their own controls.
-  const showFloatingControls = step >= 2 && step <= 5;
+  // Steps 2–5 (and step 1 while changing an answer) get a pinned bar with Back and Restart; the
+  // note step has its own bar and the results have their own controls.
+  const showStepBar = (step >= 2 && step <= 5) || (editing && step === 1);
   const waitingForSavedAnswers = !hydrated && urlStep > 1 && urlStep < RESULTS;
 
   return (
@@ -281,7 +289,10 @@ export default function App({ search = {} }: { search?: QuizSearch }) {
       <div className="scent-aura" aria-hidden="true" />
       <SiteHeader current="home" right={<StepIndicator step={step} />} />
 
-      <div id="quiz" className="relative z-10 px-5 pb-16 pt-8 sm:pt-14">
+      <div
+        id="quiz"
+        className={`relative z-10 px-5 pt-8 sm:pt-14 ${showStepBar ? "pb-32" : "pb-16"}`}
+      >
         {waitingForSavedAnswers ? null : (
           <>
             {step === 1 && (
@@ -318,21 +329,9 @@ export default function App({ search = {} }: { search?: QuizSearch }) {
                 </div>
                 <div className="mt-10 grid gap-5 lg:grid-cols-3">
                   {initialRecommendations.map((fragrance) => (
-                    <FragranceCard
-                      key={fragrance.id}
-                      fragrance={fragrance}
-                      label={priceBand(fragrance).label}
-                      mode="initial"
-                    />
+                    <FragranceCard key={fragrance.id} fragrance={fragrance} mode="initial" />
                   ))}
                 </div>
-                <button
-                  type="button"
-                  onClick={() => go(6)}
-                  className="mx-auto mt-8 flex rounded-full bg-primary px-6 py-4 text-sm font-bold text-primary-foreground shadow-scent transition hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                >
-                  Refine by notes →
-                </button>
               </section>
             )}
             {step === 6 && (
@@ -346,6 +345,7 @@ export default function App({ search = {} }: { search?: QuizSearch }) {
                 onLongevityChange={setLongevity}
                 onSubmit={() => answer({}, RESULTS)}
                 onBack={goBack}
+                backLabel={backLabel}
                 onRestart={restart}
               />
             )}
@@ -365,28 +365,39 @@ export default function App({ search = {} }: { search?: QuizSearch }) {
 
       <SiteFooter />
 
-      {showFloatingControls && (
-        <>
-          <button
-            type="button"
-            onClick={restart}
-            className="fixed bottom-[calc(1.25rem+var(--consent-offset,0px))] right-5 z-40 rounded-full bg-foreground px-5 py-3 text-sm font-bold text-background shadow-scent transition hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-            aria-label="Restart WhichScent quiz"
-          >
-            Restart
-          </button>
-          <button
-            type="button"
-            onClick={goBack}
-            className="fixed bottom-[calc(6rem+var(--consent-offset,0px))] left-5 z-40 inline-flex items-center gap-1.5 rounded-full border bg-card px-5 py-3 text-sm font-bold text-card-foreground shadow-scent transition hover:scale-105 hover:border-primary hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-            aria-label="Go back to previous WhichScent quiz step"
-          >
-            <ArrowLeft className="h-4 w-4" aria-hidden="true" />
-            Back
-          </button>
-        </>
+      {showStepBar && (
+        <div className="fixed inset-x-0 bottom-[var(--consent-offset,0px)] z-40 border-t bg-background/95 px-4 py-3 backdrop-blur">
+          <div className="mx-auto flex max-w-[900px] items-center gap-2">
+            <button
+              type="button"
+              onClick={goBack}
+              className="inline-flex min-h-12 items-center gap-1.5 rounded-full border bg-card px-5 text-sm font-bold text-card-foreground transition hover:border-primary hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            >
+              <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+              {backLabel}
+            </button>
+            {step === 5 ? (
+              <button
+                type="button"
+                onClick={() => go(6)}
+                className="flex min-h-12 flex-1 items-center justify-center rounded-full bg-primary px-6 text-sm font-bold text-primary-foreground shadow-scent transition hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:flex-none sm:px-10"
+              >
+                Refine by notes →
+              </button>
+            ) : (
+              <span className="flex-1" />
+            )}
+            <button
+              type="button"
+              onClick={restart}
+              aria-label="Restart WhichScent quiz"
+              className="ml-auto inline-flex min-h-12 items-center justify-center rounded-full border bg-card px-4 text-card-foreground transition hover:border-primary hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            >
+              <RotateCcw className="h-4 w-4" aria-hidden="true" />
+            </button>
+          </div>
+        </div>
       )}
-      <ScrollToTopButton hidden={step === 6} />
 
       {undo && (
         <div

@@ -57,6 +57,21 @@ export function scoreFragrance(
   return Math.round(score);
 }
 
+/** Does the fragrance match the visitor's explicit gender and wear-time answers? */
+export function fitsAnswers(
+  fragrance: Fragrance,
+  gender: GenderPreference,
+  longevity: LongevityPreference,
+): boolean {
+  const genderFits =
+    !gender ||
+    gender === "any" ||
+    fragrance.marketedFor === gender ||
+    (gender !== "unisex" && fragrance.marketedFor === "unisex");
+  const longevityFits = !longevity || fragrance.longevity === longevity;
+  return genderFits && longevityFits;
+}
+
 /** Best fit in each price band (under $100, $100–$200, $200+), cheapest band first. */
 export function getInitialRecommendations(
   season: string,
@@ -92,10 +107,13 @@ export function getRefinedResults(
       fragrance: f,
       score: scoreFragrance(f, season, occasion, lovedNotes, gender, longevity),
       matched: lovedNotes.filter((note) => matchNote(f, note).weight > 0).length,
+      fits: fitsAnswers(f, gender, longevity),
     }))
     .filter((x) => x.score > 20)
     .sort((a, b) => {
-      // Containing more of your notes always wins; the fit score orders ties.
+      // Anything that misses an explicit answer (who it's for, wear time) sits below everything
+      // that fits. Within each group, containing more of your notes wins; the score orders ties.
+      if (a.fits !== b.fits) return a.fits ? -1 : 1;
       if (b.matched !== a.matched) return b.matched - a.matched;
       if (b.score !== a.score) return b.score - a.score;
       const longevityDiff =

@@ -17,6 +17,7 @@ type NoteSelectorProps = {
   onLongevityChange: (longevity: LongevityPreference) => void;
   onSubmit: () => void;
   onBack: () => void;
+  backLabel?: string;
   onRestart: () => void;
 };
 
@@ -74,6 +75,7 @@ export function NoteSelector({
   onLongevityChange,
   onSubmit,
   onBack,
+  backLabel = "Back",
   onRestart,
 }: NoteSelectorProps) {
   const [query, setQuery] = useState("");
@@ -357,7 +359,9 @@ export function NoteSelector({
           <button
             type="button"
             onClick={onBack}
-            aria-label="Go back to previous WhichScent quiz step"
+            aria-label={
+              backLabel === "Back" ? "Go back to previous WhichScent quiz step" : backLabel
+            }
             className="rounded-full border bg-card p-4 text-card-foreground transition hover:border-primary hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             <ArrowLeft className="h-4 w-4" aria-hidden="true" />
