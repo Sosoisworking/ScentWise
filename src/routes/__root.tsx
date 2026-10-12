@@ -25,8 +25,10 @@ function NotFoundComponent() {
     <main className="flex min-h-screen flex-col bg-background text-foreground">
       <SiteHeader current="home" />
       <div className="mx-auto flex max-w-md flex-1 flex-col items-center justify-center px-5 py-20 text-center">
-        <h1 className="font-serif text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 font-serif text-2xl font-bold text-foreground">Page not found</h2>
+        <p className="font-serif text-7xl font-bold text-foreground" aria-hidden="true">
+          404
+        </p>
+        <h1 className="mt-4 font-serif text-2xl font-bold text-foreground">Page not found</h1>
         <p className="mt-2 text-sm text-muted-foreground">
           This page doesn't exist or has moved. Try one of these instead:
         </p>
