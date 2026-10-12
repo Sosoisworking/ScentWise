@@ -32,7 +32,7 @@ function PrivacyPage() {
   return (
     <main className="min-h-screen bg-background text-foreground">
       <div className="scent-aura" aria-hidden="true" />
-      <SiteHeader current="home" breadcrumb="Home → Privacy Policy" />
+      <SiteHeader current="home" breadcrumb="Home › Privacy Policy" />
 
       <div className="relative z-10 mx-auto max-w-[820px] px-5 pb-16 pt-4">
         <h1 className="font-serif text-4xl font-bold sm:text-5xl">Privacy Policy</h1>

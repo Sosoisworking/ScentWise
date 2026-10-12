@@ -27,14 +27,15 @@ export function ArticleCard({
         />
       </Link>
       <div className="flex flex-1 flex-col p-5 sm:p-6">
-        <p className="text-xs font-bold uppercase tracking-wide text-primary">{article.category}</p>
-        <h3 className="mt-2 font-serif text-xl font-bold leading-snug text-foreground">
+        <h3 className="font-serif text-xl font-bold leading-snug text-foreground">
           <Link to="/learn/$slug" params={{ slug: article.slug }} className="hover:text-primary">
             {article.title}
           </Link>
         </h3>
         <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{article.excerpt}</p>
         <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted-foreground">
+          <span className="font-semibold text-foreground">{article.category}</span>
+          <span aria-hidden>·</span>
           <time dateTime={article.published}>{formatDate(article.published)}</time>
           <span aria-hidden>·</span>
           <span>{readingTime(article.body)} min read</span>

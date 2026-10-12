@@ -3,7 +3,9 @@ import { useNavigate } from "@tanstack/react-router";
 import { SiteHeader } from "./components/SiteHeader";
 import { SiteFooter } from "./components/SiteFooter";
 import { FragranceCard } from "./components/FragranceCard";
+import { ArrowLeft } from "lucide-react";
 import { LongevityStep } from "./components/LongevityStep";
+import { MarketedForStep } from "./components/MarketedForStep";
 import { ScrollToTopButton } from "./components/ScrollToTopButton";
 import { NoteSelector } from "./components/NoteSelector";
 import { OccasionStep } from "./components/OccasionStep";
@@ -15,6 +17,7 @@ import {
   type GenderPreference,
   type LongevityPreference,
 } from "./utils/scoring";
+import { LEGACY_OCCASIONS } from "./data/quizOptions";
 import { priceBand, type PriceBandId } from "./utils/price";
 import {
   parseSharedQuiz,
@@ -52,6 +55,7 @@ function loadSaved(): Answers | null {
     const raw = window.sessionStorage.getItem(STORAGE_KEY);
     if (!raw) return null;
     const saved = { ...emptyAnswers, ...(JSON.parse(raw) as Partial<Answers>) };
+    saved.occasion = LEGACY_OCCASIONS[saved.occasion] ?? saved.occasion;
     return Array.isArray(saved.selectedNotes) && Array.isArray(saved.avoidedNotes) ? saved : null;
   } catch {
     return null;
@@ -93,12 +97,16 @@ function toShared(answers: Answers): SharedQuiz {
 // The furthest step these answers can open: each step needs the answers before it.
 function reachable(answers: Answers): number {
   if (!answers.season) return 1;
-  if (!answers.occasion || !answers.gender) return 3;
-  return 5;
+  if (!answers.gender) return 3;
+  if (!answers.occasion) return 4;
+  return 6;
 }
 
+// Steps: 1 season, 2 wear time, 3 marketed for, 4 occasion, 5 first picks, 6 notes, 7 results.
+const RESULTS = 7;
+
 function searchFor(step: number, answers: Answers): QuizSearch {
-  if (step === 6) return toQuizSearch(toShared(answers));
+  if (step === RESULTS) return toQuizSearch(toShared(answers));
   return step === 1 ? {} : { step };
 }
 
@@ -107,7 +115,7 @@ export default function App({ search = {} }: { search?: QuizSearch }) {
   // A results link (/?season=…&occasion=…) opens straight on the results.
   const shared = parseSharedQuiz(search);
   const sharedKey = shared ? JSON.stringify(shared) : "";
-  const urlStep = shared ? 6 : (parseStep(search) ?? 1);
+  const urlStep = shared ? RESULTS : (parseStep(search) ?? 1);
 
   const [answers, setAnswers] = useState<Answers>(() =>
     shared ? fromShared(shared) : emptyAnswers,
@@ -145,7 +153,8 @@ export default function App({ search = {} }: { search?: QuizSearch }) {
 
   // A step in the URL that these answers can't reach (a new tab, cleared storage) falls back
   // to the furthest one they can.
-  const step = urlStep === 6 ? 6 : hydrated ? Math.min(urlStep, reachable(answers)) : urlStep;
+  const step =
+    urlStep === RESULTS ? RESULTS : hydrated ? Math.min(urlStep, reachable(answers)) : urlStep;
   useEffect(() => {
     if (hydrated && step !== urlStep) go(step, answers, true);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -174,13 +183,13 @@ export default function App({ search = {} }: { search?: QuizSearch }) {
     setAnswers(merged);
     setViewingShared(false);
     // Changing one answer from the results goes straight back to the results.
-    const target = editing ? 6 : nextStep;
-    if (target === 6) setEditing(false);
+    const target = editing ? RESULTS : nextStep;
+    if (target === RESULTS) setEditing(false);
     go(target, merged);
   };
 
   const editAnswer = (target: number) => {
-    setEditing(target < 5);
+    setEditing(target < 6);
     setViewingShared(false);
     go(target);
   };
@@ -210,7 +219,7 @@ export default function App({ search = {} }: { search?: QuizSearch }) {
   const setBudget = (budget: PriceBandId | "") => {
     const merged = { ...answers, budget };
     setAnswers(merged);
-    go(6, merged, true);
+    go(RESULTS, merged, true);
   };
 
   const initialRecommendations = useMemo(
@@ -262,13 +271,13 @@ export default function App({ search = {} }: { search?: QuizSearch }) {
     setAnswers((current) => ({ ...current, longevity }));
   };
 
-  // Steps 2–4 get floating Back and Restart; the note step has its own action bar and the
+  // Steps 2–5 get floating Back and Restart; the note step has its own action bar and the
   // results have their own controls.
-  const showFloatingControls = step >= 2 && step <= 4;
-  const waitingForSavedAnswers = !hydrated && urlStep > 1 && urlStep < 6;
+  const showFloatingControls = step >= 2 && step <= 5;
+  const waitingForSavedAnswers = !hydrated && urlStep > 1 && urlStep < RESULTS;
 
   return (
-    <main className="min-h-screen overflow-hidden bg-background text-foreground">
+    <main className="min-h-screen overflow-x-clip bg-background text-foreground">
       <div className="scent-aura" aria-hidden="true" />
       <SiteHeader current="home" right={<StepIndicator step={step} />} />
 
@@ -285,13 +294,18 @@ export default function App({ search = {} }: { search?: QuizSearch }) {
               />
             )}
             {step === 3 && (
-              <OccasionStep
-                initialGender={answers.gender}
-                selectedOccasion={answers.occasion}
-                onSelect={(occasion, gender) => answer({ occasion, gender }, 4)}
+              <MarketedForStep
+                selected={answers.gender}
+                onSelect={(gender) => answer({ gender }, 4)}
               />
             )}
             {step === 4 && (
+              <OccasionStep
+                selected={answers.occasion}
+                onSelect={(occasion) => answer({ occasion }, 5)}
+              />
+            )}
+            {step === 5 && (
               <section className="mx-auto max-w-[900px] animate-scent-in">
                 <div className="text-center">
                   <h1 className="font-serif text-4xl font-bold text-foreground sm:text-6xl">
@@ -314,14 +328,14 @@ export default function App({ search = {} }: { search?: QuizSearch }) {
                 </div>
                 <button
                   type="button"
-                  onClick={() => go(5)}
+                  onClick={() => go(6)}
                   className="mx-auto mt-8 flex rounded-full bg-primary px-6 py-4 text-sm font-bold text-primary-foreground shadow-scent transition hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 >
                   Refine by notes →
                 </button>
               </section>
             )}
-            {step === 5 && (
+            {step === 6 && (
               <NoteSelector
                 lovedNotes={answers.selectedNotes}
                 avoidedNotes={answers.avoidedNotes}
@@ -330,12 +344,12 @@ export default function App({ search = {} }: { search?: QuizSearch }) {
                 onClear={clearNotes}
                 longevity={answers.longevity}
                 onLongevityChange={setLongevity}
-                onSubmit={() => answer({}, 6)}
+                onSubmit={() => answer({}, RESULTS)}
                 onBack={goBack}
                 onRestart={restart}
               />
             )}
-            {step === 6 && (
+            {step === RESULTS && (
               <ResultsGrid
                 answers={answers}
                 viewingShared={viewingShared}
@@ -356,7 +370,7 @@ export default function App({ search = {} }: { search?: QuizSearch }) {
           <button
             type="button"
             onClick={restart}
-            className="fixed bottom-5 right-5 z-40 rounded-full bg-foreground px-5 py-3 text-sm font-bold text-background shadow-scent transition hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="fixed bottom-[calc(1.25rem+var(--consent-offset,0px))] right-5 z-40 rounded-full bg-foreground px-5 py-3 text-sm font-bold text-background shadow-scent transition hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             aria-label="Restart WhichScent quiz"
           >
             Restart
@@ -364,19 +378,20 @@ export default function App({ search = {} }: { search?: QuizSearch }) {
           <button
             type="button"
             onClick={goBack}
-            className="fixed bottom-24 left-5 z-40 rounded-full border bg-card px-5 py-3 text-sm font-bold text-card-foreground shadow-scent transition hover:scale-105 hover:border-primary hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="fixed bottom-[calc(6rem+var(--consent-offset,0px))] left-5 z-40 inline-flex items-center gap-1.5 rounded-full border bg-card px-5 py-3 text-sm font-bold text-card-foreground shadow-scent transition hover:scale-105 hover:border-primary hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             aria-label="Go back to previous WhichScent quiz step"
           >
-            ← Back
+            <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+            Back
           </button>
         </>
       )}
-      <ScrollToTopButton hidden={step === 5} />
+      <ScrollToTopButton hidden={step === 6} />
 
       {undo && (
         <div
           role="status"
-          className="fixed inset-x-3 bottom-3 z-50 mx-auto flex max-w-[420px] items-center justify-between gap-4 rounded-full bg-foreground py-2 pl-5 pr-2 text-sm text-background shadow-scent-hover"
+          className="fixed inset-x-3 bottom-[calc(0.75rem+var(--consent-offset,0px))] z-50 mx-auto flex max-w-[420px] items-center justify-between gap-4 rounded-full bg-foreground py-2 pl-5 pr-2 text-sm text-background shadow-scent-hover"
         >
           <span>Quiz restarted.</span>
           <button

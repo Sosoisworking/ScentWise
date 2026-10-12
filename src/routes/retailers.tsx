@@ -57,7 +57,7 @@ const checkedOn = new Date(`${RETAILERS_CHECKED}T12:00:00`).toLocaleDateString("
 
 function RetailersPage() {
   return (
-    <main className="min-h-screen overflow-hidden bg-background text-foreground">
+    <main className="min-h-screen overflow-x-clip bg-background text-foreground">
       <div className="scent-aura" aria-hidden="true" />
 
       <SiteHeader
@@ -195,12 +195,14 @@ function RetailersPage() {
           </p>
         </section>
 
-        <footer className="mt-16 border-t border-border pt-8 text-sm text-muted-foreground">
+        <section className="mt-16 text-sm text-muted-foreground" aria-labelledby="sources">
           <p>
             WhichScent is independent. We don't earn commission from any shop listed here, and
             listing a shop isn't an endorsement.
           </p>
-          <h2 className="mt-6 font-semibold text-foreground">Sources</h2>
+          <h2 id="sources" className="mt-6 font-serif text-xl font-bold text-foreground">
+            Sources
+          </h2>
           <ul className="mt-2 space-y-1">
             {SOURCES.map((source) => (
               <li key={source.url}>
@@ -215,10 +217,7 @@ function RetailersPage() {
               </li>
             ))}
           </ul>
-          <Link to="/" className="mt-6 inline-block font-bold text-primary hover:underline">
-            Take the quiz →
-          </Link>
-        </footer>
+        </section>
       </div>
       <SiteFooter />
       <ScrollToTopButton />

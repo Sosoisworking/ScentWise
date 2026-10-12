@@ -166,10 +166,7 @@ function ArticlePage() {
           </ol>
         </nav>
 
-        <p className="mt-6 text-xs font-bold uppercase tracking-wide text-primary">
-          {article.category}
-        </p>
-        <h1 className="mt-2 font-serif text-3xl font-bold leading-tight sm:text-5xl">
+        <h1 className="mt-6 font-serif text-3xl font-bold leading-tight sm:text-5xl">
           {article.title}
         </h1>
         <p className="mt-4 max-w-[34rem] text-lg leading-relaxed text-muted-foreground">
@@ -229,7 +226,7 @@ function ArticlePage() {
           <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{AUTHOR.bio}</p>
           <Link
             to="/editorial-policy"
-            className="mt-3 inline-block text-xs font-bold uppercase tracking-wide text-primary"
+            className="mt-3 inline-block py-1 text-xs font-bold uppercase tracking-wide text-primary"
           >
             Read our editorial policy →
           </Link>

@@ -26,7 +26,7 @@ WhichScent (renamed from Scentwise on 2026-10-11 _(owner)_) is a free fragrance 
 
 ## Operating Context
 
-- The quiz has six steps: season, longevity, occasion, presentation (gender), loved/avoided notes, then results. Results can be shared by URL and emailed. _(code)_
+- The quiz has seven steps: season, wear time, who it's marketed for, occasion (8 options since 2026-10-12), first picks by price band, loved/avoided notes, then results. Results can be filtered by price, shared by URL and emailed. _(code)_
 - The owner reviews every catalogue change as a pull request. A scheduled routine proposes about 10 new fragrances on the 1st and 15th of each month. _(owner)_
 - Hosted on Vercel at scent-wise-self.vercel.app. A custom domain (whichscent.com) is planned as the last step before launch. _(owner)_
 
@@ -62,4 +62,4 @@ WhichScent (renamed from Scentwise on 2026-10-11 _(owner)_) is a free fragrance 
 
 ## Accessibility & Inclusion
 
-No standard has been set by the owner. The presentation step offers male, female and unisex ("marketed for"); there is no "no preference" option today. _(code)_
+No standard has been set by the owner. The "marketed for" step offers Women, Men, Unisex and No preference, and says plainly that scent has no gender. _(code)_

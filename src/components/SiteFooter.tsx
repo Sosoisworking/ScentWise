@@ -36,12 +36,15 @@ export function SiteFooter() {
             </p>
           </div>
           <div className="flex flex-wrap gap-x-10 gap-y-8">
-            <nav className="grid grid-cols-2 gap-x-8 gap-y-2 sm:grid-cols-1" aria-label="Footer">
+            <nav
+              className="grid content-start grid-cols-2 gap-x-8 gap-y-1 sm:grid-cols-1"
+              aria-label="Footer"
+            >
               {LINKS.map((item) => (
                 <Link
                   key={item.to}
                   to={item.to}
-                  className="text-sm text-muted-foreground transition hover:text-foreground"
+                  className="py-0.5 text-sm text-muted-foreground transition hover:text-foreground"
                 >
                   {item.label}
                 </Link>
@@ -49,12 +52,12 @@ export function SiteFooter() {
               <button
                 type="button"
                 onClick={openConsentSettings}
-                className="text-left text-sm text-muted-foreground transition hover:text-foreground"
+                className="py-0.5 text-left text-sm text-muted-foreground transition hover:text-foreground"
               >
                 Cookie Settings
               </button>
             </nav>
-            <nav className="grid gap-y-2" aria-label="Popular guides">
+            <nav className="grid content-start gap-y-1" aria-label="Popular guides">
               <p className="text-xs font-bold uppercase tracking-wide text-foreground">
                 Popular guides
               </p>
@@ -63,7 +66,7 @@ export function SiteFooter() {
                   key={item.slug}
                   to="/learn/$slug"
                   params={{ slug: item.slug }}
-                  className="text-sm text-muted-foreground transition hover:text-foreground"
+                  className="py-0.5 text-sm text-muted-foreground transition hover:text-foreground"
                 >
                   {item.label}
                 </Link>

@@ -1,3 +1,4 @@
+import { ArrowLeft, Heart, RotateCcw, X } from "lucide-react";
 import { useId, useMemo, useState } from "react";
 import { FRAGRANCES } from "../data/fragrances";
 import { NOTES, NOTE_BY_NAME, NOTE_FAMILIES, type CanonicalNote } from "../data/notes";
@@ -19,14 +20,10 @@ type NoteSelectorProps = {
   onRestart: () => void;
 };
 
-const longevityOptions: Array<{
-  key: Exclude<LongevityPreference, "">;
-  label: string;
-  icon: string;
-}> = [
-  { key: "short", label: "Short", icon: "⏱" },
-  { key: "medium", label: "Medium", icon: "⏱⏱" },
-  { key: "long", label: "Long", icon: "⏱⏱⏱" },
+const longevityOptions: Array<{ key: Exclude<LongevityPreference, "">; label: string }> = [
+  { key: "short", label: "Short" },
+  { key: "medium", label: "Medium" },
+  { key: "long", label: "Long" },
 ];
 
 // One-tap starting points for people who don't know note names yet. Each loves a small
@@ -38,6 +35,7 @@ const VIBES: Array<{ label: string; notes: string[] }> = [
   { label: "Woody & smoky", notes: ["Any woods", "Incense", "Leather"] },
   { label: "Warm & spicy", notes: ["Any spice", "Amber"] },
   { label: "Fruity & playful", notes: ["Any fruit", "Berries"] },
+  { label: "Boozy & rich", notes: ["Rum", "Liquor", "Tobacco", "Honey"] },
 ];
 
 const longevityLabel = (value: LongevityPreference) =>
@@ -129,7 +127,7 @@ export function NoteSelector({
     const showAll = searching || expanded.has(family.id);
     const visible = showAll
       ? matching
-      : matching.filter((n, i) => i <= VISIBLE_PER_FAMILY || stateOf(n.name) !== "none");
+      : matching.filter((n, i) => i < VISIBLE_PER_FAMILY || stateOf(n.name) !== "none");
     return { family, visible, hidden: matching.length - visible.length };
   }).filter((g) => g.visible.length > 0);
 
@@ -145,7 +143,7 @@ export function NoteSelector({
 
   return (
     <>
-      <section className="mx-auto max-w-[900px] animate-scent-in pb-44 sm:pb-0">
+      <section className="mx-auto max-w-[900px] animate-scent-in pb-44">
         <div className="text-center">
           <h1 className="font-serif text-4xl font-bold text-foreground sm:text-6xl">
             Pick what you love
@@ -171,7 +169,7 @@ export function NoteSelector({
                 type="button"
                 onClick={() => setEditingLongevity((v) => !v)}
                 aria-expanded={editingLongevity}
-                className="font-semibold text-primary underline-offset-2 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="inline-flex min-h-6 items-center px-1 font-semibold text-primary underline-offset-2 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 {editingLongevity ? "Done" : "Change"}
               </button>
@@ -193,9 +191,6 @@ export function NoteSelector({
                       onClick={() => onLongevityChange(active ? "" : option.key)}
                       className={`rounded-full border px-4 py-3 text-sm font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${active ? "border-primary bg-primary text-primary-foreground" : "border-border bg-card text-card-foreground hover:border-primary hover:bg-accent"}`}
                     >
-                      <span aria-hidden="true" className="mr-2">
-                        {option.icon}
-                      </span>
                       {option.label}
                     </button>
                   );
@@ -205,7 +200,7 @@ export function NoteSelector({
           </div>
 
           <div>
-            <p className="mb-3 text-center text-xs font-bold uppercase tracking-[0.2em] text-primary">
+            <p className="mb-3 text-center text-sm font-semibold text-foreground">
               Not sure? Start with a vibe
             </p>
             <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
@@ -274,14 +269,10 @@ export function NoteSelector({
                       className={`inline-flex items-center rounded-full border px-4 py-2 text-sm font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-40 ${chipClass[state]} ${note.wildcard ? "italic" : ""}`}
                     >
                       {state === "loved" && (
-                        <span aria-hidden="true" className="mr-1.5">
-                          ♥
-                        </span>
+                        <Heart className="mr-1.5 h-3.5 w-3.5 fill-current" aria-hidden="true" />
                       )}
                       {state === "avoided" && (
-                        <span aria-hidden="true" className="mr-1.5">
-                          ✕
-                        </span>
+                        <X className="mr-1.5 h-3.5 w-3.5" aria-hidden="true" />
                       )}
                       <span className={state === "avoided" ? "line-through" : undefined}>
                         {note.name}
@@ -326,14 +317,22 @@ export function NoteSelector({
 
       {/* Kept outside the animated section: a transformed ancestor would stop `fixed` from
           pinning the bar to the viewport. */}
-      <div className="fixed inset-x-0 bottom-0 z-50 border-t bg-background/95 px-4 pb-4 pt-3 backdrop-blur sm:static sm:z-auto sm:mx-auto sm:mt-8 sm:max-w-[900px] sm:border-0 sm:bg-transparent sm:p-0">
-        <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-sm text-muted-foreground">
+      <div className="fixed inset-x-0 bottom-[var(--consent-offset,0px)] z-50 border-t bg-background/95 px-4 pb-4 pt-3 backdrop-blur">
+        <div className="mx-auto flex max-w-[900px] flex-wrap items-center justify-center gap-x-3 gap-y-1 text-sm text-muted-foreground">
           <p aria-live="polite">
             {lovedNotes.length > 0 && (
-              <span className="font-semibold text-foreground">♥ {lovedNotes.length} </span>
+              <span className="mr-1 inline-flex items-center gap-1 font-semibold text-foreground">
+                <Heart className="h-3.5 w-3.5 fill-current" aria-hidden="true" />
+                {lovedNotes.length}
+                <span className="sr-only">loved</span>
+              </span>
             )}
             {avoidedNotes.length > 0 && (
-              <span className="font-semibold text-destructive">✕ {avoidedNotes.length} </span>
+              <span className="mr-1 inline-flex items-center gap-1 font-semibold text-destructive">
+                <X className="h-3.5 w-3.5" aria-hidden="true" />
+                {avoidedNotes.length}
+                <span className="sr-only">avoided</span>
+              </span>
             )}
             {pickedCount > 0 && "· "}
             <span className="font-semibold text-foreground">{matchCount}</span>
@@ -349,20 +348,20 @@ export function NoteSelector({
             <button
               type="button"
               onClick={onClear}
-              className="font-semibold text-primary underline-offset-2 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="inline-flex min-h-6 items-center px-1 font-semibold text-primary underline-offset-2 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               Clear
             </button>
           )}
         </div>
-        <div className="mt-3 flex items-center gap-2 sm:justify-center">
+        <div className="mx-auto mt-3 flex max-w-[900px] items-center gap-2 sm:justify-center">
           <button
             type="button"
             onClick={onBack}
             aria-label="Go back to previous WhichScent quiz step"
-            className="rounded-full border bg-card px-4 py-4 text-sm font-bold text-card-foreground transition hover:border-primary hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="rounded-full border bg-card p-4 text-card-foreground transition hover:border-primary hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
-            ←
+            <ArrowLeft className="h-4 w-4" aria-hidden="true" />
           </button>
           <button
             type="button"
@@ -375,9 +374,9 @@ export function NoteSelector({
             type="button"
             onClick={onRestart}
             aria-label="Restart WhichScent quiz"
-            className="rounded-full border bg-card px-4 py-4 text-sm font-bold text-card-foreground transition hover:border-primary hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="rounded-full border bg-card p-4 text-card-foreground transition hover:border-primary hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
-            ↺
+            <RotateCcw className="h-4 w-4" aria-hidden="true" />
           </button>
         </div>
       </div>

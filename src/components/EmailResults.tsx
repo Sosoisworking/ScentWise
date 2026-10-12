@@ -1,3 +1,4 @@
+import { Check, Mail, X } from "lucide-react";
 import { useMemo, useState } from "react";
 import type { Fragrance } from "../data/fragrances";
 import { SITE_URL } from "../lib/site";
@@ -102,9 +103,10 @@ export function EmailResults(props: Props) {
           <button
             type="button"
             onClick={() => setOpen(true)}
-            className="rounded-full bg-primary px-5 py-3 text-sm font-bold text-primary-foreground transition hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-bold text-primary-foreground transition hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
-            ✉ Email My Results
+            <Mail className="h-4 w-4" aria-hidden="true" />
+            Email My Results
           </button>
         </div>
       ) : (
@@ -120,9 +122,9 @@ export function EmailResults(props: Props) {
               type="button"
               onClick={() => setOpen(false)}
               aria-label="Close"
-              className="rounded-full border bg-background px-2.5 py-1 text-sm text-muted-foreground transition hover:text-foreground"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-full border bg-background text-muted-foreground transition hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
-              ✕
+              <X className="h-4 w-4" aria-hidden="true" />
             </button>
           </div>
 
@@ -156,20 +158,28 @@ export function EmailResults(props: Props) {
               onClick={(e) => {
                 if (!valid) e.preventDefault();
               }}
-              className={`inline-flex min-h-11 items-center justify-center rounded-full px-5 py-3 text-sm font-bold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+              className={`inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-bold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
                 valid
                   ? "bg-primary text-primary-foreground hover:bg-primary-hover"
                   : "cursor-not-allowed bg-muted text-muted-foreground"
               }`}
             >
-              ✉ Open in Mail App
+              <Mail className="h-4 w-4" aria-hidden="true" />
+              Open in Mail App
             </a>
             <button
               type="button"
               onClick={copy}
-              className="inline-flex min-h-11 items-center justify-center rounded-full border bg-background px-5 py-3 text-sm font-bold text-foreground transition hover:border-primary hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border bg-background px-5 py-3 text-sm font-bold text-foreground transition hover:border-primary hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
-              {copied ? "✓ Copied" : "Copy to Clipboard"}
+              {copied ? (
+                <>
+                  <Check className="h-4 w-4" aria-hidden="true" />
+                  Copied
+                </>
+              ) : (
+                "Copy to Clipboard"
+              )}
             </button>
           </div>
 

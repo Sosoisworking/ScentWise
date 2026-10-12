@@ -71,9 +71,9 @@ function EditorialPolicyPage() {
   return (
     <main className="min-h-screen bg-background text-foreground">
       <SiteHeader
-        current="learn"
+        current="about"
         tagline="Editorial standards"
-        breadcrumb="Home › Learn › Editorial Policy"
+        breadcrumb="Home › Editorial Policy"
       />
       <div className="mx-auto max-w-[760px] px-5 pb-20 pt-4">
         <h1 className="font-serif text-3xl font-bold leading-tight sm:text-5xl">

@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const STORAGE_KEY = "scentwise-consent";
 const OPEN_EVENT = "scentwise:open-consent";
@@ -26,6 +26,24 @@ export function openConsentSettings() {
 
 export function ConsentBanner() {
   const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  // While open, publish the banner's height so fixed controls (quiz buttons, the note bar)
+  // can sit above it instead of underneath.
+  useEffect(() => {
+    const el = ref.current;
+    const root = document.documentElement;
+    if (!open || !el) return;
+    const update = () =>
+      root.style.setProperty("--consent-offset", `${Math.ceil(el.offsetHeight) + 24}px`);
+    update();
+    const observer = new ResizeObserver(update);
+    observer.observe(el);
+    return () => {
+      observer.disconnect();
+      root.style.removeProperty("--consent-offset");
+    };
+  }, [open]);
 
   useEffect(() => {
     if (getStoredConsent() === null) setOpen(true);
@@ -47,6 +65,7 @@ export function ConsentBanner() {
 
   return (
     <div
+      ref={ref}
       role="dialog"
       aria-live="polite"
       aria-label="Cookie consent"

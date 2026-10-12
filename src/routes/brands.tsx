@@ -79,7 +79,7 @@ function BrandDirectory() {
   });
 
   return (
-    <main className="min-h-screen overflow-hidden bg-background text-foreground">
+    <main className="min-h-screen overflow-x-clip bg-background text-foreground">
       <div className="scent-aura" aria-hidden="true" />
 
       <SiteHeader
@@ -195,15 +195,9 @@ function BrandDirectory() {
           </section>
         )}
 
-        {/* Alphabet nav (hidden when searching) */}
-        {!isSearching && (
-          <div className="mt-12">
-            <AlphabetNav availableLetters={availableLetters} />
-          </div>
-        )}
-
-        {/* Grid */}
-        <section className={isSearching ? "mt-8" : "mt-2"}>
+        {/* Grid. The alphabet bar lives inside it so it can stay pinned while the list scrolls. */}
+        <section className={isSearching ? "mt-8" : "mt-12"}>
+          {!isSearching && <AlphabetNav availableLetters={availableLetters} />}
           {filtered.length === 0 ? (
             <div className="mx-auto max-w-md rounded-2xl border bg-card p-10 text-center shadow-scent">
               <p className="font-serif text-2xl font-bold text-foreground">No brands found</p>
@@ -243,8 +237,7 @@ function BrandDirectory() {
           )}
         </section>
 
-        {/* Footer */}
-        <footer className="mt-20 border-t border-border pt-8 text-center text-xs text-muted-foreground">
+        <section className="mt-16 text-center text-sm text-muted-foreground">
           <p>
             Every link goes to the brand's own website, never a reseller or marketplace. Spot an
             outdated link or detail?{" "}
@@ -254,10 +247,7 @@ function BrandDirectory() {
             .
           </p>
           <p className="mt-1">Last updated: {lastUpdated}</p>
-          <Link to="/" className="mt-4 inline-block font-bold text-primary hover:underline">
-            Discover your signature scent →
-          </Link>
-        </footer>
+        </section>
       </div>
       <SiteFooter />
       <ScrollToTopButton />

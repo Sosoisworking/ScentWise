@@ -12,27 +12,43 @@ import appCss from "../styles.css?url";
 import bodyFont from "@fontsource-variable/schibsted-grotesk/files/schibsted-grotesk-latin-wght-normal.woff2?url";
 import displayFont from "@fontsource-variable/playfair-display/files/playfair-display-latin-wght-normal.woff2?url";
 import { ConsentBanner } from "../components/ConsentBanner";
+import { SiteFooter } from "../components/SiteFooter";
+import { SiteHeader } from "../components/SiteHeader";
 import { SITE_URL } from "../lib/site";
 
 function NotFoundComponent() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="max-w-md text-center">
+    <main className="flex min-h-screen flex-col bg-background text-foreground">
+      <SiteHeader current="home" />
+      <div className="mx-auto flex max-w-md flex-1 flex-col items-center justify-center px-5 py-20 text-center">
         <h1 className="font-serif text-7xl font-bold text-foreground">404</h1>
         <h2 className="mt-4 font-serif text-2xl font-bold text-foreground">Page not found</h2>
         <p className="mt-2 text-sm text-muted-foreground">
-          The page you're looking for doesn't exist or has been moved.
+          This page doesn't exist or has moved. Try one of these instead:
         </p>
-        <div className="mt-6">
+        <div className="mt-6 flex flex-wrap justify-center gap-2">
           <Link
             to="/"
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+            className="inline-flex min-h-11 items-center rounded-full bg-primary px-5 text-sm font-bold text-primary-foreground transition hover:bg-primary-hover"
           >
-            Go home
+            Take the quiz
+          </Link>
+          <Link
+            to="/learn"
+            className="inline-flex min-h-11 items-center rounded-full border bg-card px-5 text-sm font-bold text-card-foreground transition hover:border-primary hover:bg-accent"
+          >
+            Read the guides
+          </Link>
+          <Link
+            to="/retailers"
+            className="inline-flex min-h-11 items-center rounded-full border bg-card px-5 text-sm font-bold text-card-foreground transition hover:border-primary hover:bg-accent"
+          >
+            Where to buy
           </Link>
         </div>
       </div>
-    </div>
+      <SiteFooter />
+    </main>
   );
 }
 
