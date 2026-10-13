@@ -276,10 +276,6 @@ export default function App({ search = {} }: { search?: QuizSearch }) {
     setAnswers((current) => ({ ...current, selectedNotes: [], avoidedNotes: [] }));
   };
 
-  const setLongevity = (longevity: LongevityPreference) => {
-    setAnswers((current) => ({ ...current, longevity }));
-  };
-
   // Steps 2–5 (and step 1 while changing an answer) get a pinned bar with Back and Restart; the
   // note step has its own bar and the results have their own controls.
   const showStepBar = (step >= 2 && step <= 5) || (editing && step === 1);
@@ -290,10 +286,7 @@ export default function App({ search = {} }: { search?: QuizSearch }) {
       <div className="scent-aura" aria-hidden="true" />
       <SiteHeader current="home" right={<StepIndicator step={step} />} />
 
-      <div
-        id="quiz"
-        className={`relative z-10 px-5 pt-8 sm:pt-14 ${showStepBar ? "pb-32" : "pb-16"}`}
-      >
+      <div id="quiz" className={`relative px-5 pt-8 sm:pt-14 ${showStepBar ? "pb-32" : "pb-16"}`}>
         {waitingForSavedAnswers ? null : (
           <>
             {step === 1 && (
@@ -348,7 +341,6 @@ export default function App({ search = {} }: { search?: QuizSearch }) {
                 gender={answers.gender}
                 budget={answers.budget}
                 longevity={answers.longevity}
-                onLongevityChange={setLongevity}
                 onSubmit={() => answer({}, RESULTS)}
                 onBack={goBack}
                 backLabel={backLabel}
@@ -408,7 +400,7 @@ export default function App({ search = {} }: { search?: QuizSearch }) {
       {undo && (
         <div
           role="status"
-          className="fixed inset-x-3 bottom-[calc(0.75rem+var(--consent-offset,0px))] z-50 mx-auto flex max-w-[420px] items-center justify-between gap-4 rounded-full bg-foreground py-2 pl-5 pr-2 text-sm text-background shadow-scent-hover"
+          className="fixed inset-x-3 bottom-[calc(0.75rem+var(--bottom-bar,0px)+var(--consent-offset,0px))] z-[60] mx-auto flex max-w-[420px] items-center justify-between gap-4 rounded-full bg-foreground py-2 pl-5 pr-2 text-sm text-background shadow-scent-hover"
         >
           <span>{undo.label}</span>
           <button

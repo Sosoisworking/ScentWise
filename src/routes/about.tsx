@@ -64,12 +64,15 @@ function AboutPage() {
             Results that fit who it's marketed for and the wear time you chose always come first;
             anything that misses either sits below them, and its card says so. Within each group, a
             fragrance with more of your loved notes ranks higher, the fit score orders the rest, and
-            ties go to longer wear unless you asked for something light.
+            longer wear breaks a tie unless you asked for something light. Fragrances that still
+            score exactly the same are shown together as an <strong>equal fit</strong>, without
+            numbers, because ranking them would claim a difference we can't measure.
           </p>
           <p>
             The first picks show the best fit at three price points (under $100, $100 to $200, and
             $200 and up, by the lowest price you can usually find it for in Canada) so you can see
-            what extra money buys before you refine by notes.
+            what extra money buys before you refine by notes. They win any tie in your shortlist,
+            and any that don't make it are shown below it, so a pick you liked never disappears.
           </p>
         </Section>
 

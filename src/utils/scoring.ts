@@ -89,7 +89,20 @@ export function getInitialRecommendations(
   ).filter(Boolean);
 }
 
-export function getRefinedResults(
+export type RankedResult = {
+  fragrance: Fragrance;
+  /** Set when it scored exactly the same as a neighbour, so a rank number would claim a
+   *  difference that isn't there. Fragrances with the same value tie with each other. */
+  tieGroup: string | null;
+};
+
+/**
+ * The shortlist, best first. Anything missing an explicit answer (who it's for, wear time)
+ * sits below everything that fits; within each group, containing more of your notes wins and
+ * the score orders the rest. Fragrances that tie on all of that share a `tieGroup`; among them
+ * the `preferred` ids (the first picks from step 5) come first, then names A–Z.
+ */
+export function getRankedResults(
   season: string,
   occasion: string,
   lovedNotes: string[],
@@ -98,9 +111,13 @@ export function getRefinedResults(
   avoidedNotes: string[] = [],
   limit = 8,
   budget: PriceBandId | "" = "",
-): Fragrance[] {
+  preferred: string[] = [],
+): RankedResult[] {
   const longevityRank = { long: 3, medium: 2, short: 1 } as const;
-  return FRAGRANCES.filter(
+  // Short wear asked for: shorter-lasting bottles first; otherwise longer-lasting first.
+  const wearRank = (f: Fragrance) =>
+    longevity === "short" ? -longevityRank[f.longevity] : longevityRank[f.longevity];
+  const sorted = FRAGRANCES.filter(
     (f) => !containsAnyNote(f, avoidedNotes) && (!budget || priceBand(f).id === budget),
   )
     .map((f) => ({
@@ -110,17 +127,27 @@ export function getRefinedResults(
       fits: fitsAnswers(f, gender, longevity),
     }))
     .filter((x) => x.score > 20)
+    .map((x) => ({ ...x, key: `${x.fits}|${x.matched}|${x.score}|${wearRank(x.fragrance)}` }))
     .sort((a, b) => {
-      // Anything that misses an explicit answer (who it's for, wear time) sits below everything
-      // that fits. Within each group, containing more of your notes wins; the score orders ties.
       if (a.fits !== b.fits) return a.fits ? -1 : 1;
       if (b.matched !== a.matched) return b.matched - a.matched;
       if (b.score !== a.score) return b.score - a.score;
-      const longevityDiff =
-        longevityRank[b.fragrance.longevity] - longevityRank[a.fragrance.longevity];
-      if (longevityDiff !== 0) return longevity === "short" ? -longevityDiff : longevityDiff;
+      const wearDiff = wearRank(b.fragrance) - wearRank(a.fragrance);
+      if (wearDiff !== 0) return wearDiff;
+      const preferDiff =
+        Number(preferred.includes(b.fragrance.id)) - Number(preferred.includes(a.fragrance.id));
+      if (preferDiff !== 0) return preferDiff;
       return a.fragrance.name.localeCompare(b.fragrance.name);
-    })
-    .slice(0, limit)
-    .map((x) => x.fragrance);
+    });
+  // Ties are judged on the whole sorted list, so a tie that straddles the cut still counts.
+  const keyCounts = new Map<string, number>();
+  for (const x of sorted) keyCounts.set(x.key, (keyCounts.get(x.key) ?? 0) + 1);
+  return sorted.slice(0, limit).map((x) => ({
+    fragrance: x.fragrance,
+    tieGroup: (keyCounts.get(x.key) ?? 0) > 1 ? x.key : null,
+  }));
+}
+
+export function getRefinedResults(...args: Parameters<typeof getRankedResults>): Fragrance[] {
+  return getRankedResults(...args).map((x) => x.fragrance);
 }
