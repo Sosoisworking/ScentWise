@@ -20,6 +20,11 @@ export function SeasonStep({
       <h1 className="font-serif text-3xl font-bold tracking-normal text-foreground sm:text-6xl">
         When do you want to smell this good?
       </h1>
+      {/* The promise, before the first tap: what you get and why it can be trusted. */}
+      <p className="mx-auto mt-3 max-w-[34rem] text-sm text-muted-foreground sm:mt-4 sm:text-base">
+        A few taps to a shortlist you can sample, with Canadian prices. No paid rankings, no
+        sign-up.
+      </p>
       <div className="mt-6 grid grid-cols-2 gap-3 sm:mt-10 sm:gap-4">
         {seasons.map((season) => {
           const Icon = ICONS[season.key];
@@ -29,7 +34,7 @@ export function SeasonStep({
               type="button"
               aria-pressed={selected === season.key}
               onClick={() => onSelect(season.key)}
-              className={`group rounded-2xl border bg-card p-4 text-left sm:p-7 shadow-scent transition duration-300 hover:-translate-y-1 hover:border-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${selected === season.key ? "border-primary ring-2 ring-primary" : ""}`}
+              className={`group flex flex-col items-start justify-start rounded-2xl border bg-card p-4 text-left sm:p-7 shadow-scent transition duration-300 hover:-translate-y-1 hover:border-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${selected === season.key ? "border-primary ring-2 ring-primary" : ""}`}
               aria-label={`Choose ${season.label}`}
             >
               <Icon
