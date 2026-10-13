@@ -4,7 +4,7 @@ export const SEASON_OPTIONS = [
   { key: "spring", label: "Spring", text: "Fresh blooms & new beginnings" },
   { key: "summer", label: "Summer", text: "Light, airy & sun-drenched" },
   { key: "fall", label: "Fall", text: "Warm, spiced & golden" },
-  { key: "winter", label: "Winter", text: "Rich, deep & cosy" },
+  { key: "winter", label: "Winter", text: "Rich, deep & cozy" },
 ];
 
 export const OCCASION_OPTIONS = [
@@ -34,3 +34,17 @@ export const LEGACY_OCCASIONS: Record<string, string> = {
 // "any" is the explicit "no preference" answer; "" means not answered yet.
 export const GENDER_KEYS = ["male", "female", "unisex", "any"] as const;
 export const LONGEVITY_KEYS = ["short", "medium", "long"] as const;
+
+// How answers read back to the visitor, on the results and in the emailed shortlist.
+export const GENDER_LABEL: Record<string, string> = {
+  male: "Men",
+  female: "Women",
+  unisex: "Unisex",
+  any: "No preference",
+};
+export const WEAR_LABEL: Record<string, string> = {
+  short: "Short wear",
+  medium: "Medium wear",
+  long: "Long wear",
+  "": "Any wear time",
+};

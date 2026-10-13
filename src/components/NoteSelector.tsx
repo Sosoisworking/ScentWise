@@ -381,7 +381,7 @@ export function NoteSelector({
             onClick={onSubmit}
             className="flex flex-1 justify-center rounded-full bg-primary px-6 py-4 text-sm font-bold text-primary-foreground shadow-scent transition hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:flex-none sm:px-10"
           >
-            {picked.length === 0 ? "Skip to my results →" : "Find My Fragrance →"}
+            {picked.length === 0 ? "Skip to my results →" : "Find my fragrance →"}
           </button>
           <button
             type="button"

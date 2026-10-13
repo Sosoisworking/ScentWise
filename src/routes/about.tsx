@@ -39,8 +39,8 @@ function AboutPage() {
           buying fragrance online is an unusually bad shopping experience. You cannot smell a web
           page, most "top 10" lists are affiliate rankings in disguise, and the same bottle can
           swing by a hundred dollars between two Canadian sellers in the same week. We built a tool
-          that asks what you actually want — season, staying power, occasion, presentation, notes —
-          and returns a short, honest shortlist instead of a catalogue.
+          that asks what you actually want — season, wear time, occasion, who it's marketed for,
+          notes — and returns a short, honest shortlist instead of a catalogue.
         </p>
 
         <Section title="How the recommendation engine works">
@@ -56,8 +56,8 @@ function AboutPage() {
             count most: 30 points, or more if you skip longevity or choose No preference for who
             it's marketed for, and a note in the base of the pyramid counts a little more than one
             that fades in the first few minutes. Occasion is worth 20 to 25 points, season 15, who
-            it's marketed for 20, and staying power 15. A near miss, like medium wear when you asked
-            for long, earns partial credit. Anything containing a note you said to avoid is removed
+            it's marketed for 20, and wear time 15. A near miss, like medium wear when you asked for
+            long, earns partial credit. Anything containing a note you said to avoid is removed
             entirely.
           </p>
           <p>

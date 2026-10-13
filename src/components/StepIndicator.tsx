@@ -1,8 +1,10 @@
 type StepIndicatorProps = { step: number };
 
-const STEPS = 7;
+// Six questions; the seventh screen is the results, which isn't a step to complete.
+const STEPS = 6;
 
 export function StepIndicator({ step }: StepIndicatorProps) {
+  const results = step > STEPS;
   return (
     <div className="flex items-center gap-2.5">
       <ol className="hidden items-center gap-1 sm:flex" aria-hidden="true">
@@ -14,7 +16,7 @@ export function StepIndicator({ step }: StepIndicatorProps) {
         ))}
       </ol>
       <p className="text-xs font-semibold tabular-nums text-muted-foreground" aria-live="polite">
-        Step {step} of {STEPS}
+        {results ? "Your results" : `Step ${step} of ${STEPS}`}
       </p>
     </div>
   );

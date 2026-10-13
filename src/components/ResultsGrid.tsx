@@ -1,6 +1,9 @@
 import { useMemo, useState } from "react";
 import type { Answers } from "../App";
-import { OCCASION_OPTIONS, SEASON_OPTIONS } from "../data/quizOptions";
+import { Link } from "@tanstack/react-router";
+import type { Fragrance } from "../data/fragrances";
+import { GENDER_LABEL, OCCASION_OPTIONS, SEASON_OPTIONS, WEAR_LABEL } from "../data/quizOptions";
+import { copyText } from "../utils/clipboard";
 import { PRICE_BANDS, priceBand, type PriceBandId } from "../utils/price";
 import {
   fitsAnswers,
@@ -10,7 +13,6 @@ import {
 } from "../utils/scoring";
 import { EmailResults } from "./EmailResults";
 import { FragranceCard } from "./FragranceCard";
-import { WhereToBuyNote } from "./WhereToBuyNote";
 
 type ResultsGridProps = {
   answers: Answers;
@@ -21,36 +23,64 @@ type ResultsGridProps = {
   onStartFresh: () => void;
 };
 
-const GENDER_LABEL: Record<string, string> = {
-  male: "Men",
-  female: "Women",
-  unisex: "Unisex",
-  any: "No preference",
-};
-const LONGEVITY_LABEL: Record<string, string> = {
-  short: "Short wear",
-  medium: "Medium wear",
-  long: "Long wear",
-  "": "Any wear time",
-};
-
-// Fallback for browsers or embedded views that block the async clipboard API.
-function legacyCopy(value: string): boolean {
-  const area = document.createElement("textarea");
-  area.value = value;
-  area.setAttribute("readonly", "");
-  area.style.position = "fixed";
-  area.style.opacity = "0";
-  document.body.appendChild(area);
-  area.select();
-  let ok = false;
-  try {
-    ok = document.execCommand("copy");
-  } catch {
-    ok = false;
-  }
-  area.remove();
-  return ok;
+/** The page ends on what to do next: sample before buying, and where to buy safely. */
+function SampleFirst({ picks }: { picks: Fragrance[] }) {
+  const steps = [
+    "Try them on skin, not a paper strip. Most beauty counters have testers; ask whether they can make you a sample to take home.",
+    "Wear one per day and smell it again after a few hours. The base notes come through late, and they're what you'll live with.",
+    "Buy the one you keep reaching for. Sephora Canada is an authorized store with easy returns; FragranceBuy is a Canadian discounter with lower prices and stricter returns. We earn nothing from either.",
+  ];
+  return (
+    <section
+      aria-labelledby="sample-first"
+      className="mt-14 rounded-2xl border bg-card p-6 text-card-foreground shadow-scent sm:p-8"
+    >
+      <h2 id="sample-first" className="font-serif text-2xl font-bold sm:text-3xl">
+        Sample before you buy
+      </h2>
+      <p className="mt-3 text-sm text-muted-foreground sm:text-base">
+        Start with{" "}
+        {picks.map((f, i) => (
+          <span key={f.id}>
+            {i > 0 && (i === picks.length - 1 ? " and " : ", ")}
+            <span className="font-semibold text-card-foreground">
+              {f.brand} {f.name}
+            </span>
+          </span>
+        ))}
+        .
+      </p>
+      <ol className="mt-5 space-y-3 text-sm sm:text-base">
+        {steps.map((text, i) => (
+          <li key={i} className="flex gap-3">
+            <span
+              className="w-4 shrink-0 font-serif text-lg font-bold leading-6 text-primary"
+              aria-hidden="true"
+            >
+              {i + 1}
+            </span>
+            <span>{text}</span>
+          </li>
+        ))}
+      </ol>
+      <p className="mt-4 flex flex-wrap gap-x-5 text-sm">
+        <Link
+          to="/learn/$slug"
+          params={{ slug: "how-to-choose-a-fragrance" }}
+          hash="sample-before-you-buy"
+          className="inline-flex min-h-11 items-center font-semibold text-primary underline-offset-2 hover:underline"
+        >
+          How to sample well →
+        </Link>
+        <Link
+          to="/retailers"
+          className="inline-flex min-h-11 items-center font-semibold text-primary underline-offset-2 hover:underline"
+        >
+          Compare all retailers →
+        </Link>
+      </p>
+    </section>
+  );
 }
 
 function AnswerChip({
@@ -178,7 +208,7 @@ export function ResultsGrid({
     const url = window.location.href;
     const top = results
       .slice(0, 3)
-      .map((f, i) => `${i + 1}. ${f.brand} ${f.name}`)
+      .map((f) => `${f.brand} ${f.name}`)
       .join("; ");
     const text = `My WhichScent shortlist: ${top}`;
     try {
@@ -186,16 +216,14 @@ export function ResultsGrid({
         await navigator.share({ title: "My WhichScent shortlist", text, url });
         return;
       }
-      await navigator.clipboard.writeText(`${text}\n${url}`);
-      setShareStatus("Link copied");
     } catch (e) {
       if ((e as Error)?.name === "AbortError") return;
-      setShareStatus(
-        legacyCopy(`${text}\n${url}`)
-          ? "Link copied"
-          : "Couldn't copy. Copy the address bar instead.",
-      );
     }
+    setShareStatus(
+      (await copyText(`${text}\n${url}`))
+        ? "Link copied"
+        : "Couldn't copy. Copy the address bar instead.",
+    );
     window.setTimeout(() => setShareStatus(""), 2500);
   };
 
@@ -241,7 +269,7 @@ export function ResultsGrid({
             SEASON_OPTIONS.find((o) => o.key === season)?.label,
             OCCASION_OPTIONS.find((o) => o.key === occasion)?.label,
             GENDER_LABEL[gender],
-            LONGEVITY_LABEL[longevity],
+            WEAR_LABEL[longevity],
             selectedNotes.length ? `loves ${selectedNotes.join(", ")}` : "",
             avoidedNotes.length ? `avoids ${avoidedNotes.join(", ")}` : "",
             budget ? PRICE_BANDS.find((b) => b.id === budget)?.label : "",
@@ -264,7 +292,7 @@ export function ResultsGrid({
           value={SEASON_OPTIONS.find((o) => o.key === season)?.label ?? season}
           onClick={() => onEdit(1)}
         />
-        <AnswerChip name="Wear" value={LONGEVITY_LABEL[longevity]} onClick={() => onEdit(2)} />
+        <AnswerChip name="Wear" value={WEAR_LABEL[longevity]} onClick={() => onEdit(2)} />
         <AnswerChip name="For" value={GENDER_LABEL[gender] ?? gender} onClick={() => onEdit(3)} />
         <AnswerChip
           name="Occasion"
@@ -384,9 +412,9 @@ export function ResultsGrid({
               </div>
             </div>
           )}
-          <WhereToBuyNote />
           <EmailResults
             results={results}
+            rankLabels={shown.map((x, index) => (x.tieGroup ? "Equal fit" : `#${index + 1}`))}
             season={season}
             occasion={occasion}
             gender={gender}
@@ -395,6 +423,7 @@ export function ResultsGrid({
             avoidedNotes={avoidedNotes}
             budget={budget}
           />
+          <SampleFirst picks={results.slice(0, 3)} />
         </>
       )}
     </section>

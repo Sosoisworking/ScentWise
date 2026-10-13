@@ -30,7 +30,7 @@ const MARKETED = { male: "men", female: "women", unisex: "everyone" } as const;
 
 /** Each answer this fragrance meets or misses, worded so a miss is never hidden. */
 function fitLine(fragrance: Fragrance, answers: FitAnswers) {
-  const items: Array<{ ok: boolean; text: string }> = [];
+  const items: Array<{ ok: boolean; text: string; summary?: boolean }> = [];
   const season = SEASON_OPTIONS.find((o) => o.key === answers.season)?.label;
   if (season) {
     const ok = fragrance.seasons.includes(answers.season);
@@ -57,6 +57,16 @@ function fitLine(fragrance: Fragrance, answers: FitAnswers) {
   }
   return items;
 }
+
+/** When nothing misses, one line says so instead of repeating every answer back. */
+function collapseFit(items: ReturnType<typeof fitLine>) {
+  return items.length > 1 && items.every((item) => item.ok)
+    ? [{ ok: true, text: "Fits all your answers", summary: true }]
+    : items;
+}
+
+/** Most store links open a search for the bottle rather than its product page; say which. */
+const isSearchLink = (url: string) => /\/search[?/]/.test(url);
 
 // Decorative, so it uses the soft gold rather than the text gold.
 function BottleIcon() {
@@ -98,6 +108,8 @@ export function FragranceCard({
 }: FragranceCardProps) {
   const match =
     mode === "result" && selectedNotes.length > 0 ? explainMatch(fragrance, selectedNotes) : null;
+  const fit = mode === "result" && answers ? collapseFit(fitLine(fragrance, answers)) : [];
+  const fitShowsWear = !!answers?.longevity && fit.length > 1;
   const buttonGridClass =
     mode === "initial" || !fragrance.sephoraLink ? "grid-cols-1" : "sm:grid-cols-2";
 
@@ -137,12 +149,12 @@ export function FragranceCard({
       {mode === "result" && (
         <p className="mt-3 text-sm font-semibold text-primary">{fragrance.family.join(" · ")}</p>
       )}
-      {mode === "result" && answers && (
+      {fit.length > 0 && (
         <ul
           className="mt-3 flex flex-wrap gap-x-3 gap-y-1 text-xs"
           aria-label="How it fits your answers"
         >
-          {fitLine(fragrance, answers).map((item) => (
+          {fit.map((item) => (
             <li
               key={item.text}
               className={`inline-flex items-center gap-1 ${item.ok ? "text-card-foreground" : "text-muted-foreground"}`}
@@ -152,7 +164,9 @@ export function FragranceCard({
               ) : (
                 <X className="h-3.5 w-3.5" aria-hidden="true" />
               )}
-              <span className="sr-only">{item.ok ? "Fits: " : "Doesn't fit: "}</span>
+              {!item.summary && (
+                <span className="sr-only">{item.ok ? "Fits: " : "Doesn't fit: "}</span>
+              )}
               {item.text}
             </li>
           ))}
@@ -194,8 +208,8 @@ export function FragranceCard({
           highlight={match?.highlight ?? []}
         />
       </div>
-      {/* The fit line already states wear time when the visitor answered it. */}
-      {!(mode === "result" && answers?.longevity) && (
+      {/* Skipped when the fit line already states wear time. */}
+      {!fitShowsWear && (
         <div className="mt-5">
           <LongevityBar longevity={fragrance.longevity} />
         </div>
@@ -208,9 +222,9 @@ export function FragranceCard({
             target="_blank"
             rel="noopener noreferrer"
             className="flex min-h-11 flex-col items-center justify-center rounded-3xl border bg-card px-4 py-2 text-sm font-bold leading-tight text-card-foreground transition hover:border-primary hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-            aria-label={`View ${fragrance.brand} ${fragrance.name} at Sephora Canada, an authorized store`}
+            aria-label={`${isSearchLink(fragrance.sephoraLink) ? "Search Sephora Canada for" : "View"} ${fragrance.brand} ${fragrance.name}${isSearchLink(fragrance.sephoraLink) ? "" : " at Sephora Canada"}, an authorized store`}
           >
-            Sephora Canada →
+            {isSearchLink(fragrance.sephoraLink) ? "Search Sephora Canada →" : "Sephora Canada →"}
             <span className="mt-0.5 text-xs font-normal text-muted-foreground">
               Authorized store
             </span>
@@ -221,9 +235,9 @@ export function FragranceCard({
           target="_blank"
           rel="noopener noreferrer"
           className="flex min-h-11 flex-col items-center justify-center rounded-3xl border bg-card px-4 py-2 text-sm font-bold leading-tight text-card-foreground transition hover:border-primary hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-          aria-label={`Buy ${fragrance.brand} ${fragrance.name} at FragranceBuy, a Canadian discounter`}
+          aria-label={`${isSearchLink(fragrance.fragrancebuyLink) ? "Search FragranceBuy for" : "View"} ${fragrance.brand} ${fragrance.name}${isSearchLink(fragrance.fragrancebuyLink) ? "" : " at FragranceBuy"}, a Canadian discounter`}
         >
-          FragranceBuy →
+          {isSearchLink(fragrance.fragrancebuyLink) ? "Search FragranceBuy →" : "FragranceBuy →"}
           <span className="mt-0.5 text-xs font-normal text-muted-foreground">
             Canadian discounter
           </span>
