@@ -25,6 +25,7 @@ WhichScent (renamed from Scentwise on 2026-10-11 _(owner)_) is a free fragrance 
 - A shortlist to sample, never a verdict: the site says skin chemistry outranks any score. _(site copy)_
 - Buy buttons put the authorized store (Sephora Canada) first and the discounter (FragranceBuy) second, with a line saying which is which; the site earns nothing from either. _(owner, 2026-10-12)_
 - No "Editor's Picks" or featured brands: nothing is singled out without published criteria. _(owner, 2026-10-12)_
+- Results never number a tie: fragrances that score exactly the same are shown as an unnumbered "Equal fit" group. The step-5 first picks win ties and are carried into the results. _(owner, 2026-10-13)_
 
 ## Operating Context
 

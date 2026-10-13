@@ -1,8 +1,13 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import type { Answers } from "../App";
 import { OCCASION_OPTIONS, SEASON_OPTIONS } from "../data/quizOptions";
-import { PRICE_BANDS, type PriceBandId } from "../utils/price";
-import { fitsAnswers, getRefinedResults } from "../utils/scoring";
+import { PRICE_BANDS, priceBand, type PriceBandId } from "../utils/price";
+import {
+  fitsAnswers,
+  getInitialRecommendations,
+  getRankedResults,
+  type RankedResult,
+} from "../utils/scoring";
 import { EmailResults } from "./EmailResults";
 import { FragranceCard } from "./FragranceCard";
 import { WhereToBuyNote } from "./WhereToBuyNote";
@@ -127,7 +132,16 @@ export function ResultsGrid({
   const [shareStatus, setShareStatus] = useState("");
   // Phones see a one-line summary of the answers; tapping it opens the chips to change one.
   const [answersOpen, setAnswersOpen] = useState(false);
-  const allResults = getRefinedResults(
+  // The step-5 first picks, minus any outside the price filter. They win ties in the shortlist,
+  // and any that still miss it are shown below it, so a pick the visitor liked never vanishes.
+  const firstPicks = useMemo(
+    () =>
+      getInitialRecommendations(season, occasion, gender, longevity).filter(
+        (f) => !budget || priceBand(f).id === budget,
+      ),
+    [season, occasion, gender, longevity, budget],
+  );
+  const ranked = getRankedResults(
     season,
     occasion,
     selectedNotes,
@@ -136,9 +150,28 @@ export function ResultsGrid({
     avoidedNotes,
     24,
     budget,
+    firstPicks.map((f) => f.id),
   );
-  const results = allResults.slice(0, visibleCount);
+  const allResults = ranked.map((x) => x.fragrance);
+  const shown = ranked.slice(0, visibleCount);
+  const results = shown.map((x) => x.fragrance);
   const empty = results.length === 0;
+  // Consecutive results that tied are shown as one unnumbered group; the rest keep their rank.
+  const segments: Array<{
+    tieGroup: string | null;
+    items: Array<RankedResult & { rank: number }>;
+  }> = [];
+  shown.forEach((x, index) => {
+    const last = segments[segments.length - 1];
+    const item = { ...x, rank: index + 1 };
+    if (last && last.tieGroup === x.tieGroup) last.items.push(item);
+    else segments.push({ tieGroup: x.tieGroup, items: [item] });
+  });
+  const firstPickBand = (id: string) => {
+    const pick = firstPicks.find((f) => f.id === id);
+    return pick ? priceBand(pick).label : undefined;
+  };
+  const missingFirstPicks = firstPicks.filter((f) => !results.some((r) => r.id === f.id));
 
   // The page URL already carries the quiz answers, so the link reopens this shortlist.
   const share = async () => {
@@ -210,6 +243,8 @@ export function ResultsGrid({
             GENDER_LABEL[gender],
             LONGEVITY_LABEL[longevity],
             selectedNotes.length ? `loves ${selectedNotes.join(", ")}` : "",
+            avoidedNotes.length ? `avoids ${avoidedNotes.join(", ")}` : "",
+            budget ? PRICE_BANDS.find((b) => b.id === budget)?.label : "",
           ]
             .filter(Boolean)
             .join(" · ")}
@@ -287,16 +322,32 @@ export function ResultsGrid({
               doesn't fit.
             </p>
           )}
-          <div className="mt-6 grid gap-5 sm:mt-8 lg:grid-cols-2">
-            {results.map((fragrance, index) => (
-              <FragranceCard
-                key={fragrance.id}
-                fragrance={fragrance}
-                mode="result"
-                rank={index + 1}
-                selectedNotes={selectedNotes}
-                answers={{ season, occasion, gender, longevity }}
-              />
+          <div className="mt-6 space-y-8 sm:mt-8">
+            {segments.map(({ tieGroup, items }) => (
+              <div key={`${tieGroup ?? "ranked"}-${items[0].rank}`}>
+                {tieGroup && (
+                  <p className="mb-4 text-center text-sm text-muted-foreground">
+                    <span className="font-semibold text-foreground">Equal fit:</span>{" "}
+                    {items.length > 1
+                      ? `these ${items.length} scored exactly the same for your answers, so we don't number them.`
+                      : "this scored exactly the same as the next matches, so we don't number it."}
+                    {selectedNotes.length === 0 && " Add notes you love to tell them apart."}
+                  </p>
+                )}
+                <div className="grid gap-5 lg:grid-cols-2">
+                  {items.map(({ fragrance, rank }) => (
+                    <FragranceCard
+                      key={fragrance.id}
+                      fragrance={fragrance}
+                      mode="result"
+                      rankLabel={tieGroup ? "Equal fit" : `#${rank}`}
+                      firstPick={firstPickBand(fragrance.id)}
+                      selectedNotes={selectedNotes}
+                      answers={{ season, occasion, gender, longevity }}
+                    />
+                  ))}
+                </div>
+              </div>
             ))}
           </div>
           {allResults.length > visibleCount && (
@@ -308,6 +359,29 @@ export function ResultsGrid({
               >
                 Show more matches
               </button>
+            </div>
+          )}
+          {missingFirstPicks.length > 0 && (
+            <div className="mt-14">
+              <h2 className="text-center font-serif text-2xl font-bold text-foreground sm:text-3xl">
+                Your first picks
+              </h2>
+              <p className="mx-auto mt-3 max-w-[34rem] text-center text-sm text-muted-foreground">
+                The best fit at each price point before your notes, from the step before. They
+                didn't make the list above, so here they are.
+              </p>
+              <div className="mt-6 grid gap-5 lg:grid-cols-2">
+                {missingFirstPicks.map((fragrance) => (
+                  <FragranceCard
+                    key={fragrance.id}
+                    fragrance={fragrance}
+                    mode="result"
+                    firstPick={firstPickBand(fragrance.id)}
+                    selectedNotes={selectedNotes}
+                    answers={{ season, occasion, gender, longevity }}
+                  />
+                ))}
+              </div>
             </div>
           )}
           <WhereToBuyNote />

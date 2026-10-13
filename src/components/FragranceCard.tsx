@@ -16,8 +16,10 @@ export type FitAnswers = {
 type FragranceCardProps = {
   fragrance: Fragrance;
   mode: "initial" | "result";
-  /** Position in the results, shown instead of a percentage. */
-  rank?: number;
+  /** "#1" etc., or "Equal fit" when it scored exactly the same as a neighbour. */
+  rankLabel?: string;
+  /** Set when this was one of the step-5 first picks: the price band it was picked for. */
+  firstPick?: string;
   selectedNotes?: string[];
   /** The visitor's answers, so the card can say plainly what fits and what doesn't. */
   answers?: FitAnswers;
@@ -89,7 +91,8 @@ function BottleIcon() {
 export function FragranceCard({
   fragrance,
   mode,
-  rank,
+  rankLabel,
+  firstPick,
   selectedNotes = [],
   answers,
 }: FragranceCardProps) {
@@ -111,9 +114,14 @@ export function FragranceCard({
       </div>
 
       <div className="mt-4 flex flex-wrap gap-2">
-        {mode === "result" && rank !== undefined && (
+        {mode === "result" && rankLabel && (
           <span className="rounded-full bg-primary px-3 py-1 text-xs font-bold tabular-nums text-primary-foreground">
-            #{rank}
+            {rankLabel}
+          </span>
+        )}
+        {firstPick && (
+          <span className="rounded-full border border-primary px-3 py-1 text-xs font-bold text-primary">
+            First pick · {firstPick}
           </span>
         )}
         <span className="rounded-full bg-secondary px-3 py-1 text-xs font-bold tabular-nums text-secondary-foreground">
