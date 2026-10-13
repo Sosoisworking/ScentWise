@@ -193,18 +193,7 @@ export function FragranceCard({
         </div>
       )}
       <div className={`mt-5 grid gap-2 ${buttonGridClass}`}>
-        <a
-          href={fragrance.fragrancebuyLink}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex min-h-11 flex-col items-center justify-center rounded-3xl border bg-card px-4 py-2 text-sm font-bold leading-tight text-card-foreground transition hover:border-primary hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-          aria-label={`Buy ${fragrance.brand} ${fragrance.name} at FragranceBuy, a Canadian discounter`}
-        >
-          FragranceBuy →
-          <span className="mt-0.5 text-xs font-normal text-muted-foreground">
-            Canadian discounter
-          </span>
-        </a>
+        {/* The store the brand sells through comes first; the discounter is the cheaper option. */}
         {fragrance.sephoraLink && (
           <a
             href={fragrance.sephoraLink}
@@ -219,6 +208,18 @@ export function FragranceCard({
             </span>
           </a>
         )}
+        <a
+          href={fragrance.fragrancebuyLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex min-h-11 flex-col items-center justify-center rounded-3xl border bg-card px-4 py-2 text-sm font-bold leading-tight text-card-foreground transition hover:border-primary hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          aria-label={`Buy ${fragrance.brand} ${fragrance.name} at FragranceBuy, a Canadian discounter`}
+        >
+          FragranceBuy →
+          <span className="mt-0.5 text-xs font-normal text-muted-foreground">
+            Canadian discounter
+          </span>
+        </a>
       </div>
     </article>
   );

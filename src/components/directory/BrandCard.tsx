@@ -1,5 +1,4 @@
 import type { Brand } from "../../data/brands";
-import { Star } from "lucide-react";
 
 const categoryStyles: Record<Brand["category"], { label: string; cls: string }> = {
   designer: { label: "Designer", cls: "bg-secondary text-secondary-foreground" },
@@ -7,21 +6,11 @@ const categoryStyles: Record<Brand["category"], { label: string; cls: string }> 
   luxury: { label: "Luxury", cls: "bg-primary/10 text-primary" },
 };
 
-export function BrandCard({ brand, accent = false }: { brand: Brand; accent?: boolean }) {
+export function BrandCard({ brand }: { brand: Brand }) {
   const cat = categoryStyles[brand.category];
   return (
-    <article
-      className={`group relative flex flex-col rounded-xl border bg-card p-5 shadow-scent transition duration-200 hover:-translate-y-0.5 hover:shadow-scent-hover ${
-        accent ? "border-primary/50" : ""
-      }`}
-    >
-      {brand.featured && (
-        <span className="absolute right-3 top-3 rounded-full bg-primary/10 px-2 py-0.5 text-xs font-bold uppercase tracking-wide text-primary">
-          <Star className="mr-1 inline h-3 w-3 fill-current align-[-1px]" aria-hidden="true" />
-          Featured
-        </span>
-      )}
-      <div className="flex items-start justify-between gap-2 pr-16">
+    <article className="group relative flex flex-col rounded-xl border bg-card p-5 shadow-scent transition duration-200 hover:-translate-y-0.5 hover:shadow-scent-hover">
+      <div className="flex items-start justify-between gap-2">
         <h3 className="font-serif text-lg font-bold leading-tight text-foreground">{brand.name}</h3>
       </div>
       <div className="mt-2 flex flex-wrap items-center gap-2">

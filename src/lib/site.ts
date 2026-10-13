@@ -5,3 +5,7 @@ export const SITE_URL: string = (import.meta.env.VITE_SITE_URL || "http://localh
   /\/+$/,
   "",
 );
+
+// The one contact address used across the site. Switch it to an address on the site's own
+// domain at launch: the retailer guide lists a free webmail-only contact as a warning sign.
+export const CONTACT_EMAIL = "sohibcorp0706@gmail.com";

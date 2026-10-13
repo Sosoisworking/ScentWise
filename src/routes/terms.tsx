@@ -2,9 +2,9 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ScrollToTopButton } from "../components/ScrollToTopButton";
 import { SiteHeader } from "../components/SiteHeader";
 import { SiteFooter } from "../components/SiteFooter";
-import { SITE_URL } from "../lib/site";
+import { CONTACT_EMAIL, SITE_URL } from "../lib/site";
 
-const EMAIL = "sohibcorp0706@gmail.com";
+const EMAIL = CONTACT_EMAIL;
 const UPDATED = "October 6, 2026";
 
 export const Route = createFileRoute("/terms")({

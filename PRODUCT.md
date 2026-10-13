@@ -23,11 +23,14 @@ WhichScent (renamed from Scentwise on 2026-10-11 _(owner)_) is a free fragrance 
 - Transparent, hand-tagged scoring instead of a sponsored "top 10": no brand pays for placement and the scoring code has no concept of a sponsor. _(site copy, About page)_
 - Canadian-specific: CAD price bands, a Canada-first retailer guide with the real cost of US orders, and Sephora Canada availability shown only for brands Sephora Canada actually carries. _(owner asked for the Sephora rule)_
 - A shortlist to sample, never a verdict: the site says skin chemistry outranks any score. _(site copy)_
+- Buy buttons put the authorized store (Sephora Canada) first and the discounter (FragranceBuy) second, with a line saying which is which; the site earns nothing from either. _(owner, 2026-10-12)_
+- No "Editor's Picks" or featured brands: nothing is singled out without published criteria. _(owner, 2026-10-12)_
 
 ## Operating Context
 
 - The quiz has seven steps: season, wear time, who it's marketed for, occasion (8 options since 2026-10-12), first picks by price band, loved/avoided notes, then results. Results can be filtered by price, shared by URL and emailed. _(code)_
 - The owner reviews every catalogue change as a pull request. A scheduled routine proposes about 10 new fragrances on the 1st and 15th of each month. _(owner)_
+- The contact address is a Gmail placeholder until the domain is bought; it lives in one constant, `CONTACT_EMAIL` in `src/lib/site.ts`. _(owner)_
 - Hosted on Vercel at scent-wise-self.vercel.app. A custom domain (whichscent.com) is planned as the last step before launch. _(owner)_
 
 ## Capabilities and Constraints

@@ -196,7 +196,7 @@ The best fragrance for you is ultimately the one you enjoy wearing. Your fragran
 
 const summer = `Summer changes the way many people approach fragrance. Heat can make strong fragrances feel significantly more intense, so many people prefer scents that feel fresh, clean, citrusy, aquatic, green, or lightly aromatic.
 
-Finding a good summer fragrance doesn't require spending hundreds of dollars. The fragrances below represent different styles and price points. Prices vary between retailers and promotions, so always check the current price before purchasing.
+Finding a good summer fragrance doesn't require spending hundreds of dollars. The ten below mix fragrances marketed for women, for men and to everyone, and you can wear whichever you like. Each one is in our catalogue, where its notes are checked against the brand's pyramid, and its usual Canadian price tops out at $150 or less. Prices move with sales, so check before you buy.
 
 ## What makes a good summer fragrance?
 
@@ -212,65 +212,85 @@ There isn't one ingredient that automatically makes a fragrance suitable for sum
 
 The key is balance.
 
-## 1. Versace Pour Homme
+## 1. Versace Bright Crystal
 
-A classic example of an easygoing warm-weather fragrance. Its clean, fresh character makes it particularly versatile for daytime wear. It's the kind of fragrance that works when you don't want to overthink your choice.
+**Marketed for women** · EDT · usually CA$88–$132
+
+Yuzu and pomegranate open bright and slightly icy before a soft peony and magnolia heart. It stays close to the skin, which suits hot, crowded days.
+
+Best for: daytime and warm evenings.
+
+## 2. Clinique Happy
+
+**Marketed for women** · EDP · usually CA$55–$95
+
+A burst of grapefruit, bergamot and mandarin blossom over a light floral heart. Cheerful and uncomplicated, it's an easy everyday spray.
 
 Best for: everyday summer wear.
 
-## 2. Montblanc Explorer
+## 3. Issey Miyake L'Eau d'Issey
 
-Explorer offers a more woody interpretation of freshness. It's versatile enough for casual situations, work, and evenings.
+**Marketed for women** · EDT · usually CA$88–$148
 
-Best for: someone who wants a summer fragrance with more depth.
+Watery lotus, freesia and cyclamen drift into lily of the valley and peony over sandalwood and cedar. Clean and airy rather than sweet.
 
-## 3. Dolce & Gabbana Light Blue
+Best for: the office and humid days.
 
-Light Blue has long been associated with warm-weather fragrance. Its fresh character makes it particularly suitable for casual summer environments.
+## 4. DKNY Be Delicious
 
-Best for: beach days and casual outings.
+**Marketed for women** · EDP · usually CA$60–$120
 
-## 4. Nautica Voyage
+Crisp apple and cucumber with grapefruit, softened by tuberose and lily. It smells like cold fruit on a hot afternoon and fades fairly quickly.
 
-One of the most accessible choices for someone looking for an inexpensive fresh fragrance. It's particularly appealing if you want something casual rather than formal.
+Best for: casual outings.
 
-Best for: beginners and everyday wear.
+## 5. Davidoff Cool Water
 
-## 5. Coach for Men
+**Marketed for men** · EDT · usually CA$42–$75
 
-A versatile option with a fresh opening and a more rounded dry-down. It works well for someone who wants freshness without going completely aquatic.
+Lavender, rosemary and mint over musk and ambergris: a 1980s classic of the fresh aquatic style that is still easy to wear in the heat.
 
-Best for: casual and smart-casual occasions.
+Best for: beginners and budget shoppers.
 
-## 6. Jimmy Choo Man Ice
+## 6. Nautica Voyage
 
-A bright, approachable option that works particularly well during warmer months. Its style makes it easy to wear during the day.
+**Marketed for men** · EDT · usually CA$35–$62
 
-Best for: casual daytime wear.
+Green apple and green leaves over lotus, mimosa, musk and cedar. Fresh, inexpensive and hard to get wrong.
+
+Best for: everyday wear and the gym bag.
 
 ## 7. Azzaro Chrome
 
-Chrome is another long-running fresh fragrance option. Its clean character makes it appropriate for situations where you want something noticeable without being overly heavy.
+**Marketed for men** · EDT · usually CA$60–$110
 
-Best for: everyday use.
+Lemon, bergamot and a touch of pineapple over jasmine and coriander, with musk and cedar underneath. Clean and bright without being sharp.
+
+Best for: daytime and work.
 
 ## 8. Calvin Klein CK One
 
-CK One is an iconic unisex fragrance. Its straightforward freshness makes it a useful option for people who want something uncomplicated.
+**Marketed to everyone** · EDT · usually CA$55–$98
 
-Best for: casual summer days.
+Bergamot, green tea and cardamom over violet and rose, finishing on amber and musk. The original shareable fragrance, light enough for any summer day.
 
-## 9. Issey Miyake L'Eau d'Issey Pour Homme
+Best for: sharing a bottle.
 
-A more distinctive choice for someone who wants a fresh fragrance with additional character. It's particularly interesting if you want something outside the most common designer releases.
+## 9. Elizabeth Arden Green Tea
 
-Best for: someone looking for a classic fresh profile.
+**Marketed to everyone** · EDT · usually CA$28–$52
 
-## 10. Bentley For Men Azure
+Lemon, bergamot and orange zest with green tea and jasmine over oakmoss and musk. A cheap, cooling splash that works best reapplied.
 
-An affordable option worth exploring if you want a fresh fragrance without paying luxury prices.
+Best for: hot days and quick refreshes.
 
-Best for: budget-conscious fragrance shoppers.
+## 10. Phlur Missing Person
+
+**Marketed to everyone** · EDP · usually CA$133–$150
+
+Bergamot, jasmine and a skin-like musk with cyclamen and neroli over sandalwood and blonde woods. A soft, close scent rather than a loud fresh one.
+
+Best for: anyone who wants something subtle.
 
 ## Don't forget application
 
@@ -286,7 +306,7 @@ Use our [fragrance quiz](/) to discover additional options based on your persona
 
 const winter = `Cold weather changes how fragrance can feel. During winter, many fragrance enthusiasts gravitate toward warmer, richer compositions featuring vanilla, amber, woods, spices, leather, tobacco, and gourmand elements.
 
-That doesn't mean every winter fragrance needs to be heavy. The best choice depends on your personal taste and where you're wearing it. Prices vary between retailers and promotions — always confirm before buying.
+That doesn't mean every winter fragrance needs to be heavy. The ten below mix fragrances marketed for women, for men and to everyone, and you can wear whichever you like. Each one is in our catalogue, where its notes are checked against the brand's pyramid, and its usual Canadian price tops out at $150 or less. Prices move with sales, so check before you buy.
 
 ## What makes a fragrance work in winter?
 
@@ -303,65 +323,85 @@ Cold temperatures can change how fragrances develop and project. Many people the
 
 These ingredients can create a warmer and more enveloping fragrance experience.
 
-## 1. Azzaro Wanted
+## 1. Calvin Klein Euphoria
 
-A versatile option with a noticeable presence. It's suitable for evenings and social occasions where you want something more energetic.
+**Marketed for women** · EDP · usually CA$60–$110
+
+Pomegranate and persimmon over black orchid and lotus, settling into amber and mahogany. Dark, fruity and long-lasting.
+
+Best for: evenings out.
+
+## 2. Kenzo Flower by Kenzo
+
+**Marketed for women** · EDP · usually CA$60–$110
+
+Pink pepper, blackcurrant and hawthorn over a powdery rose and violet, with white musk and vanilla underneath. Soft, but it lasts.
+
+Best for: the office and daytime.
+
+## 3. Lattafa Eclaire
+
+**Marketed for women** · EDP · usually CA$45–$75
+
+Caramel, milk and sugar with honey and white flowers over vanilla and praline. Unapologetically sweet, like a dessert counter in December.
+
+Best for: gourmand lovers.
+
+## 4. Billie Eilish Eilish
+
+**Marketed for women** · EDP · usually CA$72–$98
+
+Sugared petals, mandarin and red berries over vanilla and spices, with musk and tonka bean. Warm and cosy without feeling heavy.
+
+Best for: everyday winter wear.
+
+## 5. Jean Paul Gaultier Le Male
+
+**Marketed for men** · EDT · usually CA$85–$150
+
+Mint, artemisia and cardamom over lavender and orange blossom, then vanilla and tonka bean. A sweet-fresh classic that cuts through cold air.
 
 Best for: nights out.
 
-## 2. Mercedes-Benz Club Black
+## 6. Hugo Boss The Scent
 
-An appealing option for people who enjoy vanilla-forward fragrances. Its sweeter personality makes it particularly appropriate for cold evenings.
+**Marketed for men** · EDT · usually CA$75–$135
 
-Best for: vanilla lovers.
+Ginger, mandarin and bergamot over maninka fruit and lavender, finishing on leather and woods. Warm and smooth rather than loud.
 
-## 3. Halloween Man X
+Best for: date nights.
 
-An affordable fragrance with a darker, sweeter personality. It's worth exploring if you want something casual and budget-friendly.
+## 7. Afnan 9PM
 
-Best for: casual winter evenings.
+**Marketed for men** · EDP · usually CA$45–$68
 
-## 4. Bentley For Men Intense
+Apple, cinnamon and lavender over orange blossom and lily of the valley, resting on vanilla and tonka bean. Sweet, bold and good value.
 
-A richer fragrance profile that can work particularly well in cold weather. It's an interesting choice for someone who wants something less mainstream.
+Best for: parties and budget shoppers.
 
-Best for: experienced fragrance users.
+## 8. Lattafa Khamrah
 
-## 5. Rochas Moustache Eau de Parfum
+**Marketed to everyone** · EDP · usually CA$45–$75
 
-A warm and approachable option with a more dressed-up character. It can work especially well for evening occasions.
+Cinnamon, nutmeg and bergamot over dates and praline, with tonka bean and benzoin. Boozy-sweet and very warm.
 
-Best for: dates and dinners.
+Best for: cold evenings.
 
-## 6. Lalique Encre Noire
+## 9. Armaf Club de Nuit Untold
 
-A very different approach to winter fragrance. Instead of sweetness, it emphasizes darker woody and earthy characteristics.
+**Marketed to everyone** · EDP · usually CA$55–$85
 
-Best for: people who prefer sophisticated woody scents.
+Saffron and jasmine over amberwood and ambergris, drying down to fir resin and cedar. A glowing, resinous scent at a low price.
 
-## 7. Lattafa Khamrah
+Best for: special occasions on a budget.
 
-A sweet, gourmand-style fragrance that has become popular among people who enjoy rich and dessert-like profiles.
+## 10. Glossier You
 
-Best for: cold evenings and gourmand enthusiasts.
+**Marketed to everyone** · EDP · usually CA$95–$110
 
-## 8. Halloween Man Shot
+Pink pepper and iris root over ambrette and Ambrox, with musk. A quiet skin scent that stays close under scarves and coats.
 
-A warmer, sweeter option that can work well during colder months.
-
-Best for: casual winter wear.
-
-## 9. Mercedes-Benz Select Night
-
-A darker and warmer interpretation suitable for evening use.
-
-Best for: winter nights.
-
-## 10. Guess 1981 Los Angeles Men
-
-An affordable option for people looking for a warm, casual fragrance without a large investment.
-
-Best for: everyday winter wear.
+Best for: anyone who doesn't want a big fragrance.
 
 ## Don't overspray
 
