@@ -12,7 +12,9 @@ Nothing is published until a human merges it.
 
 1. Start from an up-to-date `main` and create a branch `data/fragrances-YYYY-MM-DD`.
 2. Run `npm ci` and `npm run validate:data`. The summary shows how many fragrances exist per tier,
-   gender, longevity, season and occasion. Use it to see which areas are thin.
+   gender, longevity, season and occasion. Use it to see which areas are thin. If `npm ci` fails
+   because a package host is blocked in your environment, run `node scripts/validate-fragrances.mjs`
+   instead (it needs no dependencies) and say in the pull request that the build wasn't run here.
 3. Pick **about 10** fragrances to add:
    - Prefer notable releases from the last 6–12 months that are sold in Canada, then well-known
      fragrances that fill the thinnest areas in the summary.
@@ -23,10 +25,22 @@ Nothing is published until a human merges it.
 4. Research each one with web search: the brand's official page first, then reputable retailers
    or press. Do **not** script or bulk-fetch fragrantica.com, fragrancebuy.ca or sephora.com.
    Their terms forbid automated access, and Fragrancebuy and Sephora actively block it.
-5. Add the entries to the end of `fragrances.json` following the field rules below, then add any
+5. **Confirm the Canadian price of every pick, or drop it.** The site shows these prices as typical
+   Canadian ranges, so an estimate is not good enough: the first run's estimates were 10–25% low
+   and put one bottle in the wrong price band. Take the price from a page or search result that
+   shows a Canadian dollar price for that exact fragrance and concentration, in this order:
+   - the brand's own Canadian store, if it has one,
+   - an authorized Canadian store as it appears in web search results: Sephora Canada, Shoppers
+     Drug Mart or Holt Renfrew.
+
+   Record the size and price of each full-size bottle you found, and where you found them. If you
+   can't confirm a Canadian price, **skip the fragrance**; never fill the gap from memory. A smaller
+   pull request is better than a wrong price.
+
+6. Add the entries to the end of `fragrances.json` following the field rules below, then add any
    new brand to `sephora-ca.json`.
-6. Run `npm run validate:data` and `npm run build`. Fix every error.
-7. Commit, push the branch, and open a pull request (format below). **Never merge it yourself.**
+7. Run `npm run validate:data` and `npm run build`. Fix every error.
+8. Commit, push the branch, and open a pull request (format below). **Never merge it yourself.**
 
 Do not edit existing entries, except to fix a factual error you have verified. Call out any
 such fix in the pull request.
@@ -39,15 +53,15 @@ such fix in the pull request.
 | `name`, `brand`                         | Official spelling. Reuse the exact brand spelling already in the file (e.g. `Giorgio Armani`, `Yves Saint Laurent`, `Viktor & Rolf`, `Kilian Paris`, `Jo Malone`).                                                                                                                                                                                                                                                                                                                                                           |
 | `marketedFor`                           | How the brand markets it: `male`, `female` or `unisex`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | `concentration`                         | `EDT`, `EDP`, `Parfum`, `Extrait`, `Elixir`, `Cologne`, `Cologne Intense` or `Body Mist`.                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| `priceDisplay`                          | Approximate Canadian retail from smallest to largest common bottle: `CA$95–$160` (en dash, whole dollars).                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| `priceRange`                            | From the starting price: under CA$100 is `budget`, CA$100–199 is `mid`, CA$200+ is `premium`.                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| `priceDisplay`                          | The confirmed Canadian list price (step 5), from the smallest to the largest full-size bottle: `CA$95–$160` (en dash, whole dollars, rounded to the nearest dollar). Full size means 30 ml and up; ignore travel sprays, minis, refills, gift sets and sale prices.                                                                                                                                                                                                                                                          |
+| `priceRange`                            | From the starting price: under CA$100 is `budget`, CA$100–199 is `mid`, CA$200+ is `premium`. The site's price filter uses the same starting price, so a wrong low end puts the bottle in the wrong band.                                                                                                                                                                                                                                                                                                                    |
 | `family`                                | 1–3 of: Citrus, Floral, Aquatic, Woody, Fruity, Oriental, Gourmand, Aromatic, Green, Chypre, Amber, Musk, Leather, Spicy, Powdery.                                                                                                                                                                                                                                                                                                                                                                                           |
 | `topNotes` / `heartNotes` / `baseNotes` | 1–8 each, from the official pyramid, defining notes first within each tier (position affects scoring). Every note must be a name or alias in `src/data/note-taxonomy.json`; the validator rejects anything else. Use the existing spelling (`Cedarwood` not `Cedar`, `Tonka Bean` not `Tonka`). If a genuinely new note appears, add it to the taxonomy: as an alias if it's a variant of an existing note (e.g. `Sicilian Lemon` under Lemon), otherwise as a new note with its family and a one-line original description. |
 | `longevity`                             | `short` (2–4 h), `medium` (4–6 h) or `long` (7 h+), based on concentration and base notes.                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | `seasons`                               | 1–4 of `spring`, `summer`, `fall`, `winter`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 | `occasions`                             | 2–8 keys from `src/data/quizOptions.ts`: `everyday`, `office`, `date`, `party`, `formal`, `vacation`, `gym`, `cozy`. Most fitting first.                                                                                                                                                                                                                                                                                                                                                                                     |
 | `description`                           | One original sentence, 40–220 characters, ending with a full stop. Describe how it smells and when to wear it. **Never copy brand or retailer copy.**                                                                                                                                                                                                                                                                                                                                                                        |
-| `sephoraPath`                           | `/search?keyword=<Brand%20Name>` if the brand is in `carried`, otherwise `null`. Don't guess product IDs.                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| `sephoraPath`                           | If the brand is in `carried`: `/product/<slug>-P<id>` when web search showed you that exact Sephora Canada product URL (`sephora.com/ca/en/product/...`), otherwise `/search?keyword=<Brand%20Name>`. If the brand isn't carried, `null`. Don't guess product IDs.                                                                                                                                                                                                                                                           |
 | `fragrancebuyQuery`                     | `Brand Name` in plain ASCII without `&` (e.g. `Dolce Gabbana The One`).                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | `addedOn`                               | Today's date, `YYYY-MM-DD`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 
@@ -62,8 +76,10 @@ A missing Sephora button is better than one that leads to an empty search. List 
 
 - **Title:** `Add N fragrances (YYYY-MM-DD)`
 - **Body:**
-  - A table of the new entries: brand, name, tier, price, marketed for, Sephora yes/no.
+  - A table of the new entries: brand, name, tier, price with the bottle sizes it covers, where
+    the price was confirmed (site and date), marketed for, Sephora yes/no.
   - Why these were picked (new releases, gaps filled).
   - New brands added to `notCarried`, for the reviewer to confirm.
-  - Anything uncertain: notes that differed between sources, rough price estimates.
+  - Fragrances you dropped because their Canadian price couldn't be confirmed.
+  - Anything uncertain: notes that differed between sources.
   - The validator summary before and after.
